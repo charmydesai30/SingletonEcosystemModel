@@ -4,7 +4,7 @@
  */
 package Business.UserAccount;
 
-import Business.Student.Student;
+import Business.Person.Person;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -32,11 +32,11 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Student stud, Role role){
+    public UserAccount createUserAccount(String username, String password, Person person, Role role){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
-        userAccount.setStud(stud);
+        userAccount.setPerson(person);
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;

@@ -1,6 +1,6 @@
 package Business;
 
-import Business.Student.Student;
+import Business.Person.Person;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 
@@ -21,9 +21,9 @@ public class ConfigureASystem {
         //create user account
         
         
-        Student stud = system.getStudDirectory().createStudent("RRH");
+        Person person = system.getPersonDirectory().createPerson("RRH");
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", stud, new SystemAdminRole());
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", person, new SystemAdminRole());
         
         return system;
     }

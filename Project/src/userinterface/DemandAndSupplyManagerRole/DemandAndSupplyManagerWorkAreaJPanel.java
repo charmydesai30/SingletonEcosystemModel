@@ -32,7 +32,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
-        manageStudentJButton = new javax.swing.JButton();
+        managePersonJButton = new javax.swing.JButton();
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
@@ -51,13 +51,13 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
 
-        manageStudentJButton.setText("Manage Student");
-        manageStudentJButton.addActionListener(new java.awt.event.ActionListener() {
+        managePersonJButton.setText("Manage Person");
+        managePersonJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageStudentJButtonActionPerformed(evt);
+                managePersonJButtonActionPerformed(evt);
             }
         });
-        add(manageStudentJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
+        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
 
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -84,15 +84,15 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_userJButtonActionPerformed
 
-    private void manageStudentJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStudentJButtonActionPerformed
+    private void managePersonJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePersonJButtonActionPerformed
 
-        ManageStudentJPanel ManageStudentJPanel = new ManageStudentJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageEmployeeJPanel", ManageStudentJPanel);
+        ManagePersonJPanel ManagePersonJPanel = new ManagePersonJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("ManagePersonJPanel", ManagePersonJPanel);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         
-    }//GEN-LAST:event_manageStudentJButtonActionPerformed
+    }//GEN-LAST:event_managePersonJButtonActionPerformed
 
     private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
 
@@ -107,7 +107,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageOrganizationJButton;
-    private javax.swing.JButton manageStudentJButton;
+    private javax.swing.JButton managePersonJButton;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

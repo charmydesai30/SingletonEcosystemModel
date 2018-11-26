@@ -5,7 +5,7 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
-import Business.Student.Student;
+import Business.Person.Person;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.DemandAndSupplyManagerRole;
@@ -190,9 +190,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backJButton)
                                 .addGap(338, 338, 338)
-                                .addComponent(submitJButton)
-                                .addGap(8, 8, 8)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(submitJButton)))))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,9 +244,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         
-        Student stud = enterprise.getStudDirectory().createStudent(name);
+        Person person = enterprise.getPersonDirectory().createPerson(name);
         
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, stud, new DemandAndSupplyManagerRole());
+        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, person, new DemandAndSupplyManagerRole());
         populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed

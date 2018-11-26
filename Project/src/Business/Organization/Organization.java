@@ -4,7 +4,7 @@
  */
 package Business.Organization;
 
-import Business.Student.StudentDirectory;
+import Business.Person.PersonDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -18,7 +18,7 @@ public abstract class Organization {
 
     private String name;
     private WorkQueue workQueue;
-    private StudentDirectory studDirectory;
+    private PersonDirectory personDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
@@ -37,7 +37,7 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
-        studDirectory = new StudentDirectory();
+        personDirectory = new PersonDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
@@ -53,8 +53,8 @@ public abstract class Organization {
         return organizationID;
     }
 
-    public StudentDirectory getStudDirectory() {
-        return studDirectory;
+    public PersonDirectory getPersonDirectory() {
+        return personDirectory;
     }
     
     public String getName() {

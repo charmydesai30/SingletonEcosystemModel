@@ -47,8 +47,8 @@ public class AssistantManagerWorkAreaJPanel extends javax.swing.JPanel {
         for(WorkRequest request : assisstantManagerOrganization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getSender().getStud().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getStud().getName();
+            row[1] = request.getSender().getPerson().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
             row[3] = request.getStatus();
             
             model.addRow(row);
