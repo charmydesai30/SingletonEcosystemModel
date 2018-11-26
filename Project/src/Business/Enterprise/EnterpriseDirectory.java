@@ -39,6 +39,11 @@ public class EnterpriseDirectory {
             enterprise=new AccomodationEnterprise(name);
             enterpriseList.add(enterprise);
         }
+         
+         if(type==Enterprise.EnterpriseType.Household){
+            enterprise=new HouseholdEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
     }
 }
