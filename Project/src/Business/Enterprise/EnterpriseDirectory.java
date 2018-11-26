@@ -35,6 +35,10 @@ public class EnterpriseDirectory {
             enterprise=new BookstoreEnterprise(name);
             enterpriseList.add(enterprise);
         }
+         if(type==Enterprise.EnterpriseType.Accomodation){
+            enterprise=new AccomodationEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
     }
 }
