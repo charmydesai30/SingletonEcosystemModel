@@ -33,6 +33,11 @@ public class OrganizationDirectory {
             organization = new AssisstantManagerOrganization();
             organizationList.add(organization);
         }
+        if(type.getValue().equals(Type.Student.getValue()))
+        {
+            organization = new StudentOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
 }

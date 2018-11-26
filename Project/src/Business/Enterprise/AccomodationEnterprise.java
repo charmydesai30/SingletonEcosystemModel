@@ -5,22 +5,19 @@
  */
 package Business.Enterprise;
 
-import Business.Role.Role;
-import java.util.ArrayList;
-
 /**
  *
  * @author Charmy
  */
-public class AccomodationEnterprise  extends Enterprise{
 
-    public AccomodationEnterprise(String name) {
-        super(name,EnterpriseType.Accomodation);
+import Business.Role.Role;
+import java.util.ArrayList;
+public class AccomodationEnterprise extends Enterprise {
+    public AccomodationEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.Accomodation);
     }
-        
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
 }
