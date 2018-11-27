@@ -19,7 +19,8 @@ public abstract class Role {
     public enum RoleType{
         Manager("Manager"),
         AssistantManager("Assistant Manager"),
-        DemandAndSupplyManager("Demand and Supply Manager");
+        DemandAndSupplyManager("Demand and Supply Manager"),
+        Student("Student");
         
         private String value;
         private RoleType(String value){

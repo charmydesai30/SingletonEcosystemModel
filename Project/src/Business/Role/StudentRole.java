@@ -12,15 +12,30 @@ import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.StudentRole.StudentWorkAreaJPanel;
+import userinterface.StudentRole.StudentAccomodationWorkAreaJPanel;
 
 /**
  *
  * @author Charmy
  */
 public class StudentRole extends Role{
-    @Override
+    
+    
+    
+    Enterprise.Type type;
+    Enterprise enterprise=null;
+    
+     
+    
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new StudentWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
+         {
+             
+            return new StudentAccomodationWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+       
+         }
+         return null;
     }
+    
 }
+
