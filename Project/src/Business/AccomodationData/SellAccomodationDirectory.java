@@ -13,9 +13,10 @@ import java.util.ArrayList;
  */
 public class SellAccomodationDirectory {
      private ArrayList<SellAccomodation> sellAccomodationDataList;
-
+      
     public SellAccomodationDirectory() {
         sellAccomodationDataList= new  ArrayList<>();
+        
     }
 
 
@@ -29,7 +30,7 @@ public class SellAccomodationDirectory {
     }
     public void sellAccomodationInformation( String apptSize,double  noOfBathrooms ,String mattress,double rent,int noOfTenants,String groceries,String fName,String lName)
     {
-        SellAccomodation sellAcc = new SellAccomodation();
+        SellAccomodation sellAcc= new SellAccomodation();
         sellAcc.setApptSize(apptSize);
         sellAcc.setNoOfBathrooms(noOfBathrooms);
         sellAcc.setNoOfTenants(noOfTenants);

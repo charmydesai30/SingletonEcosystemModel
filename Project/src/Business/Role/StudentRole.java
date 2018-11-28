@@ -22,8 +22,7 @@ public class StudentRole extends Role{
     
     
     
-    Enterprise.Type type;
-    Enterprise enterprise=null;
+
     
      
     

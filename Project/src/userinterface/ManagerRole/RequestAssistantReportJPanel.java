@@ -117,7 +117,7 @@ public class RequestAssistantReportJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManagerWorkAreaJPanel dwjp = (ManagerWorkAreaJPanel) component;
+        AccomodationManagerWorkAreaJPanel dwjp = (AccomodationManagerWorkAreaJPanel) component;
         dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

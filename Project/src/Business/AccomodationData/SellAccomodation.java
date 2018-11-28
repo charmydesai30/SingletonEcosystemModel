@@ -19,6 +19,7 @@ public class SellAccomodation {
     String fName;
     String lName;
     
+    
 
     public String getApptSize() {
         return apptSize;

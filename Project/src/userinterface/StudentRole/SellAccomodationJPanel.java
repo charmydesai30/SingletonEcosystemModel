@@ -7,8 +7,16 @@ package userinterface.StudentRole;
 
 import Business.AccomodationData.SellAccomodation;
 import Business.AccomodationData.SellAccomodationDirectory;
+import Business.Enterprise.Enterprise;
+import Business.Organization.ManagerOrganization;
+import Business.Organization.Organization;
+import Business.Organization.StudentOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationManagerWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.AssistantManagerRole.AssistantManagerWorkAreaJPanel;
 
 /**
  *
@@ -21,11 +29,21 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
      */
     SellAccomodationDirectory sellAccDir;
     JPanel userProcessContainer;
-    public SellAccomodationJPanel(JPanel userProcessContainer) {
+    Enterprise enterprise;
+    UserAccount userAccount;
+    Organization organization;
+    
+    public SellAccomodationJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
         initComponents();
           this.sellAccDir = new SellAccomodationDirectory();
           this.userProcessContainer=userProcessContainer;
+          this.enterprise=enterprise;
+          this.userAccount=userAccount;
+          this.organization=(StudentOrganization)organization;
+          populateData();
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +144,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addComponent(rentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
@@ -139,27 +157,27 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(bathroomsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(mattressComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(106, 106, 106)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(bathroomsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(mattressComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(apptSizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(53, 53, 53)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel6)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel5)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel8)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(6, 6, 6)
                                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(groceriesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(groceriesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -176,12 +194,13 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(42, 42, 42)
-                                .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(31, 31, 31)
-                                .addComponent(apptSizeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(93, Short.MAX_VALUE))
+                                .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel8)
+                                .addGap(39, 39, 39)
+                                .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))))
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +228,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(mattressComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE))
+                        .addGap(58, 58, 58))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,7 +246,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel5)
                                         .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(createButton))
@@ -254,6 +273,20 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             row[5]=sellAcc.getNoOfTenants();
             row[6]=sellAcc.getMattress();
             row[7]=sellAcc.getGroceries();
+           ((DefaultTableModel) sellAccTable.getModel()).addRow(row);
+        }
+        
+        
+         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+             Object[] row = new Object[8];
+            row[0] = request.getfName();
+            row[1] = request.getlName();
+            row[2] = request.getApptSize();
+            row[3]=request.getNoOfBathrooms();
+            row[4]=request.getRent();
+            row[5]=request.getNoOfTenants();
+            row[6] =request.getGroceries();
+            row[7]=request.getMattress();
             model.addRow(row);
         }
     }
@@ -269,6 +302,40 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 sellAccDir.sellAccomodationInformation(apptSize, noOfBathrooms, mattress, rent, noOfTenants, groceries, fname, lname);
                 
                populateData();
+               
+               //code to generate the  sell request of student in the queue of Manager
+               
+               AccomodationManagerWorkRequest request = new AccomodationManagerWorkRequest();
+                request.setApptSize(apptSize);
+                request.setNoOfBathrooms(noOfBathrooms);
+                request.setNoOfTenants(noOfTenants);
+                request.setMattress(mattress);
+                request.setRent(rent);
+                request.setGroceries(groceries);
+                request.setfName(fname);
+                request.setlName(lname);
+                
+                Organization org = null;
+                Organization org1 =null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof ManagerOrganization){
+                org = organization;
+                break;
+            }
+        }
+         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof StudentOrganization){
+                org1 = organization;
+                break;
+            }
+        }
+        if (org!=null && org1!=null){
+           
+            org.getWorkQueue().getWorkRequestList().add(request);
+            
+            org1.getWorkQueue().getWorkRequestList().add(request);
+        }
+               
                 
     }//GEN-LAST:event_createButtonActionPerformed
 

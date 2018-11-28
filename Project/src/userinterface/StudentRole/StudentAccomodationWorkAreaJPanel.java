@@ -23,11 +23,16 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
      */
 
     JPanel userProcessContainer;
-   
+    Enterprise enterprise;
+   UserAccount account;
+   Organization organization;
 
     public StudentAccomodationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
           initComponents();
           this.userProcessContainer= userProcessContainer;
+          this.enterprise=enterprise;
+          this.account=account;
+          this.organization=organization;
     }
 
     /**
@@ -90,7 +95,7 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
            
-         SellAccomodationJPanel sellAccPanel = new SellAccomodationJPanel(userProcessContainer);
+         SellAccomodationJPanel sellAccPanel = new SellAccomodationJPanel(userProcessContainer,enterprise,account,organization);
         userProcessContainer.add("SelAccomodationJPanel", sellAccPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
