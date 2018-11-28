@@ -24,7 +24,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="108" y="58" width="375" height="96"/>
+          <AbsoluteConstraints x="83" y="58" width="460" height="100"/>
         </Constraint>
       </Constraints>
 
@@ -33,11 +33,15 @@
         <Component class="javax.swing.JTable" name="workRequestJTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="false" title="Message" type="java.lang.Object"/>
-                <Column editable="true" title="Sender" type="java.lang.String"/>
-                <Column editable="true" title="Receiver" type="java.lang.String"/>
-                <Column editable="false" title="Status" type="java.lang.String"/>
+              <Table columnCount="8" rowCount="4">
+                <Column editable="false" title="First Name" type="java.lang.Object"/>
+                <Column editable="true" title="Last Name" type="java.lang.String"/>
+                <Column editable="true" title="Appt Szie" type="java.lang.String"/>
+                <Column editable="false" title="No Of Bathrooms" type="java.lang.String"/>
+                <Column editable="true" title="No of Tenants" type="java.lang.Object"/>
+                <Column editable="true" title="Rent" type="java.lang.Object"/>
+                <Column editable="true" title="Groceries Included" type="java.lang.Object"/>
+                <Column editable="true" title="Mattress Included" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -58,6 +62,26 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -93,7 +117,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="446" y="215" width="-1" height="-1"/>
+          <AbsoluteConstraints x="350" y="210" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

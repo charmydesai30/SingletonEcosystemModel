@@ -13,6 +13,8 @@ import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.StudentRole.StudentAccomodationWorkAreaJPanel;
+import userinterface.StudentRole.StudentBookStoreWorkAreaJPanel;
+import userinterface.StudentRole.StudentHouseHoldWorkAreaJPanel;
 
 /**
  *
@@ -31,6 +33,18 @@ public class StudentRole extends Role{
          {
              
             return new StudentAccomodationWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+       
+         }
+         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)
+         {
+             
+            return new StudentBookStoreWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+       
+         }
+         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
+         {
+             
+            return new StudentHouseHoldWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
        
          }
          return null;

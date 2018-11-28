@@ -13,6 +13,7 @@ import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
 
 /**
  *
@@ -40,7 +41,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        
+        AssistantMangerReportWorkRequest request1= new AssistantMangerReportWorkRequest();
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[8];
@@ -57,7 +58,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,7 +110,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        requestReportJButton.setText("Request Report");
+        requestReportJButton.setText("Pass Req. to Assistant");
         requestReportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestReportJButtonActionPerformed(evt);
@@ -162,15 +163,17 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(requestReportJButton)
-                .addGap(172, 172, 172))
+                .addComponent(requestReportJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestReportJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestReportJButtonActionPerformed
         
+        
+        
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestAssistantReportJPanel", new RequestAssistantReportJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("SendToAssistantQueueJPanel", new SendToAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
         layout.next(userProcessContainer);
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed

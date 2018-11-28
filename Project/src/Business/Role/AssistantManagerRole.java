@@ -8,7 +8,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.AssistantManagerRole.AssistantManagerWorkAreaJPanel;
+import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -19,7 +19,11 @@ public class AssistantManagerRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AssistantManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
+        {
+        return new AssistantAccomodationManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        }
+        return null;
     }
     
 }

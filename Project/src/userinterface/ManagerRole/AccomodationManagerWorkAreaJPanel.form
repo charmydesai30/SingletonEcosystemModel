@@ -54,8 +54,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="108" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="requestReportJButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
+              <Component id="requestReportJButton" min="-2" pref="85" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,7 +135,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="requestReportJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Request Report"/>
+        <Property name="text" type="java.lang.String" value="Pass Req. to Assistant"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestReportJButtonActionPerformed"/>

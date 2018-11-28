@@ -5,6 +5,7 @@
 package userinterface.AssistantManagerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -18,38 +19,46 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ami Gandhi
  */
-public class AssistantManagerWorkAreaJPanel extends javax.swing.JPanel {
+public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private EcoSystem business;
     private UserAccount userAccount;
-    private AssisstantManagerOrganization assisstantManagerOrganization;
+    private Organization assistantManagerOrganization;
+    
     
     /**
      * Creates new form AssisstantManagerWorkAreaJPanel
      */
-    public AssistantManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public AssistantAccomodationManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
-        this.business = business;
-        this.assisstantManagerOrganization = (AssisstantManagerOrganization)organization;
+       
+       this.assistantManagerOrganization = (AssisstantManagerOrganization)organization;
         
+       
         populateTable();
     }
+
+   
     
     public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
+       DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        
-        for(WorkRequest request : assisstantManagerOrganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getPerson().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getPerson().getName();
-            row[3] = request.getStatus();
+        for (WorkRequest request : assistantManagerOrganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[8];
+            row[0] = request.getfName();
+            row[1] = request.getlName();
+            row[2] = request.getApptSize();
+            row[3]=request.getNoOfBathrooms();
+             row[4]=request.getNoOfTenants();
+            row[5]=request.getRent();
+           
+            row[6] =request.getGroceries();
+            row[7]=request.getMattress();
+           
             
             model.addRow(row);
         }
@@ -74,20 +83,20 @@ public class AssistantManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Message", "Sender", "Receiver", "Status"
+                "First Name", "Last Name", "Appt Szie", "No Of Bathrooms", "No of Tenants", "Rent", "Groceries Included", "Mattress Included"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, true, true, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -106,7 +115,7 @@ public class AssistantManagerWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 58, 375, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 58, 460, 100));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +131,7 @@ public class AssistantManagerWorkAreaJPanel extends javax.swing.JPanel {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 215, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
