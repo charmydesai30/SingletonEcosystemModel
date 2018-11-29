@@ -18,6 +18,24 @@ public class SellAccomodation {
     String groceries;
     String fName;
     String lName;
+    String status;
+    String result;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
     
 

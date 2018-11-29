@@ -80,17 +80,17 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
 
         sellAccTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Fanme", "Lanme", "Appt Size", "No Of Bathroom", "Rent", "No Of Tenants", "Mattress Provided", "Groceries Provided"
+                "Fanme", "Lanme", "Appt Size", "No Of Bathroom", "Rent", "No Of Tenants", "Mattress Provided", "Groceries Provided", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -259,7 +259,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(SellAccomodation sellAcc: sellAccDir.getSellAccomodationDataList())
         {
-            Object row[] = new Object[8];
+            Object row[] = new Object[9];
             row[0]=sellAcc.getfName();
             row[1]=sellAcc.getlName();
             row[2]=sellAcc.getApptSize();
@@ -268,12 +268,15 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             row[5]=sellAcc.getNoOfTenants();
             row[6]=sellAcc.getMattress();
             row[7]=sellAcc.getGroceries();
+            row[8]=sellAcc.getStatus();
+            String result = sellAcc.getResult();
+            row[9] = result == null ? "Waiting" : result;
            ((DefaultTableModel) sellAccTable.getModel()).addRow(row);
         }
         
         
          for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-             Object[] row = new Object[8];
+             Object[] row = new Object[10];
             row[0] = request.getfName();
             row[1] = request.getlName();
             row[2] = request.getApptSize();
@@ -282,6 +285,9 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             row[5]=request.getNoOfTenants();
             row[6] =request.getGroceries();
             row[7]=request.getMattress();
+            row[8]=request.getStatus();
+            String result = ((AccomodationAssisstantManagerWorkRequest) request).getTestResult();
+            row[9] = result == null ? "Waiting" : result;
             model.addRow(row);
         }
     }
@@ -294,7 +300,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 String groceries = (String) groceriesComboBox.getSelectedItem();
                 String fname= firstNameText.getText();
                 String lname = lastNameText.getText();
-                sellAccDir.sellAccomodationInformation(apptSize, noOfBathrooms, mattress, rent, noOfTenants, groceries, fname, lname);
+                String status = "Sent";
+                sellAccDir.sellAccomodationInformation(apptSize, noOfBathrooms, mattress, rent, noOfTenants, groceries, fname, lname,status);
                 
                populateData();
                
@@ -310,6 +317,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 request.setGroceries(groceries);
                 request.setfName(fname);
                 request.setlName(lname);
+                request.setStatus("Sent");
+                
                 
             
                 Organization managerOrg = null;
@@ -336,7 +345,6 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
            
             managerOrg.getWorkQueue().getWorkRequestList().add(request);
-            
             studentOrg.getWorkQueue().getWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getWorkRequestList().add(request);
         }

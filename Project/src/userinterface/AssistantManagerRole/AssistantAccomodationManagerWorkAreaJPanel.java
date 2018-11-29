@@ -9,9 +9,11 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,17 +50,18 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         
         model.setRowCount(0);
         for (WorkRequest request : assistantManagerOrganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[8];
-            row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getApptSize();
-            row[3]=request.getNoOfBathrooms();
-             row[4]=request.getNoOfTenants();
-            row[5]=request.getRent();
+            Object[] row = new Object[10];
+            row[0] = request;
+            row[1]=request.getfName();
+            row[2] = request.getlName();
+            row[3] = request.getApptSize();
+            row[4]=request.getNoOfBathrooms();
+             row[5]=request.getNoOfTenants();
+            row[6]=request.getRent();
            
-            row[6] =request.getGroceries();
-            row[7]=request.getMattress();
-           
+            row[7] =request.getGroceries();
+            row[8]=request.getMattress();
+           row[9] = request.getStatus();
             
             model.addRow(row);
         }
@@ -75,28 +78,29 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        resultTxt = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Appt Szie", "No Of Bathrooms", "No of Tenants", "Rent", "Groceries Included", "Mattress Included"
+                "Result", "First Name", "Last Name", "Appt Szie", "No Of Bathrooms", "No of Tenants", "Rent", "Groceries Included", "Mattress Included", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, true, true, true, true
+                true, false, true, true, false, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -109,21 +113,13 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         });
         jScrollPane1.setViewportView(workRequestJTable);
         if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 58, 460, 100));
-
-        assignJButton.setText("Assign to me");
-        assignJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButtonActionPerformed(evt);
-            }
-        });
-        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 215, -1, -1));
 
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +127,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -140,39 +136,34 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
             }
         });
         add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 26, -1, -1));
+
+        jLabel1.setText("Decision:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 220, 100, 30));
+
+        resultTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultTxtActionPerformed(evt);
+            }
+        });
+        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
-
+    private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
+        String result =resultTxt.getText();
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
-            return;
+            JOptionPane.showMessageDialog(null, "Please select a row");
         }
         
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
-        request.setStatus("Pending");
+        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+     
+        request.setStatus("Completed");
+        request.setTestResult(result);
+        JOptionPane.showMessageDialog(null, "The Request is completed");
         populateTable();
         
-    }//GEN-LAST:event_assignJButtonActionPerformed
-
-    private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
         
-        int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-     
-        request.setStatus("Processing");
-        
-        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_processJButtonActionPerformed
 
@@ -180,11 +171,16 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
+    private void resultTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resultTxtActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignJButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;
+    private javax.swing.JTextField resultTxt;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

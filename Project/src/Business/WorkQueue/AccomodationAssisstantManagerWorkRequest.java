@@ -20,6 +20,9 @@ public class AccomodationAssisstantManagerWorkRequest extends WorkRequest {
     public void setTestResult(String testResult) {
         this.testResult = testResult;
     }
-    
+    public String toString()
+    {
+        return testResult;
+    }
     
 }
