@@ -13,6 +13,33 @@ import java.util.Date;
  */
 public abstract class WorkRequest {
 
+    //data for Accomodation Enterprise
+    String apptSize;
+    double  noOfBathrooms ;
+    String mattress;
+    double rent;
+    int noOfTenants;
+    String groceries;
+    String fName;
+    String lName;
+    
+    //data for Bookstore Enterprise
+    String bookName;
+    double bookPrice;
+    String bookAuthor;
+    String booktype;
+    int noOfBooks;
+    
+    //common data
+    private String message;
+    private UserAccount sender;
+    private UserAccount receiver;
+    private String status;
+    private Date requestDate;
+    private Date resolveDate;
+    
+    
+    // getter and setter for Accomodation
     public String getApptSize() {
         return apptSize;
     }
@@ -72,28 +99,55 @@ public abstract class WorkRequest {
     public String getlName() {
         return lName;
     }
-
-//data for Accomodation Organization
+    
     public void setlName(String lName) {
         this.lName = lName;
     }
-     String apptSize;
-    double  noOfBathrooms ;
-    String mattress;
-    double rent;
-    int noOfTenants;
-    String groceries;
-    String fName;
-    String lName;
     
-    //defualt data provided by them
-    private String message;
-    private UserAccount sender;
-    private UserAccount receiver;
-    private String status;
-    private Date requestDate;
-    private Date resolveDate;
+    // getter and setter for Bookstore
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public double getBookPrice() {
+        return bookPrice;
+    }
+
+    public void setBookPrice(double bookPrice) {
+        this.bookPrice = bookPrice;
+    }
+
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
+    }
+
+    public String getBooktype() {
+        return booktype;
+    }
+
+    public void setBooktype(String booktype) {
+        this.booktype = booktype;
+    }
+
+    public int getNoOfBooks() {
+        return noOfBooks;
+    }
+
+    public void setNoOfBooks(int noOfBooks) {
+        this.noOfBooks = noOfBooks;
+    }
     
+    
+    //common getter and setter
     public WorkRequest(){
         requestDate = new Date();
     }

@@ -17,6 +17,7 @@ public class BookstoreEnterprise extends Enterprise {
     public BookstoreEnterprise(String name){
         super(name,EnterpriseType.Bookstore);
     }
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
