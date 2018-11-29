@@ -18,9 +18,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author raunak
+ * @author Ami Gandhi
  */
-public class SendToAssistantQueueJPanel extends javax.swing.JPanel {
+public class SendToBookstoreAssistantQueueJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private Enterprise enterprise;
@@ -28,13 +28,13 @@ public class SendToAssistantQueueJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RequestLabTestJPanel
      */
-    public SendToAssistantQueueJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise) {
+    public SendToBookstoreAssistantQueueJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.userAccount = account;
-        valueLabel.setText(enterprise.getName());
+        valueJLabel.setText(enterprise.getName());
     }
 
     /**
@@ -50,26 +50,26 @@ public class SendToAssistantQueueJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        valueJLabel = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backJButton.setText("<<Back");
+        backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
-
-        valueLabel.setText("<value>");
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, 40));
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
+        enterpriseLabel.setText("ENTERPRISE : ");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 140, 30));
 
         jLabel1.setText("Your Request Has been sent to Assistant Manager!!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 370, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 370, 50));
+        add(valueJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 220, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -77,8 +77,8 @@ public class SendToAssistantQueueJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        AccomodationManagerWorkAreaJPanel dwjp = (AccomodationManagerWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+        BookstoreManagerWorkAreaJPanel bmwajp = (BookstoreManagerWorkAreaJPanel) component;
+        bmwajp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
@@ -88,6 +88,7 @@ public class SendToAssistantQueueJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel valueJLabel;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -180,7 +180,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void requestReportJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestReportJButtonActionPerformed
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToAssistantQueueJPanel", new SendToAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("SendToBookstoreAssistantQueueJPanel", new SendToBookstoreAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_requestReportJButtonActionPerformed

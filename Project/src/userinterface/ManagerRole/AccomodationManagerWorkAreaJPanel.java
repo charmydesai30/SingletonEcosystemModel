@@ -173,7 +173,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToAssistantQueueJPanel", new SendToAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
         layout.next(userProcessContainer);
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed
