@@ -4,7 +4,7 @@
  */
 package userinterface.AssistantManagerRole;
 
-import Business.WorkQueue.AssistantMangerReportWorkRequest;
+import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -16,11 +16,11 @@ import javax.swing.JPanel;
 public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
-    AssistantMangerReportWorkRequest request;
+    BookstoreAssisstantManagerWorkRequest request;
     /**
      * Creates new form ProcessWorkRequestJPanel
      */
-    public ProcessWorkRequestJPanel(JPanel userProcessContainer, AssistantMangerReportWorkRequest request) {
+    public ProcessWorkRequestJPanel(JPanel userProcessContainer, BookstoreAssisstantManagerWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = request;

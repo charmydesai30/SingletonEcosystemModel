@@ -8,7 +8,7 @@ package Business.WorkQueue;
  *
  * @author Ami Gandhi
  */
-public class AssistantMangerReportWorkRequest extends WorkRequest{
+public class BookstoreAssisstantManagerWorkRequest extends WorkRequest{
     
     private String report;
 

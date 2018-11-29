@@ -13,8 +13,8 @@ import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AccomodationManagerWorkRequest;
-import Business.WorkQueue.AssistantMangerReportWorkRequest;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -300,7 +300,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                
                //code to generate the  sell request of student in the queue of Manager
                
-               AccomodationManagerWorkRequest request = new AccomodationManagerWorkRequest();
+               AccomodationAssisstantManagerWorkRequest request = new AccomodationAssisstantManagerWorkRequest();
                
                 request.setApptSize(apptSize);
                 request.setNoOfBathrooms(noOfBathrooms);

@@ -10,7 +10,7 @@ package Business.WorkQueue;
  *
  * @author Charmy
  */
-public class AccomodationManagerWorkRequest extends WorkRequest {
+public class AccomodationAssisstantManagerWorkRequest extends WorkRequest {
     private String testResult;
 
     public String getTestResult() {

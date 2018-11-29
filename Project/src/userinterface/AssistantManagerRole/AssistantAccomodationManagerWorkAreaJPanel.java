@@ -9,7 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AssistantMangerReportWorkRequest;
+import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -165,7 +165,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
             return;
         }
         
-        AssistantMangerReportWorkRequest request = (AssistantMangerReportWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
      
         request.setStatus("Processing");
         

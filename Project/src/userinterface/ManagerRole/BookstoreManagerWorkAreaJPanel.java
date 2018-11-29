@@ -8,7 +8,7 @@ package userinterface.ManagerRole;
 import Business.Enterprise.Enterprise;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AssistantMangerReportWorkRequest;
+import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -68,20 +68,20 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Book Price", "Book Author", "Book Type", "#Books"
+                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Receiver", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, false, true
+                true, true, true, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -115,12 +115,12 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(83, 83, 83)
                         .addComponent(refreshTestJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(235, 235, 235)
-                        .addComponent(requestReportJButton)))
-                .addContainerGap())
+                        .addComponent(requestReportJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,16 +145,16 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[8];
-            row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getApptSize();
-            row[3]=request.getNoOfBathrooms();
-            row[4]=request.getRent();
-            row[5]=request.getNoOfTenants();
-            row[6] =request.getGroceries();
-            row[7]=request.getMattress();
+            row[0] = request.getBookName();
+            row[1] = request.getBookPrice();
+            row[2] = request.getBookAuthor();
+            row[3]=request.getBooktype();
+            row[4]=request.getNoOfBooks();
+            row[5]=request.getReceiver();
+            row[6] =request.getStatus();
+            String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
+            row[7] = result == null ? "Waiting" : result;
            
-            
             dtm.addRow(row);
         }
         
