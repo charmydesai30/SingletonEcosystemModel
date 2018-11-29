@@ -69,7 +69,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 180, 50));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("ENTERPRICE : ");
+        enterpriseLabel.setText("ENTERPRISE : ");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 140, 30));
 
         valueLabel.setText("<value>");
