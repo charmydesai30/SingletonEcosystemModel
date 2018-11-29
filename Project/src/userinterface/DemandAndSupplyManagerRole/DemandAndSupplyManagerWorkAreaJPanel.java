@@ -36,12 +36,13 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("My Work Area -Adminstrative Role");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        jLabel1.setText("DEMAND AND SUPPLY MANAGER WORK AREA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         userJButton.setText("Manage User");
         userJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -49,7 +50,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 180, 50));
 
         managePersonJButton.setText("Manage Person");
         managePersonJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +58,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 managePersonJButtonActionPerformed(evt);
             }
         });
-        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, -1));
+        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 180, 50));
 
         manageOrganizationJButton.setText("Manage Organization");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,14 +66,18 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, -1, -1));
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 180, 50));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 120, 30));
+        enterpriseLabel.setText("ENTERPRICE : ");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 140, 30));
 
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 130, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 150, 30));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("ADMIN ROLE");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 130, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -106,6 +111,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageOrganizationJButton;
     private javax.swing.JButton managePersonJButton;
     private javax.swing.JButton userJButton;
