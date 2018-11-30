@@ -8,9 +8,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
@@ -41,20 +43,21 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        BookstoreAssisstantManagerWorkRequest request1= new BookstoreAssisstantManagerWorkRequest();
+        //BookstoreAssisstantManagerWorkRequest request1= new BookstoreAssisstantManagerWorkRequest();
         model.setRowCount(0);
         for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[8];
-            row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getApptSize();
-            row[3]=request.getNoOfBathrooms();
-            row[4]=request.getRent();
-            row[5]=request.getNoOfTenants();
-            row[6] =request.getGroceries();
-            row[7]=request.getMattress();
+            Object[] row = new Object[10];
+            row[0]=((AccomodationAssisstantManagerWorkRequest) request)==null?"waiting":((AccomodationAssisstantManagerWorkRequest) request);
+            row[1] = request.getfName();
+            row[2] = request.getlName();
+            row[3] = request.getApptSize();
+            row[4]=request.getNoOfBathrooms();
+            row[5]=request.getRent();
+            row[6]=request.getNoOfTenants();
+            row[7] =request.getGroceries();
+            row[8]=request.getMattress();
+            row[9]=request.getStatus();
            
-            
             model.addRow(row);
         }
     }
@@ -78,20 +81,20 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Appt Size", "No Of Bathrooms", "Rent", "No of Tenants", "Groceries Included", "Mattress Included"
+                "Result", "First Name", "Last Name", "Appt Size", "No Of Bathrooms", "Rent", "No of Tenants", "Groceries Included", "Mattress Included", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false, false, true, true
+                true, true, true, false, false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,10 +107,10 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
         if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         requestReportJButton.setText("Pass Req. to Assistant");
@@ -169,7 +172,19 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestReportJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestReportJButtonActionPerformed
+         
+        int selectedRow = workRequestJTable.getSelectedRow();
         
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        
+        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+     
+        request.setStatus("Processing");
+        
+        
+        populateRequestTable();
         
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
