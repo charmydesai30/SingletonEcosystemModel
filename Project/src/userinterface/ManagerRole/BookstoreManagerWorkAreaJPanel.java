@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
+import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -58,6 +59,8 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
+
+        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         refreshTestJButton.setText("Refresh");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,15 +158,15 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) workRequestJTable.getModel();
         dtm.setRowCount(0);
         
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for (BookstoreWorkRequest request : organization.getWorkQueue().getBookstoreWorkRequestList()){
             Object[] row = new Object[8];
-            row[0] = request.getBookName();
+            row[0] = request;
             row[1] = request.getBookPrice();
             row[2] = request.getBookAuthor();
-            row[3]=request.getBooktype();
-            row[4]=request.getNoOfBooks();
-            row[5]=request.getReceiver();
-            row[6] =request.getStatus();
+            row[3] = request.getBooktype();
+            row[4] = request.getNoOfBooks();
+            row[5] = request.getReceiver();
+            row[6] = request.getStatus();
             String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
             row[7] = result == null ? "Waiting" : result;
            
@@ -193,9 +196,10 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         populateRequestTable();
         
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToBookstoreAssistantQueueJPanel", new SendToBookstoreAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
-        layout.next(userProcessContainer);
+        JOptionPane.showMessageDialog(null, "Request has been sent to bookstore assisstant manager!!");
+        //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //userProcessContainer.add("SendToBookstoreAssistantQueueJPanel", new SendToBookstoreAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+        //layout.next(userProcessContainer);
 
     }//GEN-LAST:event_requestReportJButtonActionPerformed
 

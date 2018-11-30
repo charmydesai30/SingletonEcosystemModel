@@ -185,6 +185,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         Type type = (Type) organizationJComboBox.getSelectedItem();
         directory.createOrganization(type);
         populateTable();
+        JOptionPane.showMessageDialog(null, "Organization created successfully!!");
     }//GEN-LAST:event_addOrgJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -205,6 +206,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         Organization organization = (Organization)organizationJTable.getValueAt(row, 1);
         directory.deleteOrganization(organization);
         populateTable();
+        JOptionPane.showMessageDialog(null, "Organisation deleted successfully!!");
     }//GEN-LAST:event_delOrgJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,12 +13,20 @@ import java.util.ArrayList;
 public class WorkQueue {
     
     private ArrayList<WorkRequest> workRequestList;
+    private ArrayList<BookstoreWorkRequest> bookstoreWorkRequestList;
 
     public WorkQueue() {
         workRequestList = new ArrayList();
+        bookstoreWorkRequestList = new ArrayList();
     }
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
     }
-}
+
+    public ArrayList<BookstoreWorkRequest> getBookstoreWorkRequestList() {
+        return bookstoreWorkRequestList;
+    }
+
+    
+    }

@@ -320,6 +320,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         organization.getUserAccountDirectory().createUserAccount(userName, password, person, role);
         
         popData();
+        nameJTextField.setText("");
+        passwordJTextField.setText("");
+        reEnterPasswordtxt.setText("");
+        JOptionPane.showMessageDialog(null, "User created successfully!!");
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
@@ -353,6 +357,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         organization.getUserAccountDirectory().deleteUserAccount(ua);
         popData();
+        JOptionPane.showMessageDialog(null, "User deleted successfully!!");
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void reEnterPasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reEnterPasswordtxtActionPerformed
