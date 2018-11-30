@@ -10,7 +10,9 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,7 +51,9 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+        {
+        for (WorkRequest request : userAccount1.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[10];
             row[0] = request;
             row[1]=request.getfName();
@@ -67,12 +71,14 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         }
         
     }
+   }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        buyButton = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,26 +108,51 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        buyButton.setText("Buy");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(289, 289, 289)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        
+        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        request.setStatus("Purchased");
+    }//GEN-LAST:event_buyButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buyButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
