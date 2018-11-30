@@ -16,6 +16,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
@@ -42,6 +43,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
           this.enterprise=enterprise;
           this.userAccount=userAccount;
           this.organization=(StudentOrganization)organization;
+          
           populateData();
     }
 
@@ -77,6 +79,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         firstNameText = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         lastNameText = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         sellAccTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,6 +142,13 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("LastName");
 
+        jButton2.setText("View Sold Request");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,10 +159,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                         .addGap(100, 100, 100)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jButton1)
-                        .addGap(153, 153, 153)
-                        .addComponent(createButton))
+                        .addGap(111, 111, 111)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +199,12 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                                     .addComponent(jLabel6)
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel5))))))
+                                                        .addComponent(jLabel5))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(72, 72, 72)
+                                                .addComponent(createButton)
+                                                .addGap(98, 98, 98)
+                                                .addComponent(jButton2))))
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +257,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                         .addGap(58, 58, 58)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(createButton))
+                    .addComponent(createButton)
+                    .addComponent(jButton2))
                 .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -259,6 +273,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(SellAccomodation sellAcc: sellAccDir.getSellAccomodationDataList())
         {
+            
             Object row[] = new Object[10];
             row[0]=sellAcc.getfName();
             row[1]=sellAcc.getlName();
@@ -276,6 +291,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         
         
          for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+             if (!request.getStatus().equalsIgnoreCase("Purchased"))
+             {
              Object[] row = new Object[10];
             row[0] = request.getfName();
             row[1] = request.getlName();
@@ -289,6 +306,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             String result = ((AccomodationAssisstantManagerWorkRequest) request).getTestResult();
             row[9] = result == null ? "Waiting" : result;
             model.addRow(row);
+             }
         }
     }
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
@@ -353,6 +371,14 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_createButtonActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+           
+         SoldAccomodationJPanel sold = new SoldAccomodationJPanel(userProcessContainer,enterprise,userAccount,organization);
+        userProcessContainer.add("SoldAccomodationJPanel", sold);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox apptSizeComboBox;
@@ -362,6 +388,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField firstNameText;
     private javax.swing.JComboBox groceriesComboBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
