@@ -52,6 +52,11 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Buy or Sell Accomodation");
 
         buyButton.setText("Buy");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
 
         sellButton.setText("Sell");
         sellButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +105,13 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sellButtonActionPerformed
+
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        BuyAccomodationJPanel buyAccPanel = new BuyAccomodationJPanel(userProcessContainer,enterprise,account,organization);
+        userProcessContainer.add("BuyAccomodationJPanel", buyAccPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_buyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

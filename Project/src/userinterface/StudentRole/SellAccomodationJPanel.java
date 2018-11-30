@@ -259,7 +259,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(SellAccomodation sellAcc: sellAccDir.getSellAccomodationDataList())
         {
-            Object row[] = new Object[9];
+            Object row[] = new Object[10];
             row[0]=sellAcc.getfName();
             row[1]=sellAcc.getlName();
             row[2]=sellAcc.getApptSize();
@@ -275,7 +275,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         }
         
         
-         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+         for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
              Object[] row = new Object[10];
             row[0] = request.getfName();
             row[1] = request.getlName();
@@ -300,7 +300,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 String groceries = (String) groceriesComboBox.getSelectedItem();
                 String fname= firstNameText.getText();
                 String lname = lastNameText.getText();
-                String status = "Sent";
+                String status = "Pending";
                 sellAccDir.sellAccomodationInformation(apptSize, noOfBathrooms, mattress, rent, noOfTenants, groceries, fname, lname,status);
                 
                populateData();
@@ -317,7 +317,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 request.setGroceries(groceries);
                 request.setfName(fname);
                 request.setlName(lname);
-                request.setStatus("Sent");
+                request.setStatus("Pending");
                 
                 
             
@@ -345,7 +345,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
            
             managerOrg.getWorkQueue().getWorkRequestList().add(request);
-            studentOrg.getWorkQueue().getWorkRequestList().add(request);
+            //adding student request only to current student's account so that when other students log in they cant see current students request
+            userAccount.getWorkQueue().getWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getWorkRequestList().add(request);
         }
                

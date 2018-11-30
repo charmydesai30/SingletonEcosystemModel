@@ -145,7 +145,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
                 resultTxtActionPerformed(evt);
             }
         });
-        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 130, -1));
+        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -157,10 +157,18 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-     
+        if(request.getStatus().equalsIgnoreCase("Processing"))
+        {
         request.setStatus("Completed");
-        request.setTestResult(result);
-        JOptionPane.showMessageDialog(null, "The Request is completed");
+         JOptionPane.showMessageDialog(null, "The Request is completed");
+          request.setTestResult(result);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "The Request is in not processed by manager");
+        }
+       
+       
         populateTable();
         
         
