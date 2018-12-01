@@ -107,10 +107,9 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
          DefaultTableModel model = (DefaultTableModel) sellAccTable.getModel();
         
         model.setRowCount(0);
-        for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
-        {
-        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
-            if (request.getStatus().equalsIgnoreCase("Purchased"))
+       
+        for (AccomodationWorkRequest request : userAccount.getWorkQueue().getAccomodationWorkRequestList()){
+            if (request.getStatus().equalsIgnoreCase("Purchased") )
             {
             Object[] row = new Object[9];
             row[0] =request.getBuyerName();
@@ -126,7 +125,7 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
             model.addRow(row);
             }
         }
-        }
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

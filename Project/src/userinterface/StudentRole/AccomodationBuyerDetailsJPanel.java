@@ -185,7 +185,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         if(! request.getStatus().equalsIgnoreCase("Purchased"))
         {
-        request.setStatus("Purchased");
+             for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                {
+                    for (AccomodationWorkRequest request1 : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+                    {
+                         request1.setStatus("Purchased");
+                    }
+                }
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
