@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.AssistantManagerRole.HouseholdAssistantManagerWorkAreaJPanel;
 
 /**
  *
@@ -22,6 +23,10 @@ public class AssistantManagerRole extends Role {
         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
         {
         return new AssistantAccomodationManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        }
+        if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
+        {
+        return new HouseholdAssistantManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
         }
         return null;
     }
