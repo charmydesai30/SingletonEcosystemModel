@@ -174,7 +174,7 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
         
-        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
      
         request.setStatus("Processing");
         
@@ -183,7 +183,7 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+        userProcessContainer.add("SendToHouseholdAssistantQueueJPanel1", new SendToHouseholdAssistantQueueJPanel1(userProcessContainer, userAccount, enterprise));
         layout.next(userProcessContainer);
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed

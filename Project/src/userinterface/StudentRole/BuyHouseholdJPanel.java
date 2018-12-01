@@ -5,6 +5,18 @@
  */
 package userinterface.StudentRole;
 
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Organization.StudentOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
+import Business.WorkQueue.HouseholdWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jaynee
@@ -14,9 +26,42 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BuyHouseholdJPanel
      */
-    public BuyHouseholdJPanel() {
+    JPanel userProcessContainer;
+    Enterprise enterprise;
+    UserAccount userAccount;
+    Organization studentOrganization;
+    
+    public BuyHouseholdJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+          this.enterprise=enterprise;
+          this.userAccount=userAccount;
+          this.studentOrganization=(StudentOrganization)organization;
+          populateData();
     }
+    
+    public void populateData(){
+       
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+        {
+        for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests()){
+            Object[] row = new Object[10];
+            row[0] = request;
+            row[1]=request.getfName();
+            row[2] = request.getlName();
+            row[3] = request.getFurnitureType();
+            row[4]=request.getQuantity();
+            row[5]=request.getCost();
+            row[6] = request.getStatus();
+            
+            model.addRow(row);
+        }
+        
+    }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +138,25 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
 
     private void buyFurnitureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyFurnitureButtonActionPerformed
         // TODO add your handling code here:
+        int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        if(request.getStatus().equalsIgnoreCase("Completed"))
+        {
+            request.setStatus("Purchased");
+            JOptionPane.showMessageDialog(null, "Purchased successfully");
+            populateData();
+        }
+        else
+        {
+                JOptionPane.showMessageDialog(null,"The accomodation is not verfied by the authority");
+          
+            populateData();
+        }
     }//GEN-LAST:event_buyFurnitureButtonActionPerformed
 
 

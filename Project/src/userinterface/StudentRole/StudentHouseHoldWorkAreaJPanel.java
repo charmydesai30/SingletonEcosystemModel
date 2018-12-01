@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -19,9 +20,20 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form StudentHouseHoldWorkAreaJPanel
      */
+    
+    JPanel userProcessContainer;
+    Enterprise enterprise;
+   UserAccount account;
+   Organization organization;
+
     public StudentHouseHoldWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
-        initComponents();
+          initComponents();
+          this.userProcessContainer= userProcessContainer;
+          this.enterprise=enterprise;
+          this.account=account;
+          this.organization=organization;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,20 +45,25 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buyBtn = new javax.swing.JButton();
+        sellBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         jLabel1.setText("Household Student WorkArea");
 
-        jButton1.setText("Buy");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buyBtn.setText("Buy");
+        buyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buyBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Sell");
+        sellBtn.setText("Sell");
+        sellBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellBtnActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("View");
 
@@ -61,9 +78,9 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jButton1)
+                        .addComponent(buyBtn)
                         .addGap(98, 98, 98)
-                        .addComponent(jButton2))
+                        .addComponent(sellBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(jButton3)))
@@ -76,23 +93,35 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(buyBtn)
+                    .addComponent(sellBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        BuyHouseholdJPanel buyHouseholdPanel = new BuyHouseholdJPanel(userProcessContainer,enterprise,account,organization);
+        userProcessContainer.add("BuyHouseholdJPanel", buyHouseholdPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_buyBtnActionPerformed
+
+    private void sellBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellBtnActionPerformed
+        // TODO add your handling code here:
+        SellHouseholdJPanel sellHouseholdPanel = new SellHouseholdJPanel(userProcessContainer,enterprise,account,organization);
+        userProcessContainer.add("SellHouseholdJPanel", sellHouseholdPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_sellBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buyBtn;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton sellBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -213,8 +213,8 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             row[0]=household.getfName();
             row[1]=household.getlName();
             row[2]=household.getFurnitureType();
-            row[3]=household.getCost();
-            row[4]=household.getQuantity();
+            row[3]=household.getQuantity();
+            row[4]=household.getCost();
             String result = household.getResult();
             row[5] = result == null ? "Waiting" : result;
            ((DefaultTableModel) sellHouseholdTable.getModel()).addRow(row);
@@ -280,10 +280,10 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         }
         if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
            
-            managerOrg.getWorkQueue().getWorkRequestList().add(request);
+            managerOrg.getWorkQueue().getHouseholdWorkRequests().add(request);
             //adding student request only to current student's account so that when other students log in they cant see current students request
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-            assistantManagerOrg.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getHouseholdWorkRequests().add(request);
+            assistantManagerOrg.getWorkQueue().getHouseholdWorkRequests().add(request);
         }
                
                 

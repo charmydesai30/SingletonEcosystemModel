@@ -77,7 +77,7 @@ public class SendToHouseholdAssistantQueueJPanel1 extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        AccomodationManagerWorkAreaJPanel dwjp = (AccomodationManagerWorkAreaJPanel) component;
+        HouseholdManagerWorkAreaJPanel dwjp = (HouseholdManagerWorkAreaJPanel) component;
         dwjp.populateRequestTable();
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

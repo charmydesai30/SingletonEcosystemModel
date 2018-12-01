@@ -10,6 +10,7 @@ import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -152,7 +153,7 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
         
-        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         if(request.getStatus().equalsIgnoreCase("Processing"))
         {
         request.setStatus("Completed");
