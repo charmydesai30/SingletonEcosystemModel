@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import userinterface.ManagerRole.AccomodationManagerWorkAreaJPanel;
 import javax.swing.JPanel;
 import userinterface.ManagerRole.BookstoreManagerWorkAreaJPanel;
+import userinterface.ManagerRole.HouseholdManagerWorkAreaJPanel;
 
 /**
  *
@@ -28,6 +29,10 @@ public class ManagerRole extends Role{
         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)
          {
         return new BookstoreManagerWorkAreaJPanel(userProcessContainer, account, (ManagerOrganization)organization, enterprise);
+         }
+        if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
+         {
+        return new HouseholdManagerWorkAreaJPanel(userProcessContainer, account, (ManagerOrganization)organization, enterprise);
          }
         return null;
     }

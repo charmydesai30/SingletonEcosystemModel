@@ -15,11 +15,13 @@ public class WorkQueue {
     private ArrayList<WorkRequest> workRequestList;
     private ArrayList<AccomodationWorkRequest> accomodationWorkRequestList;
     private ArrayList<BookstoreWorkRequest> bookstoreWorkRequestList;
+    private ArrayList<HouseholdWorkRequest> householdWorkRequest;
 
     public WorkQueue() {
         workRequestList = new ArrayList();
         accomodationWorkRequestList= new ArrayList();
         bookstoreWorkRequestList = new ArrayList();
+        householdWorkRequest=new ArrayList<>();
     }
 
     public ArrayList<AccomodationWorkRequest> getAccomodationWorkRequestList() {
@@ -29,9 +31,7 @@ public class WorkQueue {
     public void setAccomodationWorkRequestList(ArrayList<AccomodationWorkRequest> accomodationWorkRequestList) {
         this.accomodationWorkRequestList = accomodationWorkRequestList;
     }
-    
-
-    
+     
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
@@ -42,4 +42,7 @@ public class WorkQueue {
     }
 
     
+    public ArrayList<HouseholdWorkRequest> getHouseholdWorkRequests() {
+        return householdWorkRequest;
+    }
     }
