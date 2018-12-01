@@ -5,11 +5,20 @@
  */
 package userinterface.StudentRole;
 
+import Business.BookstoreData.Book;
+import Business.BookstoreData.BookDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Organization.AssisstantManagerOrganization;
+import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
+import Business.WorkQueue.BookstoreWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,17 +29,54 @@ public class SellBooksJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SellBooksJPanel
      */
+    BookDirectory bookdir;
     JPanel userProcessContainer;
     Enterprise enterprise;
-    UserAccount userAccount;
+    UserAccount account;
     Organization organization;
     
     public SellBooksJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount account, Organization organization) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
+        this.bookdir = new BookDirectory();
+        this.userProcessContainer= userProcessContainer;
         this.enterprise=enterprise;
-        this.userAccount=userAccount;
-        this.organization=(StudentOrganization)organization;
+        this.account=account;
+        this.organization=organization;
+        populateData();
+        
+    }
+    
+    public void populateData(){
+        DefaultTableModel dtm = (DefaultTableModel) sellBooksJTable.getModel();
+        dtm.setRowCount(0);
+        for (Book sellbook: bookdir.getBookList()){
+            Object[] row = new Object[7];
+            row[0] = sellbook.getBookName();
+            row[1] = sellbook.getBookPrice();
+            row[2] = sellbook.getBookAuthor();
+            row[3] = sellbook.getBooktype();
+            row[4] = sellbook.getNoOfBooks();
+            row[5] = sellbook.getStatus();
+            String result = sellbook.getResult();
+            row[6] = result == null ? "Waiting" : result;
+           
+            dtm.addRow(row);
+        }
+        
+        for(BookstoreWorkRequest request : account.getWorkQueue().getBookstoreWorkRequestList()){
+            Object[] row = new Object[7];
+            row[0] = request.getBookName();
+            row[1] = request.getBookPrice();
+            row[2] = request.getBookAuthor();
+            row[3] = request.getBooktype();
+            row[4] = request.getNoOfBooks();
+            row[5] = request.getStatus();
+            String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
+            row[6] = result == null ? "Waiting" : result;
+            
+            dtm.addRow(row);
+        }
+        
     }
 
     /**
@@ -42,19 +88,219 @@ public class SellBooksJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sellBooksJTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        sellButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        bookNameText = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        bookPriceTxt = new javax.swing.JTextField();
+        bookAuthorTxt = new javax.swing.JTextField();
+        booksComboBox = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        booktypeComboBox = new javax.swing.JComboBox();
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("BOOK SELLING WORK AREA");
+
+        sellBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(sellBooksJTable);
+
+        jButton1.setText("BACK");
+
+        sellButton.setText("SELL");
+        sellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Book Name : ");
+
+        jLabel8.setText("Book Price :");
+
+        booksComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "1.5", "2", "3" }));
+
+        jLabel4.setText("Book Author :");
+
+        jLabel10.setText("Book Type :");
+
+        jLabel9.setText("No Of Books :");
+
+        booktypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "1.5", "2", "3" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(38, 38, 38)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(booksComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(bookNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8))
+                                .addGap(42, 42, 42))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGap(124, 124, 124)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))
+                                .addGap(198, 198, 198))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(bookNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(booksComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
+        String bookName= bookNameText.getText();
+        double bookPrice = Double.parseDouble(bookPriceTxt.getText());
+        String bookAuthor= bookAuthorTxt.getText();
+        String booktype = (String) booktypeComboBox.getSelectedItem();
+        int noOfBooks = Integer.parseInt((String) booksComboBox.getSelectedItem());
+        String status = "Pending";
+        bookdir.addBooks(bookName, bookPrice, bookAuthor, booktype, noOfBooks, status);
+
+        populateData();
+
+        //code to generate the  sell request of student in the queue of Manager
+
+        BookstoreAssisstantManagerWorkRequest request = new BookstoreAssisstantManagerWorkRequest();
+
+        request.setBookName(bookName);
+        request.setBookPrice(bookPrice);
+        request.setBookAuthor(bookAuthor);
+        request.setBooktype(booktype);
+        request.setNoOfBooks(noOfBooks);
+        request.setStatus("Pending");
+
+        Organization managerOrg = null;
+        Organization studentOrg =null;
+        Organization assistantManagerOrg=null;
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof ManagerOrganization){
+                managerOrg = organization;
+                break;
+            }
+        }
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof StudentOrganization){
+                studentOrg = organization;
+                break;
+            }
+        }
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            if (organization instanceof AssisstantManagerOrganization){
+                assistantManagerOrg = organization;
+                break;
+            }
+        }
+        if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
+
+            managerOrg.getWorkQueue().getWorkRequestList().add(request);
+            //adding student request only to current student's account so that when other students log in they cant see current students request
+            account.getWorkQueue().getBookstoreWorkRequestList().add(request);
+            assistantManagerOrg.getWorkQueue().getBookstoreWorkRequestList().add(request);
+        }
+
+    }//GEN-LAST:event_sellButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bookAuthorTxt;
+    private javax.swing.JTextField bookNameText;
+    private javax.swing.JTextField bookPriceTxt;
+    private javax.swing.JComboBox booksComboBox;
+    private javax.swing.JComboBox booktypeComboBox;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable sellBooksJTable;
+    private javax.swing.JButton sellButton;
     // End of variables declaration//GEN-END:variables
 }

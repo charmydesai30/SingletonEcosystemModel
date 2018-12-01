@@ -17,6 +17,8 @@ public class Book {
     String bookAuthor;
     String booktype;
     int noOfBooks;
+    String status;
+    String result;
 
     public String getBookName() {
         return bookName;
@@ -57,5 +59,23 @@ public class Book {
     public void setNoOfBooks(int noOfBooks) {
         this.noOfBooks = noOfBooks;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+    
+    
     
 }
