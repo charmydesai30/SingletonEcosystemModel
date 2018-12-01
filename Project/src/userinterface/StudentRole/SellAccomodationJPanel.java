@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -290,7 +291,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         }
         
         
-         for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+         for(AccomodationWorkRequest request : userAccount.getWorkQueue().getAccomodationWorkRequestList()){
              if (!request.getStatus().equalsIgnoreCase("Purchased"))
              {
              Object[] row = new Object[10];
@@ -362,10 +363,10 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         }
         if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
            
-            managerOrg.getWorkQueue().getWorkRequestList().add(request);
+            managerOrg.getWorkQueue().getAccomodationWorkRequestList().add(request);
             //adding student request only to current student's account so that when other students log in they cant see current students request
-            userAccount.getWorkQueue().getWorkRequestList().add(request);
-            assistantManagerOrg.getWorkQueue().getWorkRequestList().add(request);
+            userAccount.getWorkQueue().getAccomodationWorkRequestList().add(request);
+            assistantManagerOrg.getWorkQueue().getAccomodationWorkRequestList().add(request);
         }
                
                 

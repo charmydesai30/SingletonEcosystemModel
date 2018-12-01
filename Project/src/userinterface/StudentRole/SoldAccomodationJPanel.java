@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -108,7 +109,7 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
         {
-        for (WorkRequest request : userAccount1.getWorkQueue().getWorkRequestList()){
+        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
             if (request.getStatus().equalsIgnoreCase("Purchased"))
             {
             Object[] row = new Object[9];

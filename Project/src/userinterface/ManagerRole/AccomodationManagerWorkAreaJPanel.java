@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -45,7 +46,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         //BookstoreAssisstantManagerWorkRequest request1= new BookstoreAssisstantManagerWorkRequest();
         model.setRowCount(0);
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+        for (AccomodationWorkRequest request : organization.getWorkQueue().getAccomodationWorkRequestList()){
             Object[] row = new Object[10];
             row[0]=((AccomodationAssisstantManagerWorkRequest) request)==null?"waiting":((AccomodationAssisstantManagerWorkRequest) request);
             row[1] = request.getfName();

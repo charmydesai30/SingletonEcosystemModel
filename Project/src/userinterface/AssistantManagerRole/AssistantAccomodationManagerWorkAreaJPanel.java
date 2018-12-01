@@ -4,6 +4,7 @@
  */
 package userinterface.AssistantManagerRole;
 
+import Business.WorkQueue.AccomodationWorkRequest;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.AssisstantManagerOrganization;
@@ -49,7 +50,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for (WorkRequest request : assistantManagerOrganization.getWorkQueue().getWorkRequestList()){
+        for (AccomodationWorkRequest request : assistantManagerOrganization.getWorkQueue().getAccomodationWorkRequestList()){
             Object[] row = new Object[10];
             row[0] = request;
             row[1]=request.getfName();

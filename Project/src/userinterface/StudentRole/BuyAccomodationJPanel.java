@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
+import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -54,7 +55,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
         {
-        for (WorkRequest request : userAccount1.getWorkQueue().getWorkRequestList()){
+        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
             Object[] row = new Object[10];
             row[0] = request;
             row[1]=request.getfName();
