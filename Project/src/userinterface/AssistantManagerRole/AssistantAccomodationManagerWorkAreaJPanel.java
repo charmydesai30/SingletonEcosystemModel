@@ -82,6 +82,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         refreshJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -127,7 +128,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,42 +136,51 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 26, -1, -1));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
         jLabel1.setText("Decision:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 220, 100, 30));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 100, 30));
 
         resultTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resultTxtActionPerformed(evt);
             }
         });
-        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 130, -1));
+        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 130, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Sell Accomodation Requests");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
         String result =resultTxt.getText();
         int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-        
-        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(request.getStatus().equalsIgnoreCase("Processing"))
+        if(result!= null && result.trim().length()>0)
         {
-        request.setStatus("Completed");
-         JOptionPane.showMessageDialog(null, "The Request is completed");
-          request.setTestResult(result);
+            if (selectedRow < 0){
+                JOptionPane.showMessageDialog(null, "Please select a row");
+            }
+
+            AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+            if(request.getStatus().equalsIgnoreCase("Processing"))
+            {
+            request.setStatus("Completed");
+             JOptionPane.showMessageDialog(null, "The Request is completed");
+              request.setTestResult(result);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "The Request is in not processed by manager");
+            }
+
+
+            populateTable();
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "The Request is in not processed by manager");
+            JOptionPane.showMessageDialog(null, "Please enter decision.");
         }
-       
-       
-        populateTable();
-        
         
         
     }//GEN-LAST:event_processJButtonActionPerformed
@@ -185,6 +195,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
     private javax.swing.JButton refreshJButton;

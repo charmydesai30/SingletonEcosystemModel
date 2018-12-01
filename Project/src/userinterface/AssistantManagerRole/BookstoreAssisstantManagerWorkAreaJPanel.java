@@ -186,19 +186,26 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-           String result =resultTxt.getText();
+        String result =resultTxt.getText();
         int selectedRow = workRequestJTable.getSelectedRow();
+        if(result!=null && result.trim().length()>0)
         
-        if (selectedRow < 0){
+        {
+            if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            }
+
+            BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
+
+            request.setStatus("Completed");
+            request.setReport(result);
+            JOptionPane.showMessageDialog(null, "The Request is completed");
+            populateTable();
         }
-        
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
-     
-        request.setStatus("Completed");
-        request.setReport(result);
-        JOptionPane.showMessageDialog(null, "The Request is completed");
-        populateTable();
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter decision.");
+        }
 
     }//GEN-LAST:event_processJButtonActionPerformed
 

@@ -59,17 +59,17 @@ public class SendToHouseholdAssistantQueueJPanel1 extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
 
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        enterpriseLabel.setText("Enterprise :");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
 
         jLabel1.setText("Your Request Has been sent to Assistant Manager!!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 370, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 370, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
