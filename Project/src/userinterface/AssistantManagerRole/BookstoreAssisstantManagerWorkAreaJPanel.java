@@ -10,6 +10,7 @@ import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
+import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -56,6 +57,8 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         processJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
+
+        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE :");
@@ -167,7 +170,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
        DefaultTableModel dtm = (DefaultTableModel) workRequestJTable.getModel();
         dtm.setRowCount(0);
         
-        for (WorkRequest request : assistantManagerOrganization.getWorkQueue().getWorkRequestList()){
+        for (BookstoreWorkRequest request : assistantManagerOrganization.getWorkQueue().getBookstoreWorkRequestList()){
             Object[] row = new Object[7];
             row[0] = request.getBookName();
             row[1] = request.getBookPrice();
@@ -186,26 +189,20 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-        String result =resultTxt.getText();
+           String result =resultTxt.getText();
         int selectedRow = workRequestJTable.getSelectedRow();
-        if(result!=null && result.trim().length()>0)
         
-        {
-            if (selectedRow < 0){
+        if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
-            }
-
-            BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
-
-            request.setStatus("Completed");
-            request.setReport(result);
-            JOptionPane.showMessageDialog(null, "The Request is completed");
-            populateTable();
+            return;
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Please enter decision.");
-        }
+        
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
+     
+        request.setStatus("Completed");
+        request.setReport(result);
+        JOptionPane.showMessageDialog(null, "The Request is completed");
+        populateTable();
 
     }//GEN-LAST:event_processJButtonActionPerformed
 
