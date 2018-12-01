@@ -194,6 +194,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
