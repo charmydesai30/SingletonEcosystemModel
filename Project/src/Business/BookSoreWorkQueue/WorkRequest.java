@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package Business.BookSoreWorkQueue;
 
+import Business.AccomodationWorkQueue.*;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -22,15 +23,6 @@ public abstract class WorkRequest {
     String groceries;
     String fName;
     String lName;
-    String buyerName;
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
     
     //data for Bookstore Enterprise
     String bookName;

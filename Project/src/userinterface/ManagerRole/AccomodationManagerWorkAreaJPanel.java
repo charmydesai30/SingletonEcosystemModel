@@ -177,6 +177,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);

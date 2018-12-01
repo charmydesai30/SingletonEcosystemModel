@@ -12,6 +12,7 @@ import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +33,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
     Organization studentOrganization;
     public BuyAccomodationJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
         initComponents();
-         initComponents();
+         
          // this.sellAccDir = new SellAccomodationDirectory();
           this.userProcessContainer=userProcessContainer;
           this.enterprise=enterprise;
@@ -78,7 +79,8 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        buyButton = new javax.swing.JButton();
+        addToCartButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,10 +110,17 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        buyButton.setText("Buy");
-        buyButton.addActionListener(new java.awt.event.ActionListener() {
+        addToCartButton.setText("Add to Cart");
+        addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyButtonActionPerformed(evt);
+                addToCartButtonActionPerformed(evt);
+            }
+        });
+
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -119,41 +128,86 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(289, 289, 289)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+    private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        request.setStatus("Purchased");
-    }//GEN-LAST:event_buyButtonActionPerformed
+        if(request.getStatus().equalsIgnoreCase("Completed"))
+        {
+        request.setStatus("Added to Cart");
+        JOptionPane.showMessageDialog(null, "Added to Cart Successfully");
+        populateData();
+        }
+        else
+        {
+            if (request.getStatus().equalsIgnoreCase("Purchased"))
+            {
+                JOptionPane.showMessageDialog(null,"The accomodation has been sold to someone else");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"The accomodation is not verfied by the authority");
+            }
+            populateData();
+        }
+        
+    }//GEN-LAST:event_addToCartButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+       int selectedRow = workRequestJTable.getSelectedRow();
+          if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+       AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        if (!request.getStatus().equalsIgnoreCase("Added to Cart"))
+        {
+            JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
+            
+        }
+        else
+        {
+        AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization);
+        userProcessContainer.add("AccomodationBuyerDetails", buyer);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_nextButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buyButton;
+    private javax.swing.JButton addToCartButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton nextButton;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
