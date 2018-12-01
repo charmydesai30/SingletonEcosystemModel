@@ -13,19 +13,33 @@ import java.util.ArrayList;
 public class WorkQueue {
     
     private ArrayList<WorkRequest> workRequestList;
-    private ArrayList<HouseholdWorkRequest> householdWorkRequest;
+    private ArrayList<AccomodationWorkRequest> accomodationWorkRequestList;
+    private ArrayList<BookstoreWorkRequest> bookstoreWorkRequestList;
 
     public WorkQueue() {
         workRequestList = new ArrayList();
-        householdWorkRequest=new ArrayList<>();
+        accomodationWorkRequestList= new ArrayList();
+        bookstoreWorkRequestList = new ArrayList();
     }
+
+    public ArrayList<AccomodationWorkRequest> getAccomodationWorkRequestList() {
+        return accomodationWorkRequestList;
+    }
+
+    public void setAccomodationWorkRequestList(ArrayList<AccomodationWorkRequest> accomodationWorkRequestList) {
+        this.accomodationWorkRequestList = accomodationWorkRequestList;
+    }
+    
+
+    
 
     public ArrayList<WorkRequest> getWorkRequestList() {
         return workRequestList;
     }
-    
-    public ArrayList<HouseholdWorkRequest> getHouseholdWorkRequests() {
-        return householdWorkRequest;
+
+    public ArrayList<BookstoreWorkRequest> getBookstoreWorkRequestList() {
+        return bookstoreWorkRequestList;
     }
+
     
-}
+    }

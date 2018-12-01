@@ -1,24 +1,24 @@
-package Business.BookstoreData;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Business.WorkQueue;
 
 /**
  *
  * @author Ami Gandhi
  */
-public class Book {
+public abstract class BookstoreWorkRequest extends WorkRequest {
     
+     //data for Bookstore Enterprise
     String bookName;
     double bookPrice;
     String bookAuthor;
     String booktype;
     int noOfBooks;
-    String status;
-    String result;
+    
+    // getter and setter for Bookstore
 
     public String getBookName() {
         return bookName;
@@ -59,23 +59,6 @@ public class Book {
     public void setNoOfBooks(int noOfBooks) {
         this.noOfBooks = noOfBooks;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-    
     
     
 }
