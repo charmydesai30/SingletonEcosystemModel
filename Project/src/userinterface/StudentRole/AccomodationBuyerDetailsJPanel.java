@@ -5,6 +5,7 @@
  */
 package userinterface.StudentRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -12,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -29,12 +31,14 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     UserAccount userAccount;
     Organization studentOrganization;
-    public AccomodationBuyerDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
+    EcoSystem system;
+    public AccomodationBuyerDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization,EcoSystem system) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
           this.enterprise=enterprise;
           this.userAccount=userAccount;
           this.studentOrganization=(StudentOrganization)organization;
+          this.system=system;
           userNameTxt.setText("Hello  "+userAccount.getUsername() +"!!");
           populateData();
     }
@@ -81,6 +85,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
+        buyRelatedItemsButton = new javax.swing.JButton();
 
         jLabel1.setText("Your Order Summary:");
 
@@ -119,6 +124,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        buyRelatedItemsButton.setText("Buy Related Items");
+        buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyRelatedItemsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,14 +144,16 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addGap(257, 257, 257)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
-                        .addComponent(buyButton)))
-                .addContainerGap(323, Short.MAX_VALUE))
+                        .addGap(282, 282, 282)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buyRelatedItemsButton))))
+                .addGap(342, 342, 342))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(97, Short.MAX_VALUE)))
+                    .addContainerGap(143, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +162,11 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addGap(197, 197, 197)
                 .addComponent(buyButton)
-                .addGap(162, 162, 162))
+                .addGap(18, 18, 18)
+                .addComponent(buyRelatedItemsButton)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(155, 155, 155)
@@ -181,9 +197,17 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_buyButtonActionPerformed
 
+    private void buyRelatedItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyRelatedItemsButtonActionPerformed
+         AccomodationBookStoreJPanel ent = new AccomodationBookStoreJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
+        userProcessContainer.add("ent", ent);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_buyRelatedItemsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyButton;
+    private javax.swing.JButton buyRelatedItemsButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameTxt;

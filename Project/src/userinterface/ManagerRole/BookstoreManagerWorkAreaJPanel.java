@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,7 +33,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
     public BookstoreManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, ManagerOrganization managerOrganization, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organization = organization;
+        this.organization = managerOrganization;
         this.enterprise = enterprise;
         this.userAccount = account;
         valueLabel.setText(enterprise.getName());

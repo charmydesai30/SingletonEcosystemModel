@@ -6,6 +6,7 @@
 package userinterface.StudentRole;
 
 import Business.AccomodationData.SellAccomodationDirectory;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -32,7 +33,8 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     UserAccount userAccount;
     Organization studentOrganization;
-    public BuyAccomodationJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
+    EcoSystem system;
+    public BuyAccomodationJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization, EcoSystem system) {
         initComponents();
          
          // this.sellAccDir = new SellAccomodationDirectory();
@@ -40,6 +42,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
           this.enterprise=enterprise;
           this.userAccount=userAccount;
           this.studentOrganization=(StudentOrganization)organization;
+          this.system=system;
           populateData();
     }
 
@@ -197,7 +200,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         }
         else
         {
-        AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization);
+        AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("AccomodationBuyerDetails", buyer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

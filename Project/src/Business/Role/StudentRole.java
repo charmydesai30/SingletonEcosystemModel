@@ -32,7 +32,7 @@ public class StudentRole extends Role{
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
          {
              
-            return new StudentAccomodationWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+            return new StudentAccomodationWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business);
        
          }
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)

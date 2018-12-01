@@ -5,6 +5,7 @@
  */
 package userinterface.StudentRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
@@ -26,13 +27,15 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
    UserAccount account;
    Organization organization;
+   EcoSystem system;
 
-    public StudentAccomodationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
+    public StudentAccomodationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
           initComponents();
           this.userProcessContainer= userProcessContainer;
           this.enterprise=enterprise;
           this.account=account;
           this.organization=organization;
+          this.system = system;
     }
 
     /**
@@ -107,7 +110,7 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sellButtonActionPerformed
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
-        BuyAccomodationJPanel buyAccPanel = new BuyAccomodationJPanel(userProcessContainer,enterprise,account,organization);
+        BuyAccomodationJPanel buyAccPanel = new BuyAccomodationJPanel(userProcessContainer,enterprise,account,organization,system);
         userProcessContainer.add("BuyAccomodationJPanel", buyAccPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

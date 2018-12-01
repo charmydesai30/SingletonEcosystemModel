@@ -277,7 +277,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         }
         if (managerOrg!=null && studentOrg!=null && assistantManagerOrg!=null ){
 
-            managerOrg.getWorkQueue().getWorkRequestList().add(request);
+            managerOrg.getWorkQueue().getBookstoreWorkRequestList().add(request);
             //adding student request only to current student's account so that when other students log in they cant see current students request
             account.getWorkQueue().getBookstoreWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getBookstoreWorkRequestList().add(request);
