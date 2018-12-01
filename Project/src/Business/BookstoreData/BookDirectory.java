@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 
 public class BookDirectory {
-    private ArrayList<Book> BookList = new  ArrayList<>();
+    private ArrayList<Book> BookList;
 
-    public BookDirectory(ArrayList<Book> BookList) {
-        this.BookList = BookList;
+    public BookDirectory() {
+        this.BookList = new  ArrayList<>();
     }
 
     public ArrayList<Book> getBookList() {
@@ -29,7 +29,7 @@ public class BookDirectory {
         this.BookList = BookList;
     }
     
-    public void addBooks(String bookName, double bookPrice, String bookAuthor, String booktype, int noOfBooks)
+    public void addBooks(String bookName, double bookPrice, String bookAuthor, String booktype, int noOfBooks,  String status)
     {
         Book book = new Book();
         book.setBookName(bookName);
@@ -37,6 +37,7 @@ public class BookDirectory {
         book.setBookAuthor(bookAuthor);
         book.setBooktype(booktype);
         book.setNoOfBooks(noOfBooks);
+        book.setStatus(status);
         BookList.add(book);
     }
 }

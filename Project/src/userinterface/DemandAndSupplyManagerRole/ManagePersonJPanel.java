@@ -227,6 +227,8 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         
         organization.getPersonDirectory().createPerson(name);
         populateTable(organization);
+        nameJTextField.setText("");
+        JOptionPane.showMessageDialog(null, "Person created successfully!!");
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -260,6 +262,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         organization.getPersonDirectory().deletePerson(p);
         populateTable(organization);
+        JOptionPane.showMessageDialog(null, "Person deleted successfully!!");
     }//GEN-LAST:event_delPersonJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
