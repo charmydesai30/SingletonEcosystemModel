@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package Business.AccomodationWorkQueue;
 
 import Business.UserAccount.UserAccount;
 import java.util.Date;
@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Ami Gandhi
  */
-public abstract class WorkRequest {
+public abstract class AccomodationWorkRequest {
 
     //data for Accomodation Enterprise
     String apptSize;
@@ -22,15 +22,8 @@ public abstract class WorkRequest {
     String groceries;
     String fName;
     String lName;
-    String buyerName;
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
+    
+   
     
     //common data
     private String message;
@@ -106,8 +99,12 @@ public abstract class WorkRequest {
         this.lName = lName;
     }
     
+    // getter and setter for Bookstore
+
+   
+    
     //common getter and setter
-    public WorkRequest(){
+    public AccomodationWorkRequest(){
         requestDate = new Date();
     }
 
