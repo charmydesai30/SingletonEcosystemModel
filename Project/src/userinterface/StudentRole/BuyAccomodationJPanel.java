@@ -165,24 +165,30 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(request.getStatus().equalsIgnoreCase("Completed"))
+        String currentState=request.getStatus();
+        
+        
+        switch(currentState.toUpperCase())
         {
-        request.setStatus("Added to Cart");
-        JOptionPane.showMessageDialog(null, "Added to Cart Successfully");
+            case "PENDING":
+                JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+                break;
+            case "PROCESSING":
+                JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+                break;
+            case "COMPLETED":
+               request.setStatus("Added To Cart");
+               request.setTrackCartUser(userAccount.getUsername());
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already added to the cart");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "The selected Accomodation has been sold");
+                break;
+                
+        }
         populateData();
-        }
-        else
-        {
-            if (request.getStatus().equalsIgnoreCase("Purchased"))
-            {
-                JOptionPane.showMessageDialog(null,"The accomodation has been sold to someone else");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null,"The accomodation is not verfied by the authority");
-            }
-            populateData();
-        }
         
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
@@ -193,18 +199,32 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             return;
         }
        AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if (!request.getStatus().equalsIgnoreCase("Added to Cart"))
+      if(!request.getStatus().equalsIgnoreCase("Purchased"))
+      {
+       boolean flag =false;
+       if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+       {
+           JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
+           flag = true;
+           
+       }
+        if (!flag &&!request.getStatus().equalsIgnoreCase("Added to Cart"))
         {
             JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
             
         }
-        else
+       if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
         {
         AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("AccomodationBuyerDetails", buyer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         }
+      }
+      else
+      {
+           JOptionPane.showMessageDialog(null, "The selected Accomodation is sold to somenone else");
+      }
     }//GEN-LAST:event_nextButtonActionPerformed
 
 

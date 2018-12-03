@@ -97,7 +97,7 @@ public class AccomodationBookStoreJPanel extends javax.swing.JPanel {
     {
       
         DefaultTableModel dtm = (DefaultTableModel) sellBooksJTable.getModel();
-        dtm.setRowCount(0);
+      //  dtm.setRowCount(0);
         for(Network network:system.getNetworkList()){
                 //Step 2.a: check against each enterprise
                 for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){

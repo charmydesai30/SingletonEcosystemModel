@@ -182,16 +182,39 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-     
-        request.setStatus("Processing");
+      
+        String currentState=request.getStatus();
+        
+        
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+                 request.setStatus("Processing");
+                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                 userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+                 layout.next(userProcessContainer);
+                break;
+            case "PROCESSING":
+                JOptionPane.showMessageDialog(null, "Request is already in Processing state.");
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+                
+        }
+              
         
         
         populateRequestTable();
         
         
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
-        layout.next(userProcessContainer);
+       
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed
 

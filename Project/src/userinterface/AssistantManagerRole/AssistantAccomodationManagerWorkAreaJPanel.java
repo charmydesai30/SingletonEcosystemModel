@@ -17,6 +17,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.ManagerRole.SendToAccomodationAssistantQueueJPanel;
 
 /**
  *
@@ -158,16 +159,33 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(request.getStatus().equalsIgnoreCase("Processing"))
+         String currentState=request.getStatus();
+        
+        
+        switch(currentState.toUpperCase())
         {
-        request.setStatus("Completed");
-         JOptionPane.showMessageDialog(null, "The Request is completed");
-          request.setTestResult(result);
+            case "PENDING":
+                JOptionPane.showMessageDialog(null, "Request is not yet processed by manager.");
+                 
+                break;
+            case "PROCESSING":
+                request.setStatus("Completed");
+                request.setTestResult(result);
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you ");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already  Completed by you.");
+                break;
+                
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "The Request is in not processed by manager");
-        }
+              
+        
+        
        
        
         populateTable();
