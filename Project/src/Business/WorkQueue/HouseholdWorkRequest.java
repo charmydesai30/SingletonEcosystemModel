@@ -18,6 +18,15 @@ public class HouseholdWorkRequest extends WorkRequest{
     int quantity;    
     String fName;
     String lName;
+    String buyerName;
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
 
     public String getfName() {
         return fName;

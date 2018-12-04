@@ -204,7 +204,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buyButtonActionPerformed
 
     private void buyRelatedItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyRelatedItemsButtonActionPerformed
-         AccomodationBookStoreJPanel ent = new AccomodationBookStoreJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
+         AccomodationHouseholdJPanel ent = new AccomodationHouseholdJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("ent", ent);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
