@@ -99,7 +99,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         sellBooksJTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         sellButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         bookNameText = new javax.swing.JTextField();
@@ -141,7 +141,12 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(sellBooksJTable);
 
-        jButton1.setText("BACK");
+        btnBack.setText("BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         sellButton.setText("SELL");
         sellButton.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +200,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnBack)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -248,7 +253,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -350,14 +355,21 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_booksComboBoxActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+     // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bookAuthorTxt;
     private javax.swing.JTextField bookNameText;
     private javax.swing.JTextField bookPriceTxt;
     private javax.swing.JComboBox booksComboBox;
     private javax.swing.JComboBox booktypeComboBox;
+    private javax.swing.JButton btnBack;
     private javax.swing.JTextField firstNameText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

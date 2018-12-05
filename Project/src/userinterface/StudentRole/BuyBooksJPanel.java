@@ -60,6 +60,11 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         nextButton = new javax.swing.JButton();
 
         jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         buyBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,7 +195,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request is  already added to the cart");
             break;
             case "PURCHASED":
-            JOptionPane.showMessageDialog(null, "The selected Accomodation has been sold");
+            JOptionPane.showMessageDialog(null, "The selected book has been sold");
             break;
 
         }
@@ -210,7 +215,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             boolean flag =false;
             if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
             {
-                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
+                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to cart by someone else");
                 flag = true;
 
             }
@@ -232,6 +237,13 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "The selected Book is sold to somenone else");
         }
     }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
