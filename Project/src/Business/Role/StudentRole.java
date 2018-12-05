@@ -38,7 +38,7 @@ public class StudentRole extends Role{
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)
          {
              
-            return new StudentBookStoreWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+            return new StudentBookStoreWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business);
        
          }
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)

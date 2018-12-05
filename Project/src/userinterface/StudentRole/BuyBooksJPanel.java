@@ -33,11 +33,11 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Organization organization;
     EcoSystem system;
-    public BuyBooksJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount account, Organization organization) {
+    public BuyBooksJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount account, Organization organization, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
-        this.userAccount=userAccount;
+        this.userAccount=account;
         this.organization=(StudentOrganization)organization;
         this.system = system;
         populateData();

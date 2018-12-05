@@ -5,6 +5,7 @@
  */
 package userinterface.StudentRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -24,13 +25,14 @@ public class StudentBookStoreWorkAreaJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     UserAccount account;
     Organization organization;
-    
-    public StudentBookStoreWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
+    EcoSystem system;
+    public StudentBookStoreWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer= userProcessContainer;
         this.enterprise=enterprise;
         this.account=account;
         this.organization=organization;
+        this.system = system;
     }
 
     /**
@@ -116,7 +118,7 @@ public class StudentBookStoreWorkAreaJPanel extends javax.swing.JPanel {
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         // TODO add your handling code here:
-        BuyBooksJPanel BuyBooksJPanel = new BuyBooksJPanel(userProcessContainer,enterprise,account,organization);
+        BuyBooksJPanel BuyBooksJPanel = new BuyBooksJPanel(userProcessContainer,enterprise,account,organization, system);
         userProcessContainer.add("BuyBooksJPanel", BuyBooksJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
