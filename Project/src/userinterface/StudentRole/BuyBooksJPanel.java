@@ -147,7 +147,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
         {
         for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
-            Object[] row = new Object[7];
+            Object[] row = new Object[9];
             row[0] = request.getfName();
             row[1] = request.getlName();
             row[2] = request.getBookName();
@@ -156,8 +156,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             row[5] = request.getBooktype();
             row[6] = request.getNoOfBooks();
             row[7] = request.getStatus();
-            String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
-            row[8] = result == null ? "Waiting" : result;
+            row[8] = request;
         
             dtm.addRow(row);
             }
@@ -217,7 +216,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             }
             if (!flag &&!request.getStatus().equalsIgnoreCase("Added to Cart"))
             {
-                JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
+                JOptionPane.showMessageDialog(null, "Please add the item to the cart");
 
             }
             if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))

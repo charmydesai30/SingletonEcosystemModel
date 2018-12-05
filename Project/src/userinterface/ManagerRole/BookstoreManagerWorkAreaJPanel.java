@@ -162,8 +162,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
             row[5] = request.getBooktype();
             row[6] = request.getNoOfBooks();
             row[7] = request.getStatus();
-            String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
-            row[8] = result == null ? "Waiting" : result;
+            row[8] = ((BookstoreAssisstantManagerWorkRequest) request)==null?"waiting":((BookstoreAssisstantManagerWorkRequest) request);
            
             dtm.addRow(row);
         }
@@ -186,7 +185,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
-     String currentState=request.getStatus();
+        String currentState=request.getStatus();
         
         
         switch(currentState.toUpperCase())
