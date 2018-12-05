@@ -10,6 +10,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.AssistantManagerRole.BookstoreAssisstantManagerWorkAreaJPanel;
 import userinterface.AssistantManagerRole.HouseholdAssistantManagerWorkAreaJPanel;
 
 /**
@@ -23,6 +24,10 @@ public class AssistantManagerRole extends Role {
         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
         {
         return new AssistantAccomodationManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        }
+        if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)
+        {
+        return new BookstoreAssisstantManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
         }
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
         {
