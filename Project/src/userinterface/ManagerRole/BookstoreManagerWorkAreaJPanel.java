@@ -72,28 +72,21 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Receiver", "Status", "Result"
+                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false, true, true, true, true
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
@@ -160,16 +153,17 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for (BookstoreWorkRequest request : organization.getWorkQueue().getBookstoreWorkRequestList()){
-            Object[] row = new Object[8];
-            row[0] = request;
-            row[1] = request.getBookPrice();
-            row[2] = request.getBookAuthor();
-            row[3] = request.getBooktype();
-            row[4] = request.getNoOfBooks();
-            row[5] = request.getReceiver();
-            row[6] = request.getStatus();
+            Object[] row = new Object[9];
+            row[0] = request.getfName();
+            row[1] = request.getlName();
+            row[2] = request.getBookName();
+            row[3] = request.getBookPrice();
+            row[4] = request.getBookAuthor();
+            row[5] = request.getBooktype();
+            row[6] = request.getNoOfBooks();
+            row[7] = request.getStatus();
             String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
-            row[7] = result == null ? "Waiting" : result;
+            row[8] = result == null ? "Waiting" : result;
            
             dtm.addRow(row);
         }
@@ -191,14 +185,33 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,7);
-     
-        request.setStatus("Processing");
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
+     String currentState=request.getStatus();
         
+        
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+                 request.setStatus("Processing");
+                 JOptionPane.showMessageDialog(null, "Request has been sent to bookstore assisstant manager!!");
+                break;
+            case "PROCESSING":
+                JOptionPane.showMessageDialog(null, "Request is already in Processing state.");
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+                
+        }
         
         populateRequestTable();
         
-        JOptionPane.showMessageDialog(null, "Request has been sent to bookstore assisstant manager!!");
         //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         //userProcessContainer.add("SendToBookstoreAssistantQueueJPanel", new SendToBookstoreAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
         //layout.next(userProcessContainer);

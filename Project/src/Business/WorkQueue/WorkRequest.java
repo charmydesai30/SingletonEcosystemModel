@@ -24,10 +24,6 @@ public abstract class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     
-    
-    // getter and setter for Accomodation
-   
-    
     //common getter and setter
     public WorkRequest(){
         requestDate = new Date();

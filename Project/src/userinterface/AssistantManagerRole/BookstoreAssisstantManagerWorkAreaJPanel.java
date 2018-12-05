@@ -65,17 +65,17 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -171,14 +171,16 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         dtm.setRowCount(0);
         
         for (BookstoreWorkRequest request : assistantManagerOrganization.getWorkQueue().getBookstoreWorkRequestList()){
-            Object[] row = new Object[7];
-            row[0] = request.getBookName();
-            row[1] = request.getBookPrice();
-            row[2] = request.getBookAuthor();
-            row[3] = request.getBooktype();
-            row[4] = request.getNoOfBooks();
-            row[5] = request.getStatus();
-            row[6] = request;
+            Object[] row = new Object[9];
+            row[0] = request.getfName();
+            row[1] = request.getlName();
+            row[2] = request.getBookName();
+            row[3] = request.getBookPrice();
+            row[4] = request.getBookAuthor();
+            row[5] = request.getBooktype();
+            row[6] = request.getNoOfBooks();
+            row[7] = request.getStatus();
+            row[8] = request;
             
             dtm.addRow(row);
         }
@@ -197,11 +199,33 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
             return;
         }
         
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
      
-        request.setStatus("Completed");
-        request.setReport(result);
-        JOptionPane.showMessageDialog(null, "The Request is completed");
+        String currentState=request.getStatus();
+        
+        
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+                JOptionPane.showMessageDialog(null, "Request is not yet processed by manager!!");
+                 
+                break;
+            case "PROCESSING":
+                request.setStatus("Completed");
+                request.setReport(result);
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you !!");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you!!");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already  Completed by you!!");
+                break;
+                
+        }
+        
         populateTable();
 
     }//GEN-LAST:event_processJButtonActionPerformed

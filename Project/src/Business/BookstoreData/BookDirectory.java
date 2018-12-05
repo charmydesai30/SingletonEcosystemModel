@@ -29,7 +29,7 @@ public class BookDirectory {
         this.BookList = BookList;
     }
     
-    public void addBooks(String bookName, double bookPrice, String bookAuthor, String booktype, int noOfBooks,  String status)
+    public void sellBooks(String bookName, double bookPrice, String bookAuthor, String booktype, int noOfBooks, String fName,String lName,  String status)
     {
         Book book = new Book();
         book.setBookName(bookName);
@@ -37,6 +37,8 @@ public class BookDirectory {
         book.setBookAuthor(bookAuthor);
         book.setBooktype(booktype);
         book.setNoOfBooks(noOfBooks);
+        book.setfName(fName);
+        book.setlName(lName);
         book.setStatus(status);
         BookList.add(book);
     }

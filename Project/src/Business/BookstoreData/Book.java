@@ -19,6 +19,8 @@ public class Book {
     int noOfBooks;
     String status;
     String result;
+    String fName;
+    String lName;
 
     public String getBookName() {
         return bookName;
@@ -74,6 +76,22 @@ public class Book {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
     }
     
     

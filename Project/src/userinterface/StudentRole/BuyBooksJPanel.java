@@ -6,6 +6,7 @@
 package userinterface.StudentRole;
 
 import Business.BookstoreData.Book;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -13,6 +14,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -30,13 +32,14 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     UserAccount userAccount;
     Organization organization;
-    
+    EcoSystem system;
     public BuyBooksJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount account, Organization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
         this.userAccount=userAccount;
         this.organization=(StudentOrganization)organization;
+        this.system = system;
         populateData();
     }
 
@@ -53,23 +56,24 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         buyBooksJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        buyButton = new javax.swing.JButton();
+        BuyButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         jButton1.setText("BACK");
 
         buyBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -81,10 +85,17 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("BOOK BUYING WORK AREA");
 
-        buyButton.setText("Buy");
-        buyButton.addActionListener(new java.awt.event.ActionListener() {
+        BuyButton.setText("ADD TO CART");
+        BuyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyButtonActionPerformed(evt);
+                BuyButtonActionPerformed(evt);
+            }
+        });
+
+        nextButton.setText("NEXT");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -96,17 +107,21 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addComponent(jButton1)
                                 .addGap(67, 67, 67)
-                                .addComponent(jLabel1)
-                                .addGap(127, 127, 127))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62))
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(BuyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(183, 183, 183)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,9 +132,11 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BuyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,37 +148,99 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         {
         for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
             Object[] row = new Object[7];
-            row[0] = request.getBookName();
-            row[1] = request.getBookPrice();
-            row[2] = request.getBookAuthor();
-            row[3] = request.getBooktype();
-            row[4] = request.getNoOfBooks();
-            row[5] = request.getStatus();
+            row[0] = request.getfName();
+            row[1] = request.getlName();
+            row[2] = request.getBookName();
+            row[3] = request.getBookPrice();
+            row[4] = request.getBookAuthor();
+            row[5] = request.getBooktype();
+            row[6] = request.getNoOfBooks();
+            row[7] = request.getStatus();
             String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
-            row[6] = result == null ? "Waiting" : result;
+            row[8] = result == null ? "Waiting" : result;
         
             dtm.addRow(row);
             }
         }
     }
     
-    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+    private void BuyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyButtonActionPerformed
         int selectedRow = buyBooksJTable.getSelectedRow();
 
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row!!");
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
 
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,0);
-        request.setStatus("Purchased");
-    }//GEN-LAST:event_buyButtonActionPerformed
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
+        String currentState=request.getStatus();
+
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            break;
+            case "PROCESSING":
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            break;
+            case "COMPLETED":
+            request.setStatus("Added To Cart");
+            request.setTrackCartUser(userAccount.getUsername());
+            break;
+            case "ADDED TO CART":
+            JOptionPane.showMessageDialog(null, "Request is  already added to the cart");
+            break;
+            case "PURCHASED":
+            JOptionPane.showMessageDialog(null, "The selected Accomodation has been sold");
+            break;
+
+        }
+        populateData();
+
+    }//GEN-LAST:event_BuyButtonActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        int selectedRow = buyBooksJTable.getSelectedRow();
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
+        if(!request.getStatus().equalsIgnoreCase("Purchased"))
+        {
+            boolean flag =false;
+            if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+            {
+                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
+                flag = true;
+
+            }
+            if (!flag &&!request.getStatus().equalsIgnoreCase("Added to Cart"))
+            {
+                JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
+
+            }
+            if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
+            {
+                BookstoreBuyerDetailsJPanel buyer = new BookstoreBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,organization,system);
+                userProcessContainer.add("BookstoreBuyerDetails", buyer);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "The selected Book is sold to somenone else");
+        }
+    }//GEN-LAST:event_nextButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuyButton;
     private javax.swing.JTable buyBooksJTable;
-    private javax.swing.JButton buyButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton nextButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,10 @@ public abstract class BookstoreWorkRequest extends WorkRequest {
     String bookAuthor;
     String booktype;
     int noOfBooks;
+    String fName;
+    String lName;
+    String buyerName;
+    String trackCartUser;
     
     // getter and setter for Bookstore
 
@@ -59,6 +63,37 @@ public abstract class BookstoreWorkRequest extends WorkRequest {
     public void setNoOfBooks(int noOfBooks) {
         this.noOfBooks = noOfBooks;
     }
-    
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    public String getTrackCartUser() {
+        return trackCartUser;
+    }
+
+    public void setTrackCartUser(String trackCartUser) {
+        this.trackCartUser = trackCartUser;
+    }
     
 }

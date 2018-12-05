@@ -20,5 +20,9 @@ public class BookstoreAssisstantManagerWorkRequest extends BookstoreWorkRequest{
         this.report = report;
     }
     
+    public String toString()
+    {
+        return report;
+    }
     
 }
