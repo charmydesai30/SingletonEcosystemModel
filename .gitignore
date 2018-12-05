@@ -5,10 +5,10 @@
 private/
 *.csv
 *.db4o
-nbproject/private/
+/Project/nbproject
 nbbuild/
 nbconfiguration.xml
 nbactions.xml
-nudist/
-
+nudist/   /Project/nbproject/private/private.properties
+/Project/nbproject/project.properties
 *.jar
