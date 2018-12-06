@@ -155,7 +155,7 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,0);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
 
         for(Network network:system.getNetworkList()){
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){

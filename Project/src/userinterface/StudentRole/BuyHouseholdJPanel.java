@@ -182,7 +182,7 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
         if(!request.getStatus().equalsIgnoreCase("Purchased"))
         {
             boolean flag =false;
-            if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+            if(request.getTrackCartUser()!= null && !request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
             {
                 JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
                 flag = true;
@@ -193,7 +193,7 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Please add the item to the cart");
 
             }
-            if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
+            if(request.getTrackCartUser()!= null && request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
             {
                 HouseholdBuyerDetailsJPanel buyer = new HouseholdBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
                 userProcessContainer.add("BookstoreBuyerDetails", buyer);
