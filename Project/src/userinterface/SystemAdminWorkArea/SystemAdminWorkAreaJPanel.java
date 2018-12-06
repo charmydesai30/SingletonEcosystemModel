@@ -45,21 +45,27 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
-        btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.setBackground(new java.awt.Color(102, 102, 102));
+        btnManageNetwork.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnManageNetwork.setText("MANAGE NETWORK");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageNetworkActionPerformed(evt);
             }
         });
 
-        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.setBackground(new java.awt.Color(102, 102, 102));
+        btnManageEnterprise.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnManageEnterprise.setText("MANAGE ENTERPRISE");
         btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEnterpriseActionPerformed(evt);
             }
         });
 
-        btnManageAdmin.setText("Manage Enterprise Admin");
+        btnManageAdmin.setBackground(new java.awt.Color(102, 102, 102));
+        btnManageAdmin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnManageAdmin.setText("MANAGE ENTERPRISE ADMIN");
         btnManageAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageAdminActionPerformed(evt);

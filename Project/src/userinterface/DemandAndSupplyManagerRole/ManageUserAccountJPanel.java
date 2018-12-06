@@ -106,7 +106,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
-        createUserJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        createUserJButton.setBackground(new java.awt.Color(102, 102, 102));
+        createUserJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         createUserJButton.setText("CREATE USER");
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +115,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("User Name");
 
         userJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,10 +149,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             userJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Password");
 
+        passwordJTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Person");
 
+        personJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         personJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         personJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +165,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
-        backjButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backjButton1.setBackground(new java.awt.Color(102, 102, 102));
+        backjButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backjButton1.setText("BACK");
         backjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,8 +174,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Organization");
 
+        organizationJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,14 +185,17 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Role");
 
+        roleJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         roleJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setText("MANAGE USERS");
 
-        deleteBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deleteBtn.setBackground(new java.awt.Color(102, 102, 102));
+        deleteBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteBtn.setText("DELETE USER");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,8 +203,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("re-enter password :");
 
+        reEnterPasswordtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reEnterPasswordtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reEnterPasswordtxtActionPerformed(evt);
@@ -206,43 +223,38 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(backjButton1)
-                        .addGap(133, 133, 133)
+                        .addGap(93, 93, 93)
                         .addComponent(jLabel6))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3))
-                                .addGap(64, 64, 64)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(personJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(createUserJButton)
-                                        .addGap(131, 131, 131)
-                                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel7))
-                                        .addGap(21, 21, 21)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(roleJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(nameJTextField)
-                                            .addComponent(passwordJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                                            .addComponent(reEnterPasswordtxt)))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(59, 59, 59)
+                                .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel7))
+                                    .addGap(21, 21, 21)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(roleJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nameJTextField)
+                                        .addComponent(passwordJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                                        .addComponent(reEnterPasswordtxt)))
+                                .addComponent(personJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(121, 121, 121))
         );
         layout.setVerticalGroup(

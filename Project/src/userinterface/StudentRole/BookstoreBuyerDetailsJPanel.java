@@ -65,6 +65,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        buyButton.setBackground(new java.awt.Color(102, 102, 102));
         buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText("BUY");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +74,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        buyRelatedItemsButton.setBackground(new java.awt.Color(102, 102, 102));
         buyRelatedItemsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyRelatedItemsButton.setText("BUY HOUSEHOLD AMENITIES");
         buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +84,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Your Order Summary");
+        jLabel1.setText("YOUR ORDER SUMMARY");
 
         userNameTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         userNameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +115,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(workRequestJTable);
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -131,15 +134,13 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(46, 46, 46)
                         .addComponent(btnBack)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,17 +158,14 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

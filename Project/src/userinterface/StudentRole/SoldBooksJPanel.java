@@ -56,7 +56,7 @@ public class SoldBooksJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
-        userNameTxt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        userNameTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         soldBooksJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         soldBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,6 +83,7 @@ public class SoldBooksJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("SOLD BOOKS DETAILS");
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {

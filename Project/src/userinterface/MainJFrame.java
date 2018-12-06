@@ -56,6 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
+        loginJButton.setBackground(new java.awt.Color(102, 102, 102));
         loginJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         loginJButton.setText("Login");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,12 +65,17 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        userNameJTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("USER NAME");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("PASSWORD");
 
+        logoutJButton.setBackground(new java.awt.Color(102, 102, 102));
         logoutJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         logoutJButton.setText("Logout");
         logoutJButton.setEnabled(false);

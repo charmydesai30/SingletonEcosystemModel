@@ -53,6 +53,7 @@ public class StudentBookStoreWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("STUDENT BOOKSTORE WORK AREA");
 
+        buyButton.setBackground(new java.awt.Color(102, 102, 102));
         buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText(" BUY BOOKS");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +62,7 @@ public class StudentBookStoreWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        sellButton.setBackground(new java.awt.Color(102, 102, 102));
         sellButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sellButton.setText("SELL BOOKS");
         sellButton.addActionListener(new java.awt.event.ActionListener() {

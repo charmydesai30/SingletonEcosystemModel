@@ -89,6 +89,7 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        buyButton.setBackground(new java.awt.Color(102, 102, 102));
         buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText("BUY");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +98,7 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {

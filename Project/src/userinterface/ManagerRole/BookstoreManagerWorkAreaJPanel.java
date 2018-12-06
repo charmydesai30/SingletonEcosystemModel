@@ -60,18 +60,21 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        refreshTestJButton.setText("Refresh");
+        refreshTestJButton.setBackground(new java.awt.Color(102, 102, 102));
+        refreshTestJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        refreshTestJButton.setText("REFRESH");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
 
+        workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -93,7 +96,9 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        requestReportJButton.setText("Send To Assisstant");
+        requestReportJButton.setBackground(new java.awt.Color(102, 102, 102));
+        requestReportJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        requestReportJButton.setText("SEND TO ASSISTANT");
         requestReportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestReportJButtonActionPerformed(evt);

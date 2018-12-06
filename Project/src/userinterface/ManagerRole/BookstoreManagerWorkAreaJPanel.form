@@ -80,7 +80,7 @@
     <Component class="javax.swing.JLabel" name="enterpriseLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="ENTERPRISE : "/>
       </Properties>
@@ -88,13 +88,19 @@
     <Component class="javax.swing.JLabel" name="valueLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="refreshTestJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Refresh"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="REFRESH"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshTestJButtonActionPerformed"/>
@@ -109,6 +115,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="workRequestJTable">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="4">
                 <Column editable="true" title="First Name" type="java.lang.String"/>
@@ -180,7 +189,13 @@
     </Container>
     <Component class="javax.swing.JButton" name="requestReportJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Send To Assisstant"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="SEND TO ASSISTANT"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestReportJButtonActionPerformed"/>

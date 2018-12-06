@@ -63,6 +63,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +98,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("BOOK BUYING WORK AREA");
 
+        BuyButton.setBackground(new java.awt.Color(102, 102, 102));
         BuyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BuyButton.setText("ADD TO CART");
         BuyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +107,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        nextButton.setBackground(new java.awt.Color(102, 102, 102));
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {

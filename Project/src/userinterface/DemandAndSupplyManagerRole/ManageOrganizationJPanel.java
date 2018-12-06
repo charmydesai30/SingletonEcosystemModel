@@ -75,6 +75,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        organizationJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -107,6 +108,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             organizationJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        addOrgJButton.setBackground(new java.awt.Color(102, 102, 102));
+        addOrgJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addOrgJButton.setText("ADD ORGANISATION");
         addOrgJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,10 +117,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
+        organizationJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Organization Type ");
 
+        backJButton.setBackground(new java.awt.Color(102, 102, 102));
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +135,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("MANAGE ORGANISATIONS");
 
+        delOrgJButton.setBackground(new java.awt.Color(102, 102, 102));
+        delOrgJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         delOrgJButton.setText("DELETE ORGANISATION");
         delOrgJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,16 +156,16 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(backJButton)
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(backJButton)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
                                 .addComponent(addOrgJButton)
-                                .addGap(77, 77, 77)
+                                .addGap(30, 30, 30)
                                 .addComponent(delOrgJButton))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(204, 204, 204))

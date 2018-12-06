@@ -45,36 +45,42 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("DEMAND AND SUPPLY MANAGER WORK AREA");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        userJButton.setText("Manage User");
+        userJButton.setBackground(new java.awt.Color(102, 102, 102));
+        userJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userJButton.setText("MANAGE USER");
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 180, 50));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 190, 50));
 
-        managePersonJButton.setText("Manage Person");
+        managePersonJButton.setBackground(new java.awt.Color(102, 102, 102));
+        managePersonJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        managePersonJButton.setText("MANAGE PERSON");
         managePersonJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managePersonJButtonActionPerformed(evt);
             }
         });
-        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 180, 50));
+        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 190, 50));
 
-        manageOrganizationJButton.setText("Manage Organization");
+        manageOrganizationJButton.setBackground(new java.awt.Color(102, 102, 102));
+        manageOrganizationJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        manageOrganizationJButton.setText("MANAGE ORGANISATION");
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 180, 50));
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 190, 50));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 140, 30));
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 150, 30));
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("ADMIN ROLE");

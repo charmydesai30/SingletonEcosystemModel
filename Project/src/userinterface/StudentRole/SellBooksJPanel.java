@@ -143,6 +143,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(sellBooksJTable);
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +152,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        sellButton.setBackground(new java.awt.Color(102, 102, 102));
         sellButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sellButton.setText("SELL");
         sellButton.addActionListener(new java.awt.event.ActionListener() {
@@ -187,8 +189,9 @@ public class SellBooksJPanel extends javax.swing.JPanel {
 
         booktypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "action", "fiction", "comedy", "romance", "drama" }));
 
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("View Sold Request");
+        jButton2.setText("VIEW SOLD REQUESTS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -221,7 +224,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                             .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(77, 77, 77)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
