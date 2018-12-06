@@ -64,7 +64,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
              for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                  if(organization instanceof StudentOrganization)
                      {
-                            for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
                                 {
                                         for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
                                          {
@@ -232,7 +232,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
       if(!request.getStatus().equalsIgnoreCase("Purchased"))
       {
        boolean flag =false;
-       if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+       if(request.getTrackCartUser()!=null&&!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
        {
            JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
            flag = true;

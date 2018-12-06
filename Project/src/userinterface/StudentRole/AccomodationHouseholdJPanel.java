@@ -157,10 +157,12 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
                                if(request1.getStatus().equalsIgnoreCase("Completed"))
                                {
                                request1.setStatus("Purchased");
+                               JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+                               request.setBuyerName(userAccount.getUsername());
                                }
                                else
                                {
-                                   JOptionPane.showConfirmDialog(null, "Item purchase not approved by authority");
+                                   JOptionPane.showMessageDialog(null, "Item you want to purchase is not available to buy");
                                }
                                
                                }
@@ -171,9 +173,9 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
              }
             }
            }
-        request.setBuyerName(userAccount.getUsername());
+        
         populateTbale();
-        JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+        
         
         
     }//GEN-LAST:event_buyButtonActionPerformed
