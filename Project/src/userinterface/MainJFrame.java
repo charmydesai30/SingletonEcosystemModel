@@ -130,6 +130,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         container.setBackground(new java.awt.Color(0, 153, 153));
+        container.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         container.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(container);
 

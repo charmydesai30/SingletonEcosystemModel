@@ -12,6 +12,7 @@ import Business.Role.DemandAndSupplyManagerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -254,7 +255,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        
+           
         Person person = enterprise.getPersonDirectory().createPerson(name);
         
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, person, new DemandAndSupplyManagerRole());
@@ -264,7 +265,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
