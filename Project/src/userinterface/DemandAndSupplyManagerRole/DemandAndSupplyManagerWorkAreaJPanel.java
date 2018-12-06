@@ -23,6 +23,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.system=system;
         valueLabel.setText(enterprise.getName());
+        householdBtn.setText(enterprise.getEnterpriseType()+" Analysis");
     }
     
     /** This method is called from within the constructor to
@@ -36,11 +37,11 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
         managePersonJButton = new javax.swing.JButton();
-        trackAnalysisButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         manageOrganizationJButton1 = new javax.swing.JButton();
+        householdBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,16 +70,6 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 190, 50));
 
-        trackAnalysisButton.setBackground(new java.awt.Color(102, 102, 102));
-        trackAnalysisButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        trackAnalysisButton.setText("TRACK ANALYSIS");
-        trackAnalysisButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trackAnalysisButtonActionPerformed(evt);
-            }
-        });
-        add(trackAnalysisButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 50));
-
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 140, 30));
@@ -99,6 +90,14 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(manageOrganizationJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 190, 50));
+
+        householdBtn.setText("Household");
+        householdBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                householdBtnActionPerformed(evt);
+            }
+        });
+        add(householdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -120,14 +119,6 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_managePersonJButtonActionPerformed
 
-    private void trackAnalysisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackAnalysisButtonActionPerformed
-
-        AnalysisDemandAndSupplyJPanel analysisDemandAndSupplyJPanel = new AnalysisDemandAndSupplyJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
-        userProcessContainer.add("analysisDemandAndSupplyJPanel", analysisDemandAndSupplyJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_trackAnalysisButtonActionPerformed
-
     private void manageOrganizationJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton1ActionPerformed
         // TODO add your handling code here:
         ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
@@ -135,15 +126,40 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButton1ActionPerformed
+
+    private void householdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_householdBtnActionPerformed
+        // TODO add your handling code here:
+        
+        
+        switch(enterprise.getEnterpriseType())
+        {
+            case Accomodation:
+                AccomodationAnalysisJPanel manageOrganizationJPanel = new AccomodationAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+                break;
+             case Household:
+                 HouseholdAnalysisJPanel householdAnalysisJPanel = new HouseholdAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("householdAnalysisJPanel", householdAnalysisJPanel);
+                break;
+             case Bookstore:
+                 BookstoreAnalysisJPanel bookstoreAnalysisJPanel = new BookstoreAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("bookstoreAnalysisJPanel", bookstoreAnalysisJPanel);
+                break;
+                
+        }
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_householdBtnActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton householdBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageOrganizationJButton1;
     private javax.swing.JButton managePersonJButton;
-    private javax.swing.JButton trackAnalysisButton;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
