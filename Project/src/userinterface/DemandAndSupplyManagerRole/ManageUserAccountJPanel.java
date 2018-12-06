@@ -104,6 +104,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         reEnterPasswordtxt = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         createUserJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         createUserJButton.setText("CREATE USER");
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {

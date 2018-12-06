@@ -73,6 +73,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         delOrgJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},

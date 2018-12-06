@@ -117,6 +117,8 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         firstNameText = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("BOOK SELLING WORK AREA");
 
@@ -141,6 +143,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(sellBooksJTable);
 
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +151,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        sellButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sellButton.setText("SELL");
         sellButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +161,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Book Name : ");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Book Price :");
 
         booksComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
@@ -171,14 +176,18 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Book Author :");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Book Type :");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("No Of Books :");
 
         booktypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "action", "fiction", "comedy", "romance", "drama" }));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("View Sold Request");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,8 +195,10 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Last Name :");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("First Name :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

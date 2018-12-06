@@ -58,7 +58,9 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         jLabel2 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE :");
