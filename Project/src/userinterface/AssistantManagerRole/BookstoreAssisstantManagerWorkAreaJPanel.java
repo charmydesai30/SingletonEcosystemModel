@@ -195,7 +195,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row");
+            JOptionPane.showMessageDialog(null, "Please select a row!!");
             return;
         }
         
@@ -215,13 +215,13 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
                 request.setReport(result);
                 break;
             case "COMPLETED":
-                JOptionPane.showMessageDialog(null, "Request is  already Completed by you !!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you !!");
                 break;
             case "ADDED TO CART":
-                JOptionPane.showMessageDialog(null, "Request is  already Completed by you!!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
                 break;
             case "PURCHASED":
-                JOptionPane.showMessageDialog(null, "Request is  already  Completed by you!!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
                 break;
                 
         }
