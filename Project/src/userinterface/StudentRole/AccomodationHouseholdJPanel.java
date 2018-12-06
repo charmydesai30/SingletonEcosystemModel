@@ -141,7 +141,7 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
                                for(HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
                                {
                                request1.setStatus("Purchased");
-                               request.setStatus("Purchased");
+                               
                                }
                     
                            }

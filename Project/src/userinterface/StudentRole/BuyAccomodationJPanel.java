@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.AccomodationData.SellAccomodationDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
@@ -56,27 +57,41 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-        {
-        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
-            Object[] row = new Object[10];
-            row[0] = request;
-            row[1]=request.getfName();
-            row[2] = request.getlName();
-            row[3] = request.getApptSize();
-            row[4]=request.getNoOfBathrooms();
-             row[5]=request.getNoOfTenants();
-            row[6]=request.getRent();
+ for(Network network:system.getNetworkList()){
+    for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+        if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Accomodation))
+            {
+             for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                 if(organization instanceof StudentOrganization)
+                     {
+                            for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                                {
+                                        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+                                         {
+                                            Object[] row = new Object[10];
+                                            row[0] = request;
+                                            row[1]=request.getfName();
+                                            row[2] = request.getlName();
+                                            row[3] = request.getApptSize();
+                                            row[4]=request.getNoOfBathrooms();
+                                            row[5]=request.getNoOfTenants();
+                                            row[6]=request.getRent();
            
-            row[7] =request.getGroceries();
-            row[8]=request.getMattress();
-           row[9] = request.getStatus();
+                                            row[7] =request.getGroceries();
+                                            row[8]=request.getMattress();
+                                            row[9] = request.getStatus();
             
-            model.addRow(row);
-        }
+                                            model.addRow(row);
+                                        }
         
-    }
+                            }
+                    }      
+                    }
+                }
+            }
+         }
    }
+                        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -213,7 +228,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
             
         }
-       if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
+       if(request.getTrackCartUser()!=null && request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
         {
         AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("AccomodationBuyerDetails", buyer);
