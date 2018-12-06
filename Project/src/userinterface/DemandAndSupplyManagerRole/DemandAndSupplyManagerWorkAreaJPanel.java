@@ -130,6 +130,10 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrganizationJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton1ActionPerformed
         // TODO add your handling code here:
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButton1ActionPerformed
     
     
