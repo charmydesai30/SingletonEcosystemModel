@@ -14,6 +14,7 @@ import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -86,6 +87,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
         buyRelatedItemsButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         jLabel1.setText("Your Order Summary:");
 
@@ -131,6 +133,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,11 +153,14 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addGap(257, 257, 257)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyRelatedItemsButton))))
-                .addGap(342, 342, 342))
+                        .addGap(176, 176, 176)
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102)
+                        .addComponent(buyRelatedItemsButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(341, 341, 341)
+                        .addComponent(backButton)))
+                .addContainerGap(194, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
@@ -162,11 +174,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(197, 197, 197)
-                .addComponent(buyButton)
-                .addGap(18, 18, 18)
-                .addComponent(buyRelatedItemsButton)
-                .addContainerGap())
+                .addGap(175, 175, 175)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyButton)
+                    .addComponent(buyRelatedItemsButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(155, 155, 155)
@@ -210,8 +224,19 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_buyRelatedItemsButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+          userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        BuyAccomodationJPanel bbjp = (BuyAccomodationJPanel) component;
+        bbjp.populateData();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
     private javax.swing.JLabel jLabel1;

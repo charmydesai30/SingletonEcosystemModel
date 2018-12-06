@@ -13,8 +13,11 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -52,6 +55,7 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         sellAccTable = new javax.swing.JTable();
         userNameTxt = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
 
         sellAccTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,6 +78,13 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(sellAccTable);
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +93,10 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
                 .addGap(264, 264, 264)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(254, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addGap(290, 290, 290))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(35, 35, 35)
@@ -93,7 +108,9 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(417, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addGap(127, 127, 127))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(203, 203, 203)
@@ -101,6 +118,16 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
                     .addContainerGap(204, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SellAccomodationJPanel sysAdminwjp = (SellAccomodationJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     public void populateData()
     {
@@ -128,6 +155,7 @@ public class SoldAccomodationJPanel extends javax.swing.JPanel {
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable sellAccTable;
     private javax.swing.JTextField userNameTxt;
