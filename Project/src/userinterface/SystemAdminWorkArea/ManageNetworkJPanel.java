@@ -180,6 +180,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         Network network = (Network)networkJTable.getValueAt(row, 0);
         system.deleteNetwork(network);
+        nameJTextField.setText("");
         populateNetworkTable();
         JOptionPane.showMessageDialog(null, "Network deleted successfully!!");
     }//GEN-LAST:event_delNetJButtonActionPerformed
