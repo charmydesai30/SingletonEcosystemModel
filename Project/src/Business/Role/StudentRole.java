@@ -44,7 +44,7 @@ public class StudentRole extends Role{
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
          {
              
-            return new StudentHouseHoldWorkAreaJPanel(userProcessContainer, account, organization, enterprise);
+            return new StudentHouseHoldWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business);
        
          }
          return null;
