@@ -106,6 +106,8 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         buyRelatedItemsButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setText("Your Order Summary:");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -177,7 +179,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(341, 341, 341)
                         .addComponent(backButton)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(194, 194, 194))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
@@ -195,7 +197,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyButton)
                     .addComponent(buyRelatedItemsButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
