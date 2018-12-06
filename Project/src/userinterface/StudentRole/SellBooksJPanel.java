@@ -17,6 +17,7 @@ import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -301,10 +302,19 @@ public class SellBooksJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
+        double bookPrice=0.0;
         String fname= firstNameText.getText();
         String lname = lastNameText.getText();
         String bookName= bookNameText.getText();
-        double bookPrice = Double.parseDouble(bookPriceTxt.getText());
+                try{
+                  bookPrice = Double.parseDouble(bookPriceTxt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, "Enter a valid number for book price ");
+                    return;
+                }
+        
         String bookAuthor= bookAuthorTxt.getText();
         String booktype = (String) booktypeComboBox.getSelectedItem();
         int noOfBooks = Integer.parseInt((String) booksComboBox.getSelectedItem());
