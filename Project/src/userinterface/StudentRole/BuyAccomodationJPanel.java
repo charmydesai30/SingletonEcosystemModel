@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.AccomodationData.SellAccomodationDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
@@ -56,27 +57,41 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-        {
-        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
-            Object[] row = new Object[10];
-            row[0] = request;
-            row[1]=request.getfName();
-            row[2] = request.getlName();
-            row[3] = request.getApptSize();
-            row[4]=request.getNoOfBathrooms();
-             row[5]=request.getNoOfTenants();
-            row[6]=request.getRent();
+ for(Network network:system.getNetworkList()){
+    for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+        if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Accomodation))
+            {
+             for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                 if(organization instanceof StudentOrganization)
+                     {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                                {
+                                        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+                                         {
+                                            Object[] row = new Object[10];
+                                            row[0] = request;
+                                            row[1]=request.getfName();
+                                            row[2] = request.getlName();
+                                            row[3] = request.getApptSize();
+                                            row[4]=request.getNoOfBathrooms();
+                                            row[5]=request.getNoOfTenants();
+                                            row[6]=request.getRent();
            
-            row[7] =request.getGroceries();
-            row[8]=request.getMattress();
-           row[9] = request.getStatus();
+                                            row[7] =request.getGroceries();
+                                            row[8]=request.getMattress();
+                                            row[9] = request.getStatus();
             
-            model.addRow(row);
-        }
+                                            model.addRow(row);
+                                        }
         
-    }
+                            }
+                    }      
+                    }
+                }
+            }
+         }
    }
+                        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,6 +100,9 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         addToCartButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 153));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,20 +146,32 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addGap(90, 90, 90)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(backButton)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +182,9 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(backButton)
+                .addGap(86, 86, 86))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,7 +234,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
       if(!request.getStatus().equalsIgnoreCase("Purchased"))
       {
        boolean flag =false;
-       if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+       if(request.getTrackCartUser()!=null&&!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
        {
            JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
            flag = true;
@@ -213,7 +245,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please add the itme to the cart");
             
         }
-       if(request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
+       if(request.getTrackCartUser()!=null && request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
         {
         AccomodationBuyerDetailsJPanel buyer = new AccomodationBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("AccomodationBuyerDetails", buyer);
@@ -227,9 +259,16 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
       }
     }//GEN-LAST:event_nextButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+       userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCartButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextButton;
     private javax.swing.JTable workRequestJTable;

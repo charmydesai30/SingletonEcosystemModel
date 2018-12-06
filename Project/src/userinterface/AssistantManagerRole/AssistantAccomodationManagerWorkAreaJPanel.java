@@ -85,6 +85,7 @@ public class AssistantAccomodationManagerWorkAreaJPanel extends javax.swing.JPan
         jLabel1 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(

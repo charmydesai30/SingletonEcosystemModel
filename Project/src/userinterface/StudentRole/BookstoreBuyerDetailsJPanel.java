@@ -7,6 +7,7 @@ package userinterface.StudentRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
@@ -40,7 +41,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         this.userAccount=userAccount;
         this.studentOrganization=(StudentOrganization)organization;
         this.system=system;
-        userNameTxt.setText("Hello  "+userAccount.getUsername() +"!!");
+        userNameTxt.setText("Hello  "+userAccount.getUsername() +" !!");
         populateData();
     }
 
@@ -62,6 +63,10 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        buyButton.setBackground(new java.awt.Color(102, 102, 102));
+        buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText("BUY");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,21 +74,26 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
-        buyRelatedItemsButton.setText("BUY BOOKS");
+        buyRelatedItemsButton.setBackground(new java.awt.Color(102, 102, 102));
+        buyRelatedItemsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buyRelatedItemsButton.setText("BUY HOUSEHOLD AMENITIES");
         buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyRelatedItemsButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Your Order Summary:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("YOUR ORDER SUMMARY");
 
+        userNameTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         userNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTxtActionPerformed(evt);
             }
         });
 
+        workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -105,6 +115,8 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(workRequestJTable);
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,51 +134,44 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(46, 46, 46)
                         .addComponent(btnBack)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jLabel1))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel2))))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(233, 233, 233)
+                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
-                        .addComponent(buyRelatedItemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26))
+                        .addComponent(buyRelatedItemsButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel1)))
+                .addGap(122, 122, 122))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(337, 337, 337))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)))
-                .addGap(4, 4, 4)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buyRelatedItemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                .addGap(67, 67, 67))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,25 +180,37 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         model.setRowCount(0);
         
-        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-        {
-        for (BookstoreWorkRequest request : userAccount1.getWorkQueue().getBookstoreWorkRequestList()){
-             if(! request.getStatus().equalsIgnoreCase("Purchased"))
-             {
-                Object[] row = new Object[7];
-                row[0] = request.getBookName();
-                row[1] = request.getBookPrice();
-                row[2] = request.getBookAuthor();
-                row[3] = request.getBooktype();
-                row[4] = request.getNoOfBooks();
-                row[5] = request.getStatus();
-                row[6] = request;
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (BookstoreWorkRequest request : userAccount1.getWorkQueue().getBookstoreWorkRequestList()){
+                                    if(! request.getStatus().equalsIgnoreCase("Purchased"))
+                                       {
+                                            Object[] row = new Object[7];
+                                            row[0] = request.getBookName();
+                                            row[1] = request.getBookPrice();
+                                            row[2] = request.getBookAuthor();
+                                            row[3] = request.getBooktype();
+                                            row[4] = request.getNoOfBooks();
+                                            row[5] = request.getStatus();
+                                            row[6] = request;
             
-                model.addRow(row);
+                                            model.addRow(row);
+                                        }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
-        
-        }
+         }
    }
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         int selectedRow = workRequestJTable.getSelectedRow();
@@ -205,11 +222,32 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
         if(! request.getStatus().equalsIgnoreCase("Purchased"))
         {
-             for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+            for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
+                                    request1.setStatus("Purchased");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        
+            
+            
+           /* for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
                 {
                     for (BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
                          request1.setStatus("Purchased");
-                 }
+                 } */
         
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this book successfully!!");

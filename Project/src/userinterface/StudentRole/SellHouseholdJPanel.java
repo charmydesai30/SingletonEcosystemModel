@@ -265,8 +265,17 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         }
     }
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        double cost =0.0;
         int  quantity = Integer.parseInt(quantityComboBox.getSelectedItem()+"");
-        double cost =Double.parseDouble(costText.getText());
+                try{
+                 cost =Double.parseDouble(costText.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, "Enter a valid number for the cost of furniture");
+                    return;
+                }
+        
         String furnitureType =furnitureTypeText.getText();
         String fname= firstNameText.getText();
         String lname = lastNameText.getText();
