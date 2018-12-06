@@ -5,6 +5,7 @@
  */
 package userinterface.StudentRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -23,15 +24,18 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
-   UserAccount account;
-   Organization organization;
+    UserAccount account;
+    Organization organization;
+    EcoSystem system;
 
-    public StudentHouseHoldWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
+    public StudentHouseHoldWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system) {
           initComponents();
           this.userProcessContainer= userProcessContainer;
           this.enterprise=enterprise;
           this.account=account;
           this.organization=organization;
+          this.system = system;
+
     }
 
 
@@ -103,7 +107,7 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
         // TODO add your handling code here:
-        BuyHouseholdJPanel buyHouseholdPanel = new BuyHouseholdJPanel(userProcessContainer,enterprise,account,organization);
+        BuyHouseholdJPanel buyHouseholdPanel = new BuyHouseholdJPanel(userProcessContainer,enterprise,account,organization,system);
         userProcessContainer.add("BuyHouseholdJPanel", buyHouseholdPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -21,6 +21,7 @@ import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -68,7 +69,6 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         quantityComboBox = new javax.swing.JComboBox();
         costText = new javax.swing.JTextField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
-        jButton1 = new javax.swing.JButton();
         createButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         firstNameText = new javax.swing.JTextField();
@@ -79,6 +79,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         furnitureTypeText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         viewSoldRequestsButton = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
 
         jLabel1.setText("Furniture type");
 
@@ -87,13 +88,6 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         jLabel4.setText("Cost");
 
         quantityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
-
-        jButton1.setText("<<Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         createButton.setText("Sell");
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +138,13 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,9 +176,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(74, 74, 74)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton1)
-                                            .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(34, 34, 34)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -188,7 +187,10 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(329, 329, 329)
-                        .addComponent(jLabel9)))
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(backJButton)))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -223,9 +225,9 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(costText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(createButton)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addGap(27, 27, 27)
+                .addComponent(backJButton)
+                .addGap(18, 18, 18)
                 .addComponent(viewSoldRequestsButton)
                 .addContainerGap())
         );
@@ -325,10 +327,6 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void viewSoldRequestsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSoldRequestsButtonActionPerformed
          SoldHouseholdJPanel soldhouse = new SoldHouseholdJPanel(userProcessContainer,enterprise,userAccount,organization);
         userProcessContainer.add("SoldHouseholdJPanel", soldhouse);
@@ -336,14 +334,20 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_viewSoldRequestsButtonActionPerformed
 
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backJButton;
     private javax.swing.JTextField costText;
     private javax.swing.JButton createButton;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JTextField firstNameText;
     private javax.swing.JTextField furnitureTypeText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

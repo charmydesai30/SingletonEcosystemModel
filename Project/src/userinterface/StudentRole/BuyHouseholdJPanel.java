@@ -5,6 +5,7 @@
  */
 package userinterface.StudentRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -13,6 +14,7 @@ import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -30,13 +32,15 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     UserAccount userAccount;
     Organization studentOrganization;
+    EcoSystem system;
     
-    public BuyHouseholdJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
+    public BuyHouseholdJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
           this.enterprise=enterprise;
           this.userAccount=userAccount;
           this.studentOrganization=(StudentOrganization)organization;
+          this.system=system;
           populateData();
     }
     
@@ -74,8 +78,10 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        buyFurnitureButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        addToCartButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,15 +111,29 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        buyFurnitureButton.setText("Buy");
-        buyFurnitureButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Buy Household Products");
+
+        addToCartButton.setText("Add to cart");
+        addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyFurnitureButtonActionPerformed(evt);
+                addToCartButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Buy Household Products");
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,57 +142,119 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(buyFurnitureButton))
+                        .addGap(178, 178, 178)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addToCartButton)
+                                .addGap(49, 49, 49)
+                                .addComponent(backJButton))
+                            .addComponent(jLabel1))
+                        .addGap(36, 36, 36)
+                        .addComponent(nextButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(88, 88, 88)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(137, 137, 137))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(buyFurnitureButton)
-                .addContainerGap())
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addToCartButton)
+                    .addComponent(nextButton)
+                    .addComponent(backJButton))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buyFurnitureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyFurnitureButtonActionPerformed
-        // TODO add your handling code here:
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         int selectedRow = workRequestJTable.getSelectedRow();
-        
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
         HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(request.getStatus().equalsIgnoreCase("Completed"))
+        if(!request.getStatus().equalsIgnoreCase("Purchased"))
         {
-            request.setStatus("Purchased");
-            JOptionPane.showMessageDialog(null, "Purchased successfully");
-            populateData();
+            boolean flag =false;
+            if(request.getTrackCartUser() != null && !request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+            {
+                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
+                flag = true;
+
+            }
+            if (!flag &&!request.getStatus().equalsIgnoreCase("Added to Cart"))
+            {
+                JOptionPane.showMessageDialog(null, "Please add the item to the cart");
+
+            }
+            if(request.getTrackCartUser()!= null  && request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername())&& request.getStatus().equalsIgnoreCase("Added to Cart"))
+            {
+                HouseholdBuyerDetailsJPanel buyer = new HouseholdBuyerDetailsJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
+                userProcessContainer.add("BookstoreBuyerDetails", buyer);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }
         }
         else
         {
-                JOptionPane.showMessageDialog(null,"The accomodation is not verfied by the authority");
-          
-            populateData();
+            JOptionPane.showMessageDialog(null, "The selected item is sold to somenone else");
         }
-    }//GEN-LAST:event_buyFurnitureButtonActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
+    private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = workRequestJTable.getSelectedRow();
 
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+
+        HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        String currentState=request.getStatus();
+
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            break;
+            case "PROCESSING":
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            break;
+            case "COMPLETED":
+            request.setStatus("Added To Cart");
+            request.setTrackCartUser(userAccount.getUsername());
+            break;
+            case "ADDED TO CART":
+            JOptionPane.showMessageDialog(null, "Request is  already added to the cart");
+            break;
+            case "PURCHASED":
+            JOptionPane.showMessageDialog(null, "The selected Accomodation has been sold");
+            break;
+
+        }
+        populateData();
+    }//GEN-LAST:event_addToCartButtonActionPerformed
+
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buyFurnitureButton;
+    private javax.swing.JButton addToCartButton;
+    private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton nextButton;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

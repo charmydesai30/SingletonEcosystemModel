@@ -19,6 +19,16 @@ public class HouseholdWorkRequest extends WorkRequest{
     String fName;
     String lName;
     String buyerName;
+    String trackCartUser;
+
+    public String getTrackCartUser() {
+        return trackCartUser;
+    }
+
+    public void setTrackCartUser(String trackCartUser) {
+        this.trackCartUser = trackCartUser;
+    }
+
 
     public String getBuyerName() {
         return buyerName;
