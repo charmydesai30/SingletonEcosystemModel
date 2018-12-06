@@ -2,6 +2,7 @@
 
 package userinterface.DemandAndSupplyManagerRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -14,11 +15,13 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     Enterprise enterprise;
+    EcoSystem system;
     /** Creates new form AdminWorkAreaJPanel */
-    public DemandAndSupplyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public DemandAndSupplyManagerWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.system=system;
         valueLabel.setText(enterprise.getName());
     }
     
@@ -33,10 +36,11 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
         managePersonJButton = new javax.swing.JButton();
-        manageOrganizationJButton = new javax.swing.JButton();
+        trackAnalysisButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        manageOrganizationJButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,15 +69,15 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 190, 50));
 
-        manageOrganizationJButton.setBackground(new java.awt.Color(102, 102, 102));
-        manageOrganizationJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        manageOrganizationJButton.setText("MANAGE ORGANISATION");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
+        trackAnalysisButton.setBackground(new java.awt.Color(102, 102, 102));
+        trackAnalysisButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        trackAnalysisButton.setText("TRACK ANALYSIS");
+        trackAnalysisButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
+                trackAnalysisButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 190, 50));
+        add(trackAnalysisButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 50));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
@@ -85,6 +89,16 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("ADMIN ROLE");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 130, 30));
+
+        manageOrganizationJButton1.setBackground(new java.awt.Color(102, 102, 102));
+        manageOrganizationJButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        manageOrganizationJButton1.setText("MANAGE ORGANISATION");
+        manageOrganizationJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOrganizationJButton1ActionPerformed(evt);
+            }
+        });
+        add(manageOrganizationJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 190, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
@@ -106,21 +120,26 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_managePersonJButtonActionPerformed
 
-    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
+    private void trackAnalysisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackAnalysisButtonActionPerformed
 
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        AnalysisDemandAndSupplyJPanel analysisDemandAndSupplyJPanel = new AnalysisDemandAndSupplyJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("analysisDemandAndSupplyJPanel", analysisDemandAndSupplyJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
+    }//GEN-LAST:event_trackAnalysisButtonActionPerformed
+
+    private void manageOrganizationJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageOrganizationJButton1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton manageOrganizationJButton;
+    private javax.swing.JButton manageOrganizationJButton1;
     private javax.swing.JButton managePersonJButton;
+    private javax.swing.JButton trackAnalysisButton;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

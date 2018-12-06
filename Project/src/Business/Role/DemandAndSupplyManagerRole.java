@@ -19,7 +19,7 @@ public class DemandAndSupplyManagerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new DemandAndSupplyManagerWorkAreaJPanel(userProcessContainer, enterprise);
+        return new DemandAndSupplyManagerWorkAreaJPanel(userProcessContainer, enterprise,  business);
     }
 
     
