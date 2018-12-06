@@ -58,11 +58,14 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         jLabel2 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        setBackground(new java.awt.Color(0, 153, 153));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        valueLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE :");
 
+        workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -84,6 +87,8 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        refreshTestJButton.setBackground(new java.awt.Color(102, 102, 102));
+        refreshTestJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         refreshTestJButton.setText("REFRESH");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +99,8 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("BOOKSTORE ASSISSTANT MANAGER WORK AREA");
 
+        processJButton.setBackground(new java.awt.Color(102, 102, 102));
+        processJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         processJButton.setText("PROCESS REQUEST");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,8 +108,10 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Decision:");
 
+        resultTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         resultTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resultTxtActionPerformed(evt);
@@ -114,7 +123,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,30 +133,28 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
+                                .addGap(127, 127, 127)
                                 .addComponent(refreshTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(resultTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(210, 210, 210))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -195,7 +202,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row");
+            JOptionPane.showMessageDialog(null, "Please select a row!!");
             return;
         }
         
@@ -215,13 +222,13 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
                 request.setReport(result);
                 break;
             case "COMPLETED":
-                JOptionPane.showMessageDialog(null, "Request is  already Completed by you !!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you !!");
                 break;
             case "ADDED TO CART":
-                JOptionPane.showMessageDialog(null, "Request is  already Completed by you!!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
                 break;
             case "PURCHASED":
-                JOptionPane.showMessageDialog(null, "Request is  already  Completed by you!!");
+                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
                 break;
                 
         }

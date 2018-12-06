@@ -8,11 +8,13 @@ package userinterface.StudentRole;
 import Business.BookstoreData.Book;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
+import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -59,8 +61,18 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         BuyButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
 
-        jButton1.setText("BACK");
+        setBackground(new java.awt.Color(0, 153, 153));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        buyBooksJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -82,9 +94,12 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(buyBooksJTable);
 
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("BOOK BUYING WORK AREA");
 
+        BuyButton.setBackground(new java.awt.Color(102, 102, 102));
+        BuyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BuyButton.setText("ADD TO CART");
         BuyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +107,8 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        nextButton.setBackground(new java.awt.Color(102, 102, 102));
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +123,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,12 +138,12 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                                 .addGap(73, 73, 73)
                                 .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(183, 183, 183)))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -136,7 +153,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
+                .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,30 +161,46 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) buyBooksJTable.getModel();
         dtm.setRowCount(0);
         
-        for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
-        {
-        for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
-            Object[] row = new Object[9];
-            row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getBookName();
-            row[3] = request.getBookPrice();
-            row[4] = request.getBookAuthor();
-            row[5] = request.getBooktype();
-            row[6] = request.getNoOfBooks();
-            row[7] = request.getStatus();
-            row[8] = request;
+         for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
+                                    Object[] row = new Object[9];
+                                    row[0] = request.getfName();
+                                    row[1] = request.getlName();
+                                    row[2] = request.getBookName();
+                                    row[3] = request.getBookPrice();
+                                    row[4] = request.getBookAuthor();
+                                    row[5] = request.getBooktype();
+                                    row[6] = request.getNoOfBooks();
+                                    row[7] = request.getStatus();
+                                    row[8] = request;
         
-            dtm.addRow(row);
+                                    dtm.addRow(row);
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
+         }
+         
+         
+        
     }
     
     private void BuyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyButtonActionPerformed
         int selectedRow = buyBooksJTable.getSelectedRow();
 
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row");
+            JOptionPane.showMessageDialog(null, "Please select a row!!");
             return;
         }
 
@@ -177,20 +210,21 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         switch(currentState.toUpperCase())
         {
             case "PENDING":
-            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority !!");
             break;
             case "PROCESSING":
-            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority.");
+            JOptionPane.showMessageDialog(null, "Request is not yet processed by the authority !!");
             break;
             case "COMPLETED":
             request.setStatus("Added To Cart");
+            JOptionPane.showMessageDialog(null, "Item is successfully added to cart !!");
             request.setTrackCartUser(userAccount.getUsername());
             break;
             case "ADDED TO CART":
-            JOptionPane.showMessageDialog(null, "Request is  already added to the cart");
+            JOptionPane.showMessageDialog(null, "Request is  already added to the cart !!");
             break;
             case "PURCHASED":
-            JOptionPane.showMessageDialog(null, "The selected Accomodation has been sold");
+            JOptionPane.showMessageDialog(null, "The selected book has been sold !!");
             break;
 
         }
@@ -201,7 +235,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         int selectedRow = buyBooksJTable.getSelectedRow();
         if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row");
+            JOptionPane.showMessageDialog(null, "Please select a row!!");
             return;
         }
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
@@ -210,7 +244,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             boolean flag =false;
             if(!request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
             {
-                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
+                JOptionPane.showMessageDialog(null, "Item unavailable. Item added to cart by someone else");
                 flag = true;
 
             }
@@ -232,6 +266,13 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "The selected Book is sold to somenone else");
         }
     }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

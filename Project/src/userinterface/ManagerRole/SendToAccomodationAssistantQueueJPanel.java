@@ -51,6 +51,7 @@ public class SendToAccomodationAssistantQueueJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backJButton.setText("<<Back");
@@ -68,6 +69,7 @@ public class SendToAccomodationAssistantQueueJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("EnterPrise :");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Your Request Has been sent to Assistant Manager!!!");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 370, 50));
     }// </editor-fold>//GEN-END:initComponents

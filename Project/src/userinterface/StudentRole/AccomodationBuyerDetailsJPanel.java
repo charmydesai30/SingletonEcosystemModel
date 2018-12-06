@@ -7,6 +7,7 @@ package userinterface.StudentRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
@@ -14,6 +15,7 @@ import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -54,27 +56,43 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+    for(Network network:system.getNetworkList())
+    {
+       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
         {
-        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList()){
-             if(! request.getStatus().equalsIgnoreCase("Purchased"))
-             {
-            Object[] row = new Object[8];
-            row[0] = request;
-            row[1] = request.getApptSize();
-            row[2]=request.getNoOfBathrooms();
-             row[3]=request.getNoOfTenants();
-            row[4]=request.getRent();
+           if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation);
+                    {
+                      for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
+                        {
+                          if(organization instanceof StudentOrganization)
+                          {
+                                for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                                  {
+                                       for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+                                       {
+                                            if(! request.getStatus().equalsIgnoreCase("Purchased"))
+                                                {
+                                                    Object[] row = new Object[8];
+                                                    row[0] = request;
+                                                    row[1] = request.getApptSize();
+                                                    row[2]=request.getNoOfBathrooms();
+                                                    row[3]=request.getNoOfTenants();
+                                                    row[4]=request.getRent();
            
-            row[5] =request.getGroceries();
-            row[6]=request.getMattress();
-           row[7] = request.getStatus();
+                                                    row[5] =request.getGroceries();
+                                                    row[6]=request.getMattress();
+                                                    row[7] = request.getStatus();
             
-            model.addRow(row);
-        }
-        }
+                                                    model.addRow(row);
+                                                }
+                                    }
         
-    }
+                                }
+                          }
+                      }
+                    }
+             }
+         }
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -86,6 +104,9 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
         buyRelatedItemsButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setText("Your Order Summary:");
 
@@ -131,6 +152,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,11 +172,14 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addGap(257, 257, 257)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyRelatedItemsButton))))
-                .addGap(342, 342, 342))
+                        .addGap(176, 176, 176)
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102)
+                        .addComponent(buyRelatedItemsButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(341, 341, 341)
+                        .addComponent(backButton)))
+                .addGap(194, 194, 194))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
@@ -162,11 +193,13 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(197, 197, 197)
-                .addComponent(buyButton)
-                .addGap(18, 18, 18)
-                .addComponent(buyRelatedItemsButton)
-                .addContainerGap())
+                .addGap(175, 175, 175)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyButton)
+                    .addComponent(buyRelatedItemsButton))
+                .addGap(37, 37, 37)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(103, 103, 103))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(155, 155, 155)
@@ -185,17 +218,32 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         if(! request.getStatus().equalsIgnoreCase("Purchased"))
         {
-             for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-                {
-                    for (AccomodationWorkRequest request1 : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
-                    {
-                         request1.setStatus("Purchased");
+     for(Network network:system.getNetworkList())
+     {
+       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
+       {
+           if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation);
+              {
+                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
+                   {
+                      if(organization instanceof StudentOrganization)
+                          {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (AccomodationWorkRequest request1 : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+                                {
+                                    request1.setStatus("Purchased");
+                                }
+                            }
+                          }
                     }
-                }
+              }
+        }
+    }
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
-        }
+        }//end of if
         else
         {
             JOptionPane.showMessageDialog(null, "The accomodation not available");
@@ -210,8 +258,19 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_buyRelatedItemsButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+          userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        BuyAccomodationJPanel bbjp = (BuyAccomodationJPanel) component;
+        bbjp.populateData();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
     private javax.swing.JLabel jLabel1;

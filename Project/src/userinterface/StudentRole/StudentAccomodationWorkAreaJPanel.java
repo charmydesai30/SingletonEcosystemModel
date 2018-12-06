@@ -52,6 +52,8 @@ public class StudentAccomodationWorkAreaJPanel extends javax.swing.JPanel {
         sellButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setText("Buy or Sell Accomodation");
 
         buyButton.setText("Buy");

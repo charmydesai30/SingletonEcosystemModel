@@ -19,6 +19,8 @@ import Business.Organization.Organization.Type;
 import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 /**
  *
@@ -58,6 +60,9 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 153));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +99,13 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,17 +116,21 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(245, 245, 245)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
+                .addGap(116, 116, 116)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(buyButton)
-                .addGap(160, 160, 160))
+                .addGap(34, 34, 34)
+                .addComponent(backButton)
+                .addGap(97, 97, 97))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,8 +156,17 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
                            {
                                for(HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
                                {
+                               if(request1.getStatus().equalsIgnoreCase("Completed"))
+                               {
                                request1.setStatus("Purchased");
-                               request.setStatus("Purchased");
+                               JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+                               request.setBuyerName(userAccount.getUsername());
+                               }
+                               else
+                               {
+                                   JOptionPane.showMessageDialog(null, "Item you want to purchase is not available to buy");
+                               }
+                               
                                }
                     
                            }
@@ -150,12 +175,22 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
              }
             }
            }
-        request.setBuyerName(userAccount.getUsername());
+        
         populateTbale();
-        JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+        
         
         
     }//GEN-LAST:event_buyButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+      userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AccomodationBuyerDetailsJPanel bbdjp = (AccomodationBuyerDetailsJPanel) component;
+        bbdjp.populateData();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     public void populateTbale()
     {
@@ -199,6 +234,7 @@ public class AccomodationHouseholdJPanel extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton buyButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;

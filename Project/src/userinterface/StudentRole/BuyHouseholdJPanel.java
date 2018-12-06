@@ -199,7 +199,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
         if(!request.getStatus().equalsIgnoreCase("Purchased"))
         {
             boolean flag =false;
-            if(request.getTrackCartUser()!= null && !request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
+
+            if(request.getTrackCartUser() != null && !request.getTrackCartUser().equalsIgnoreCase(userAccount.getUsername()))
             {
                 JOptionPane.showMessageDialog(null, "Item unavailable. Item added to Cart by someone else");
                 flag = true;

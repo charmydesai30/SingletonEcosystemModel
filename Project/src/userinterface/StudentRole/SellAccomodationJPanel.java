@@ -18,9 +18,12 @@ import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
+import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -82,6 +85,9 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         lastNameText = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+        setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         sellAccTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -130,8 +136,15 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
 
         groceriesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        createButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         createButton.setText("Create");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +156,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("LastName");
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("View Sold Request");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,10 +325,18 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         }
     }
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-                String apptSize = (String) apptSizeComboBox.getSelectedItem();
+                double rent = 0; 
+        String apptSize = (String) apptSizeComboBox.getSelectedItem();
                 double  noOfBathrooms = Double.parseDouble((String) bathroomsComboBox.getSelectedItem());
                 String mattress =(String) mattressComboBox.getSelectedItem();
-                double rent =Double.parseDouble(rentTextField.getText());
+                try{
+                 rent =Double.parseDouble(rentTextField.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, "Enter a valid number for the rent amount");
+                    return;
+                }
                 int noOfTenants = Integer.parseInt((String) tenantsComboBox.getSelectedItem());
                 String groceries = (String) groceriesComboBox.getSelectedItem();
                 String fname= firstNameText.getText();
@@ -379,6 +401,16 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        StudentAccomodationWorkAreaJPanel sysAdminwjp = (StudentAccomodationWorkAreaJPanel) component;
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
