@@ -23,17 +23,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnManageNetwork" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnManageEnterprise" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD (82df480) - updating databank in gi
                           <Component id="btnManageAdmin" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+=======
+                          <Component id="btnManageAdmin" alignment="1" max="32767" attributes="0"/>
+                          <Component id="trackAnalysisButton" max="32767" attributes="0"/>
+                      </Group>
+>>>>>>> branch-jaynee (d89f1a1) - add analu=ysis
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
@@ -51,7 +61,6 @@
               <Component id="btnManageEnterprise" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btnManageAdmin" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,5 +116,30 @@
         <Property name="text" type="java.lang.String" value="SYSTEM ADMIN WORK AREA"/>
       </Properties>
     </Component>
+<<<<<<< HEAD (82df480) - updating databank in gi
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+=======
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="trackAnalysisButton" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+>>>>>>> branch-jaynee (d89f1a1) - add analu=ysis
   </SubComponents>
 </Form>
+<<<<<<< HEAD (82df480) - updating databank in gi
+
+=======
+    <Component class="javax.swing.JButton" name="trackAnalysisButton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TRACK ANALYSIS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="trackAnalysisButtonActionPerformed"/>
+      </Events>
+    </Component>
+>>>>>>> branch-jaynee (d89f1a1) - add analu=ysis

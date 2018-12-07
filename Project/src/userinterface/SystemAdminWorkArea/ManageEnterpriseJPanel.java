@@ -256,7 +256,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Enterprise ent = (Enterprise)enterpriseJTable.getValueAt(row, 0);
         Network network = (Network)enterpriseJTable.getValueAt(row, 1);
         network.getEnterpriseDirectory().deleteEnterprise(ent);
-        nameJTextField.setText("");
         populateTable();
         JOptionPane.showMessageDialog(null, "Enterprise deleted successfully!!");
     }//GEN-LAST:event_delEntJButtonActionPerformed

@@ -154,6 +154,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         passwordJPasswordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+
         backJButton.setBackground(new java.awt.Color(102, 102, 102));
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backJButton.setText("BACK");
@@ -175,6 +176,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+
                         .addComponent(jLabel1)
                         .addGap(63, 63, 63)
                         .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,7 +222,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+
                 .addGap(42, 42, 42)
+
                 .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -242,8 +246,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
+
            
         Person person = enterprise.getPersonDirectory().createPerson(username);
+
         
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, person, new DemandAndSupplyManagerRole());
         populateTable();
@@ -267,6 +273,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox networkJComboBox;
