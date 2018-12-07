@@ -61,11 +61,11 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
                                 {
                                     if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                                Object[] row = new Object[4];
-                                                    row[0] = userAccount1.getUsername();
-                                                    row[1] = request.getBuyerName();
-                                                    row[2]=network;                         
-                                                    model.addRow(row);
+                                        Object[] row = new Object[3];
+                                        row[0] = userAccount1.getUsername();
+                                        row[1] = request.getApptSize();
+                                        row[2]=request.getRent();                         
+                                        model.addRow(row);
                                     }
                                 }
                             }
@@ -109,11 +109,11 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Sold by", "Bought by", "Network"
+                "Index", "No. of Rooms", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,6 +121,11 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(accomodationTable);
+        if (accomodationTable.getColumnModel().getColumnCount() > 0) {
+            accomodationTable.getColumnModel().getColumn(0).setResizable(false);
+            accomodationTable.getColumnModel().getColumn(1).setResizable(false);
+            accomodationTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

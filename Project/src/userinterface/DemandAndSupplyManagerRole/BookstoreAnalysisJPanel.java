@@ -6,9 +6,16 @@
 package userinterface.DemandAndSupplyManagerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.StudentOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.BookstoreWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +37,45 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.directory=directory;
         this.system=system;
+        populateData();
+    }
+    
+    public void populateData(){
+        DefaultTableModel dtm = (DefaultTableModel) booksAnalysisTable.getModel();
+        dtm.setRowCount(0);
+        
+         for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                int i=0;
+                                for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
+                                  
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        Object[] row = new Object[9];
+                                        row[0] = i++;
+                                        row[1] = request.getBooktype();
+                                        row[2] = request.getBookPrice();
+
+                                        dtm.addRow(row);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         }
+         
+         
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,12 +88,12 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
 
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        booksAnalysisTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
         jLabel4.setText("BookStore Analysis");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        booksAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -55,10 +101,23 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Sold By", "Bought By", "Network"
+                "Index", "Book Type", "Cost"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(booksAnalysisTable);
+        if (booksAnalysisTable.getColumnModel().getColumnCount() > 0) {
+            booksAnalysisTable.getColumnModel().getColumn(0).setResizable(false);
+            booksAnalysisTable.getColumnModel().getColumn(1).setResizable(false);
+            booksAnalysisTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -111,9 +170,9 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable booksAnalysisTable;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,9 +6,18 @@
 package userinterface.DemandAndSupplyManagerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.StudentOrganization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.HouseholdWorkRequest;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,7 +39,51 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         this.directory=directory;
         this.system=system;
+        populateData();
     }
+    
+    
+      public void populateData(){
+       
+        DefaultTableModel model = (DefaultTableModel) householdAnalysisTable.getModel();
+        
+        model.setRowCount(0);
+        ArrayList<HouseholdWorkRequest> listOfWorkRequest=new ArrayList<>();
+         for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Household))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                               int i=0;
+                            for (HouseholdWorkRequest request: userAccount1.getWorkQueue().getHouseholdWorkRequests()){
+                               if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        Object[] row = new Object[3];                                    
+                                        row[0] = i++;
+                                        row[1]=request.getFurnitureType();
+                                        row[2] = request.getCost();
+
+                                        model.addRow(row);
+                                }
+                            }
+        
+                            }
+                        }
+                    }
+                }
+            }
+         }
+         
+         
+         
+         
+                  
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,12 +95,12 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        householdAnalysisTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
         jLabel3.setText("Household Analysis");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        householdAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -55,10 +108,23 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Sold By", "Bought By", "Network"
+                "Index", "Furniture Type", "Cost"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(householdAnalysisTable);
+        if (householdAnalysisTable.getColumnModel().getColumnCount() > 0) {
+            householdAnalysisTable.getColumnModel().getColumn(0).setResizable(false);
+            householdAnalysisTable.getColumnModel().getColumn(1).setResizable(false);
+            householdAnalysisTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -78,11 +144,9 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(181, 181, 181)
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnBack))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(179, 179, 179)))
                 .addContainerGap())
@@ -110,8 +174,8 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JTable householdAnalysisTable;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
