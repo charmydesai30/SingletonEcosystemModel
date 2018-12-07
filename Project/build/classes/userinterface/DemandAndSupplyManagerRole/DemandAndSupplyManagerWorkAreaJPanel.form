@@ -131,10 +131,7 @@
         </Constraint>
       </Constraints>
     </Component>
-<<<<<<< HEAD (82df480) - updating databank in gi
-
-=======
-    <Component class="javax.swing.JButton" name="householdBtn">
+<Component class="javax.swing.JButton" name="householdBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Household"/>
       </Properties>
@@ -147,6 +144,5 @@
         </Constraint>
       </Constraints>
     </Component>
->>>>>>> branch-jaynee (d89f1a1) - add analu=ysis
-  </SubComponents>
+ </SubComponents>
 </Form>
