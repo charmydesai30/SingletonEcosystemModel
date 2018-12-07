@@ -91,7 +91,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         userJTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        passwordJTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         personJComboBox = new javax.swing.JComboBox();
         backjButton1 = new javax.swing.JButton();
@@ -102,7 +101,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         deleteBtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        reEnterPasswordtxt = new javax.swing.JTextField();
+        passwordJPasswordField = new javax.swing.JPasswordField();
+        reEnterPasswordtxt = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -151,8 +151,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Password");
-
-        passwordJTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Person");
@@ -206,17 +204,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("re-enter password :");
 
+        passwordJPasswordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         reEnterPasswordtxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        reEnterPasswordtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reEnterPasswordtxtActionPerformed(evt);
-            }
-        });
-        reEnterPasswordtxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                reEnterPasswordtxtKeyTyped(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -232,30 +222,27 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel7))
-                                    .addGap(21, 21, 21)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(roleJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(nameJTextField)
-                                        .addComponent(passwordJTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                                        .addComponent(reEnterPasswordtxt)))
-                                .addComponent(personJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(personJComboBox, 0, 294, Short.MAX_VALUE)
+                            .addComponent(organizationJComboBox, 0, 294, Short.MAX_VALUE)
+                            .addComponent(roleJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(passwordJPasswordField)
+                            .addComponent(reEnterPasswordtxt)
+                            .addComponent(nameJTextField)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 121, 121))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,22 +261,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(personJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(roleJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reEnterPasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(reEnterPasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,13 +286,29 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String userName = nameJTextField.getText();
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        Person person = (Person) personJComboBox.getSelectedItem();
+        Role role = (Role) roleJComboBox.getSelectedItem();
         
-        String password = passwordJTextField.getText();
+        String userName = nameJTextField.getText();
+        if (userName.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please enter a username!!");
+        }
+        else if (organization.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
+        {
+        passwordJPasswordField.removeAll();
+        char[] passwordCharArray = passwordJPasswordField.getPassword();
+        String password = String.valueOf(passwordJPasswordField.getPassword());
+        
+        reEnterPasswordtxt.removeAll();
+        char[] reEnterPasswordCharArray = reEnterPasswordtxt.getPassword();
+        String reEnterPassword = String.valueOf(reEnterPasswordCharArray);
+
         //password pattern matching
                 String passwordRegex="^[A-Za-z0-9+_$]+$";
                 Pattern pat1 = Pattern.compile(passwordRegex); 
-                if (passwordJTextField.getText() == null)
+                if (password == null)
                 {
                     JOptionPane.showMessageDialog(null, "Please enter a password!!");
                     return;
@@ -313,13 +316,13 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 			
                 else
                 {
-                    if(!(pat1.matcher(passwordJTextField.getText()).matches()) )
+                    if(!(pat1.matcher(password).matches()) )
                     {
                         JOptionPane.showMessageDialog(null, "Please enter a valid password. Password must contain alphanumeric characters with +, _ or $!!");
                         return;
                     }
                     
-                    if (!(passwordJTextField.getText().equalsIgnoreCase(reEnterPasswordtxt.getText())) )
+                    if (!(password.equalsIgnoreCase(reEnterPassword)) )
                     {
 			JOptionPane.showMessageDialog(null, "Please re-enter passwords, passwords do not match!!");
                         return;
@@ -327,17 +330,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     
                 }
         
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
-        Person person = (Person) personJComboBox.getSelectedItem();
-        Role role = (Role) roleJComboBox.getSelectedItem();
-        
         organization.getUserAccountDirectory().createUserAccount(userName, password, person, role);
         
         popData();
         nameJTextField.setText("");
-        passwordJTextField.setText("");
+        passwordJPasswordField.setText("");
         reEnterPasswordtxt.setText("");
         JOptionPane.showMessageDialog(null, "User created successfully!!");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "User already exists!!");
+            nameJTextField.setText("");
+            passwordJPasswordField.setText("");
+            reEnterPasswordtxt.setText("");
+        }
+        
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
@@ -371,17 +379,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         organization.getUserAccountDirectory().deleteUserAccount(ua);
         popData();
+        nameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        reEnterPasswordtxt.setText("");
         JOptionPane.showMessageDialog(null, "User deleted successfully!!");
     }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void reEnterPasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reEnterPasswordtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reEnterPasswordtxtActionPerformed
-
-    private void reEnterPasswordtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reEnterPasswordtxtKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_reEnterPasswordtxtKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backjButton1;
@@ -397,9 +399,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationJComboBox;
-    private javax.swing.JTextField passwordJTextField;
+    private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JComboBox personJComboBox;
-    private javax.swing.JTextField reEnterPasswordtxt;
+    private javax.swing.JPasswordField reEnterPasswordtxt;
     private javax.swing.JComboBox roleJComboBox;
     private javax.swing.JTable userJTable;
     // End of variables declaration//GEN-END:variables
