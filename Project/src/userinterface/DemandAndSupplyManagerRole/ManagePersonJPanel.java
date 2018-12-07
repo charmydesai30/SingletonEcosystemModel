@@ -281,6 +281,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         organization.getPersonDirectory().deletePerson(p);
         populateTable(organization);
+        nameJTextField.setText("");
         JOptionPane.showMessageDialog(null, "Person deleted successfully!!");
     }//GEN-LAST:event_delPersonJButtonActionPerformed
 
