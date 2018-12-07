@@ -11,11 +11,20 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Organization.StudentOrganization;
+import Business.Person.Person;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreWorkRequest;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -72,10 +81,51 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-         }
-         
-         
+         }  
+    }
+    
+    public void plotgraph()
+    {
         
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                
+                                for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
+                                  
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        dcd.setValue(request.getBookPrice(), request.getBooktype(), request.getBooktype());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         }
+        
+        JFreeChart jchart = ChartFactory.createBarChart3D("BOOKSTORE STATISTICS", "BOOK TYPE", "COST", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+        CategoryPlot plot = jchart.getCategoryPlot();
+        plot.setRangeGridlinePaint(Color.BLACK);
+
+        ChartPanel chartp = new ChartPanel(jchart, true);
+        //chartp.setDomainZoomable(true);
+        chartp.setVisible(true);
+        barchart.removeAll();
+        barchart.setLayout(new java.awt.BorderLayout());
+        barchart.add(chartp, BorderLayout.CENTER);
+
+        barchart.validate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +140,7 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         booksAnalysisTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        barchart = new javax.swing.JPanel();
 
         jLabel4.setText("BookStore Analysis");
 
@@ -128,36 +179,44 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout barchartLayout = new javax.swing.GroupLayout(barchart);
+        barchart.setLayout(barchartLayout);
+        barchartLayout.setHorizontalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        barchartLayout.setVerticalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 292, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(157, 157, 157)
-                            .addComponent(jLabel4))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnBack)
-                            .addGap(184, 184, 184)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                    .addComponent(barchart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(65, 65, 65)
-                    .addComponent(jLabel4)
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(65, Short.MAX_VALUE)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(barchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,6 +229,7 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barchart;
     private javax.swing.JTable booksAnalysisTable;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel4;
