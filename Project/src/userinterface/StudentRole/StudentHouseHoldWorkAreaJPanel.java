@@ -51,6 +51,7 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         buyBtn = new javax.swing.JButton();
         sellBtn = new javax.swing.JButton();
+        chatButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -71,6 +72,13 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatButton.setText("Client chat");
+        chatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,7 +92,8 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(245, 245, 245)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(sellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chatButton))))
                 .addContainerGap(210, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +105,9 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(sellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(162, 162, 162))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(chatButton)
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,9 +127,20 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_sellBtnActionPerformed
 
+    private void chatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatButtonActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("2");
+         TestChat_Client cc = new TestChat_Client();
+         //chat_client cc = new chat_client();
+        cc.setVisible(true);
+        System.out.println("21");
+    }//GEN-LAST:event_chatButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyBtn;
+    private javax.swing.JButton chatButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton sellBtn;
     // End of variables declaration//GEN-END:variables
