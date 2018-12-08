@@ -17,6 +17,10 @@ import Business.WorkQueue.BookstoreWorkRequest;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
@@ -47,6 +51,7 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
         this.directory=directory;
         this.system=system;
         populateData();
+        plotgraph();
     }
     
     public void populateData(){
@@ -63,15 +68,15 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                         {
                             for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
                             {
-                                int i=0;
+                                
                                 for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
                                   
                                     if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                        Object[] row = new Object[9];
-                                        row[0] = i++;
+                                        Object[] row = new Object[3];
+                                        row[0] = request.getBuyerName();
                                         row[1] = request.getBooktype();
-                                        row[2] = request.getBookPrice();
+                                        row[2] = request.getNoOfBooks();
 
                                         dtm.addRow(row);
                                     }
@@ -103,7 +108,33 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                                   
                                     if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                        dcd.setValue(request.getBookPrice(), request.getBooktype(), request.getBooktype());
+                                        if (request.getBooktype().isEmpty())
+                                        {
+                                            JOptionPane.showMessageDialog(null, "No data to analyse!!");
+                                        }
+                                        else
+                                        {
+                                        
+                                        /*HashMap<String, Integer> map = new HashMap<>(); 
+          
+                                            map.put(request.getBooktype(), request.getNoOfBooks()); */
+                                          
+                                            
+                                        dcd.setValue(request.getNoOfBooks(), request.getBooktype(), request.getBooktype());
+                                        JFreeChart jchart = ChartFactory.createBarChart3D("BOOKSTORE STATISTICS", "BOOK TYPE", "NUMBER OF BOOKS", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+                                        CategoryPlot plot = jchart.getCategoryPlot();
+                                        plot.setRangeGridlinePaint(Color.BLACK);
+
+                                        ChartPanel chartp = new ChartPanel(jchart, true);
+                                        //chartp.setDomainZoomable(true);
+                                        chartp.setVisible(true);
+                                        barchart.removeAll();
+                                        barchart.setLayout(new java.awt.BorderLayout());
+                                        barchart.add(chartp, BorderLayout.CENTER);
+
+                                        barchart.validate();
+                                        }
                                     }
                                 }
                             }
@@ -113,20 +144,28 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
             }
          }
         
-        JFreeChart jchart = ChartFactory.createBarChart3D("BOOKSTORE STATISTICS", "BOOK TYPE", "COST", dcd, PlotOrientation.VERTICAL, true, true, false);
-
-        CategoryPlot plot = jchart.getCategoryPlot();
-        plot.setRangeGridlinePaint(Color.BLACK);
-
-        ChartPanel chartp = new ChartPanel(jchart, true);
-        //chartp.setDomainZoomable(true);
-        chartp.setVisible(true);
-        barchart.removeAll();
-        barchart.setLayout(new java.awt.BorderLayout());
-        barchart.add(chartp, BorderLayout.CENTER);
-
-        barchart.validate();
+        
     }
+    
+    /*public void countfrequencies(ArrayList<String> list) 
+    {
+        int bookcount =0;
+        // hashmap to store the frequency of element 
+        Map<String, Integer> hm = new HashMap<String, Integer>(); 
+  
+        for (String i : list) { 
+            Integer j = hm.get(i); 
+            hm.put(i, (j == null) ? 1 : j + 1); 
+        } 
+  
+        // displaying the occurrence of elements in the arraylist 
+        for (Map.Entry<String, Integer> val : hm.entrySet()) {
+            System.out.println("Element " + val.getKey() + " "
+                               + "occurs"
+                               + ": " + val.getValue() + " times");
+           
+        } 
+    } */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,12 +191,19 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Index", "Book Type", "Cost"
+                "Buyer Name", "Book Type", "Number of books"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
