@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/SellHouseholdJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/Business/Logging/MyLogging.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/AssistantManagerRole/BookstoreAssisstantManagerWorkAreaJPanel.java</file>
@@ -18,6 +19,20 @@
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/SellBooksJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/AssistantManagerRole/HouseholdAssistantManagerWorkAreaJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/BookstoreBuyerDetailsJPanel.java</file>
+=======
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/Business/DB4OUtil/DB4OUtil.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/BuyHouseholdJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/BuyAccomodationJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/StudentBookStoreWorkAreaJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/StudentHouseHoldWorkAreaJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/SellAccomodationJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/SellBooksJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/SellHouseholdJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/DemandAndSupplyManagerRole/AccomodationAnalysisJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/MainJFrame.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/userinterface/StudentRole/BuyBooksJPanel.java</file>
+            <file>file:/C:/AED_Project/wonder-woman/Project/src/Business/EcoSystem.java</file>
+>>>>>>> 904a2a39017ffe04c6204c95f7ec4bc0b9608a69
         </group>
     </open-files>
 </project-private>

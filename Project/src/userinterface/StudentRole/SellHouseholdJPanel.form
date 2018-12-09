@@ -72,6 +72,8 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                       <Component id="viewSoldRequestsButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Component id="chatButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -83,7 +85,7 @@
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="153" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,6 +135,7 @@
                           <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="createButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="viewSoldRequestsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="chatButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
@@ -280,6 +283,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="chatButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Client chat"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chatButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
