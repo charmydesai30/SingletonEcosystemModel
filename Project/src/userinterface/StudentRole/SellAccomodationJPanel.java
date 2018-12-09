@@ -121,7 +121,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Grocerie Included");
 
-        apptSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 BHK", "2 BHK", "3 BHK", "4 BHK", "1 Bed Split" }));
+        apptSizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 BHK", "2 BHK", "3 BHK", " " }));
         apptSizeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apptSizeComboBoxActionPerformed(evt);
@@ -174,9 +174,6 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                         .addGap(100, 100, 100)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -216,15 +213,18 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel5))))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(72, 72, 72)
+                                                .addGap(101, 101, 101)
                                                 .addComponent(createButton)
-                                                .addGap(98, 98, 98)
+                                                .addGap(100, 100, 100)
                                                 .addComponent(jButton2))))
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(groceriesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jButton1)))
                 .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
@@ -269,12 +269,13 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel5)
                                         .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(58, 58, 58)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(createButton)
-                    .addComponent(jButton2))
-                .addGap(34, 34, 34))
+                        .addGap(51, 51, 51)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(createButton))
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -329,6 +330,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
         String apptSize = (String) apptSizeComboBox.getSelectedItem();
                 double  noOfBathrooms = Double.parseDouble((String) bathroomsComboBox.getSelectedItem());
                 String mattress =(String) mattressComboBox.getSelectedItem();
+                
                 try{
                  rent =Double.parseDouble(rentTextField.getText());
                 }

@@ -20,6 +20,7 @@ public abstract class AccomodationWorkRequest extends WorkRequest {
     String lName;
     String buyerName;
     String trackCartUser;
+   
 
     public String getTrackCartUser() {
         return trackCartUser;

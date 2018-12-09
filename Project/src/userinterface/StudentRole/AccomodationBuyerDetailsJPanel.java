@@ -19,6 +19,12 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import java.util.*; 
+import javax.mail.*; 
+import javax.mail.internet.*; 
+import javax.activation.*; 
+import javax.mail.Session; 
+import javax.mail.Transport; 
 
 /**
  *
@@ -34,6 +40,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Organization studentOrganization;
     EcoSystem system;
+     String emailId=null;
     public AccomodationBuyerDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization,EcoSystem system) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
@@ -42,6 +49,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
           this.studentOrganization=(StudentOrganization)organization;
           this.system=system;
           userNameTxt.setText("Hello  "+userAccount.getUsername() +"!!");
+           
           populateData();
     }
 
@@ -105,6 +113,8 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         buyButton = new javax.swing.JButton();
         buyRelatedItemsButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -159,6 +169,8 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Email Id:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,14 +184,19 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addGap(257, 257, 257)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
+                        .addGap(341, 341, 341)
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
                         .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102)
+                        .addGap(103, 103, 103)
                         .addComponent(buyRelatedItemsButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addComponent(backButton)))
-                .addGap(194, 194, 194))
+                        .addGap(206, 206, 206)
+                        .addComponent(jLabel2)
+                        .addGap(112, 112, 112)
+                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(192, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
@@ -193,22 +210,33 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(175, 175, 175)
+                .addGap(160, 160, 160)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buyButton)
-                    .addComponent(buyRelatedItemsButton))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel2)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyRelatedItemsButton)
+                    .addComponent(buyButton))
+                .addGap(13, 13, 13)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(155, 155, 155)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(251, Short.MAX_VALUE)))
+                    .addContainerGap(254, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        emailId = emailTxt.getText();
+        
+        if(emailId.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter an email id before buying the product");
+            return;
+        }
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
@@ -243,14 +271,51 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
+        
         }//end of if
         else
         {
             JOptionPane.showMessageDialog(null, "The accomodation not available");
         }
-        
+        sendMail(emailId);
+       
     }//GEN-LAST:event_buyButtonActionPerformed
+    public void sendMail(String emailId)
+    {
+    final String username = "aedproject30@gmail.com";
+		final String password = "Pass3*buck";
 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("aedproject30@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(emailId));
+			message.setSubject("Order Confirmation");
+			message.setText("Your order has been confirmed");
+
+			Transport.send(message);
+
+			//System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+    
     private void buyRelatedItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyRelatedItemsButtonActionPerformed
          AccomodationHouseholdJPanel ent = new AccomodationHouseholdJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("ent", ent);
@@ -273,7 +338,9 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
+    private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameTxt;
     private javax.swing.JTable workRequestJTable;

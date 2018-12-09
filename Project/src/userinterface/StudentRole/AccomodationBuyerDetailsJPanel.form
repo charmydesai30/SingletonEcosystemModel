@@ -32,17 +32,23 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
-                      <Component id="buyButton" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                      <Component id="buyRelatedItemsButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
                       <Component id="backButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                      <Component id="buyButton" min="-2" pref="152" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="buyRelatedItemsButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="emailTxt" min="-2" pref="141" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
+              <EmptySpace pref="192" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -60,12 +66,17 @@
               <Component id="userNameTxt" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buyButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buyRelatedItemsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="emailTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buyRelatedItemsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buyButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Component id="backButton" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
           </Group>
@@ -73,7 +84,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="106" max="-2" attributes="0"/>
-                  <EmptySpace pref="251" max="32767" attributes="0"/>
+                  <EmptySpace pref="254" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -182,6 +193,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email Id:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="emailTxt">
     </Component>
   </SubComponents>
 </Form>
