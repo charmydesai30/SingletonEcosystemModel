@@ -99,6 +99,7 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
         addToCartButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        chatBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -154,6 +155,13 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatBtn.setText("Server chat");
+        chatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,7 +177,9 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
                                 .addComponent(backJButton))
                             .addComponent(jLabel1))
                         .addGap(36, 36, 36)
-                        .addComponent(nextButton))
+                        .addComponent(nextButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(chatBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -186,7 +196,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToCartButton)
                     .addComponent(nextButton)
-                    .addComponent(backJButton))
+                    .addComponent(backJButton)
+                    .addComponent(chatBtn))
                 .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -268,10 +279,24 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void chatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBtnActionPerformed
+        // TODO add your handling code here:
+        System.out.println("12232343");
+        //chat_server cs= new chat_server();
+        TestChat_Server t = new TestChat_Server();
+        String [] args = {};
+        //t.main(args);
+
+        System.out.println("ddddd");
+
+        t.setVisible(true);
+    }//GEN-LAST:event_chatBtnActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCartButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton chatBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextButton;

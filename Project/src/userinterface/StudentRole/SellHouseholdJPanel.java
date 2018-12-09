@@ -80,6 +80,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         viewSoldRequestsButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        chatButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -147,6 +148,13 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatButton.setText("Client chat");
+        chatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,8 +190,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                                         .addGap(29, 29, 29)
                                         .addComponent(backJButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(75, 75, 75)
@@ -192,12 +199,14 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                                         .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(52, 52, 52)
-                                        .addComponent(viewSoldRequestsButton))))
+                                        .addComponent(viewSoldRequestsButton)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(chatButton))))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(329, 329, 329)
                         .addComponent(jLabel9)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +245,8 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(backJButton)
                             .addComponent(createButton)
-                            .addComponent(viewSoldRequestsButton))
+                            .addComponent(viewSoldRequestsButton)
+                            .addComponent(chatButton))
                         .addGap(30, 30, 30))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -357,9 +367,20 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void chatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatButtonActionPerformed
+        // TODO add your handling code here:
+
+        System.out.println("2");
+        TestChat_Client cc = new TestChat_Client();
+        //chat_client cc = new chat_client();
+        cc.setVisible(true);
+        System.out.println("21");
+    }//GEN-LAST:event_chatButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton chatButton;
     private javax.swing.JTextField costText;
     private javax.swing.JButton createButton;
     private javax.swing.Box.Filler filler1;
