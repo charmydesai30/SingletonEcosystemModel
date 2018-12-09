@@ -17,7 +17,6 @@ import Business.WorkQueue.BookstoreWorkRequest;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -51,48 +50,39 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
         this.directory=directory;
         this.system=system;
         populateData();
-        plotgraph();
     }
     
     public void populateData(){
+        
+        
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        
+        
+        for (Map.Entry entry : getFinalModelList().entrySet())  {
+            //System.out.println("Key = " + entry.getKey() + 
+            //                 ", Value = " + entry.getValue());
+            
+            
+            dcd.setValue(Double.parseDouble(entry.getValue()+""), entry.getKey()+"", entry.getKey()+"");
+            JFreeChart jchart = ChartFactory.createBarChart3D("BOOKSTORE STATISTICS", "BOOK TYPE", "NUMBER OF BOOKS", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            ChartPanel chartp = new ChartPanel(jchart, true);
+                                        //chartp.setDomainZoomable(true);
+            chartp.setVisible(true);
+            barchart.removeAll();
+            barchart.setLayout(new java.awt.BorderLayout());
+            barchart.add(chartp, BorderLayout.CENTER);
+
+            barchart.validate();
+        }     
+        
+        //-----------------------Populate Table---------------------
         DefaultTableModel dtm = (DefaultTableModel) booksAnalysisTable.getModel();
         dtm.setRowCount(0);
         
-         for(Network network:system.getNetworkList()){
-            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
-                    
-                {
-                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                        if(organization instanceof StudentOrganization)
-                        {
-                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
-                            {
-                                
-                                for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
-                                  
-                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
-                                    {
-                                        Object[] row = new Object[3];
-                                        row[0] = request.getBuyerName();
-                                        row[1] = request.getBooktype();
-                                        row[2] = request.getNoOfBooks();
-
-                                        dtm.addRow(row);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-         }  
-    }
-    
-    public void plotgraph()
-    {
-        
-        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         for(Network network:system.getNetworkList()){
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
                 if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
@@ -108,33 +98,11 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                                   
                                     if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                        if (request.getBooktype().isEmpty())
-                                        {
-                                            JOptionPane.showMessageDialog(null, "No data to analyse!!");
-                                        }
-                                        else
-                                        {
-                                        
-                                        /*HashMap<String, Integer> map = new HashMap<>(); 
-          
-                                            map.put(request.getBooktype(), request.getNoOfBooks()); */
-                                          
-                                            
-                                        dcd.setValue(request.getNoOfBooks(), request.getBooktype(), request.getBooktype());
-                                        JFreeChart jchart = ChartFactory.createBarChart3D("BOOKSTORE STATISTICS", "BOOK TYPE", "NUMBER OF BOOKS", dcd, PlotOrientation.VERTICAL, true, true, false);
+                                        Object[] row = new Object[2];
+                                        row[0] = request.getBooktype();
+                                        row[1] = request.getNoOfBooks();
 
-                                        CategoryPlot plot = jchart.getCategoryPlot();
-                                        plot.setRangeGridlinePaint(Color.BLACK);
-
-                                        ChartPanel chartp = new ChartPanel(jchart, true);
-                                        //chartp.setDomainZoomable(true);
-                                        chartp.setVisible(true);
-                                        barchart.removeAll();
-                                        barchart.setLayout(new java.awt.BorderLayout());
-                                        barchart.add(chartp, BorderLayout.CENTER);
-
-                                        barchart.validate();
-                                        }
+                                        dtm.addRow(row);
                                     }
                                 }
                             }
@@ -143,29 +111,46 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
                 }
             }
          }
-        
-        
     }
     
-    /*public void countfrequencies(ArrayList<String> list) 
+private HashMap<String, Double> getFinalModelList()
     {
-        int bookcount =0;
-        // hashmap to store the frequency of element 
-        Map<String, Integer> hm = new HashMap<String, Integer>(); 
-  
-        for (String i : list) { 
-            Integer j = hm.get(i); 
-            hm.put(i, (j == null) ? 1 : j + 1); 
-        } 
-  
-        // displaying the occurrence of elements in the arraylist 
-        for (Map.Entry<String, Integer> val : hm.entrySet()) {
-            System.out.println("Element " + val.getKey() + " "
-                               + "occurs"
-                               + ": " + val.getValue() + " times");
-           
-        } 
-    } */
+        HashMap<String, Double> map = new HashMap<>(); 
+        //DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                
+                                for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
+                                  
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        double noOfBooks=0;
+                                       
+                                        if(map.containsKey(request.getBooktype()))
+                                        {
+                                            noOfBooks= map.get(request.getBooktype());
+                                        }
+                                        
+                                        map.put(request.getBooktype(), request.getNoOfBooks()+noOfBooks);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         }
+        return map;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,20 +170,20 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
 
         booksAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Buyer Name", "Book Type", "Number of books"
+                "Book Type", "Number of books"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -213,7 +198,6 @@ public class BookstoreAnalysisJPanel extends javax.swing.JPanel {
         if (booksAnalysisTable.getColumnModel().getColumnCount() > 0) {
             booksAnalysisTable.getColumnModel().getColumn(0).setResizable(false);
             booksAnalysisTable.getColumnModel().getColumn(1).setResizable(false);
-            booksAnalysisTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
