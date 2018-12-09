@@ -13,9 +13,19 @@ import Business.Organization.OrganizationDirectory;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationWorkRequest;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -29,6 +39,10 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
    private OrganizationDirectory directory;
     private JPanel userProcessContainer;
     private EcoSystem system;
+    int count1bhk = 0;
+    int count2bhk = 0;
+    int count3bhk = 0;
+     HashMap<String, Float> hashMapApt= new HashMap<>();
     /**
      * Creates new form AnalysisDemandAndSupplyJPanel
      */
@@ -42,13 +56,55 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
     
     public void populateData()
     {
-        DefaultTableModel model = (DefaultTableModel) accomodationTable.getModel();
         
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        
+        
+        for (Map.Entry entry : getFinalModelList().entrySet())  {
+            //System.out.println("Key = " + entry.getKey() + 
+            //                 ", Value = " + entry.getValue());
+           
+            String hashApt=entry.getKey()+"";
+            float aptRent=Float.parseFloat(entry.getValue()+"");
+            
+            if (hashApt.equalsIgnoreCase("1 BHK"))
+            {
+                hashMapApt.put(entry.getKey()+"",Float.parseFloat((aptRent/count1bhk)+""));      
+            }
+            else if(hashApt.equalsIgnoreCase("2 BHK"))
+            {
+                hashMapApt.put(entry.getKey()+"",Float.parseFloat((aptRent/count2bhk)+""));     
+            }
+            else if(hashApt.equalsIgnoreCase("3 BHK"))
+            {
+                hashMapApt.put(entry.getKey()+"",Float.parseFloat((aptRent/count3bhk)+""));     
+            }
+        }                  
+        for (Map.Entry entry : hashMapApt.entrySet())  {
+            dcd.setValue(Double.parseDouble(entry.getValue()+""), entry.getKey()+"", entry.getKey()+"");
+            JFreeChart jchart = ChartFactory.createBarChart3D("ACCOMODATION STATISTICS", "APARTMENT SIZE", "RENT", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            ChartPanel chartp = new ChartPanel(jchart, true);
+                                        //chartp.setDomainZoomable(true);
+            chartp.setVisible(true);
+            barchart.removeAll();
+            barchart.setLayout(new java.awt.BorderLayout());
+            barchart.add(chartp, BorderLayout.CENTER);
+
+            barchart.validate();
+        }
+        
+        //------------------ populate table-------------------------------------
+        DefaultTableModel model = (DefaultTableModel) accomodationTable.getModel();
         model.setRowCount(0);
-           for(Network network:system.getNetworkList())
-     {
-       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
-       {
+        
+        for(Network network:system.getNetworkList())
+        {
+        for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
+        {
            if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation);
               {
                   for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
@@ -61,10 +117,9 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
                                 {
                                     if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                        Object[] row = new Object[3];
-                                        row[0] = userAccount1.getUsername();
-                                        row[1] = request.getApptSize();
-                                        row[2]=request.getRent();                         
+                                        Object[] row = new Object[2];
+                                        row[0] = request.getApptSize();
+                                        row[1]=request.getRent();                         
                                         model.addRow(row);
                                     }
                                 }
@@ -74,6 +129,56 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
               }
         }
     }
+    }
+    
+    private HashMap<String, Double> getFinalModelList()
+    {
+        HashMap<String, Double> map = new HashMap<>(); 
+        //DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Accomodation))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                 double rent = 0;
+                                       
+                                for (AccomodationWorkRequest request : ua.getWorkQueue().getAccomodationWorkRequestList()){
+                                  
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                       
+                                      
+                                         if (request.getApptSize().equalsIgnoreCase("1 BHK"))
+                                        {
+                                            count1bhk++;       
+                                        }
+                                        else if(request.getApptSize().equalsIgnoreCase("2 BHK"))
+                                        {
+                                            count2bhk++;
+                                        }
+                                        else if(request.getApptSize().equalsIgnoreCase("3 BHK"))
+                                        {
+                                            count3bhk++;
+                                        }
+                                        if(map.containsKey(request.getApptSize()))
+                                        {
+                                            rent= map.get(request.getApptSize());
+                                        }
+                                        map.put(request.getApptSize(), (request.getRent()+rent));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         }
+        return map;
     }
 
     /**
@@ -89,6 +194,7 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         accomodationTable = new javax.swing.JTable();
+        barchart = new javax.swing.JPanel();
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -99,21 +205,21 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Accomodation Analysis");
+        jLabel1.setText("ACCOMODATION ANALYSIS");
 
         accomodationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Index", "No. of Rooms", "Cost"
+                "Apartment size", "Rent"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -124,41 +230,46 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
         if (accomodationTable.getColumnModel().getColumnCount() > 0) {
             accomodationTable.getColumnModel().getColumn(0).setResizable(false);
             accomodationTable.getColumnModel().getColumn(1).setResizable(false);
-            accomodationTable.getColumnModel().getColumn(2).setResizable(false);
         }
+
+        javax.swing.GroupLayout barchartLayout = new javax.swing.GroupLayout(barchart);
+        barchart.setLayout(barchartLayout);
+        barchartLayout.setHorizontalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 513, Short.MAX_VALUE)
+        );
+        barchartLayout.setVerticalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(barchart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(btnBack)))
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(148, 148, 148)
-                    .addComponent(jLabel1)
-                    .addContainerGap(344, Short.MAX_VALUE)))
+                        .addComponent(btnBack)
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addGap(68, 68, 68))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(89, 89, 89)
-                    .addComponent(jLabel1)
-                    .addContainerGap(356, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(barchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,6 +283,7 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable accomodationTable;
+    private javax.swing.JPanel barchart;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
