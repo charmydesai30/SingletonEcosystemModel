@@ -3,9 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/AccomodationBuyerDetailsJPanel.java</file>
-=======
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/DemandAndSupplyManagerRole/AnalysisDemandAndSupplyJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/SoldHouseholdJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/Business/WorkQueue/AccomodationWorkRequest.java</file>
@@ -23,7 +20,6 @@
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/Business/WorkQueue/AccomodationAssisstantManagerWorkRequest.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/DemandAndSupplyManagerRole/ManageUserAccountJPanel.java</file>
             <file>file:/C:/Users/Charmy/Documents/NetBeansProjects/FinalProject/wonder-woman/Project/src/userinterface/StudentRole/BookstoreBuyerDetailsJPanel.java</file>
->>>>>>> master
         </group>
     </open-files>
 </project-private>
