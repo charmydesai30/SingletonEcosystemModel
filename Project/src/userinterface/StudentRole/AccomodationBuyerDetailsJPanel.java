@@ -7,6 +7,7 @@ package userinterface.StudentRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import java.util.*; 
+import java.util.logging.Level;
 import javax.mail.*; 
 import javax.mail.internet.*; 
 import javax.activation.*; 
@@ -271,6 +273,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
+        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 
         
         }//end of if
         else

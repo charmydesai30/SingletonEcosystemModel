@@ -1,0 +1,24 @@
+Dec 09, 2018 11:44:05 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:05 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:44:05 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:44:27 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:27 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:44:27 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Business.Role.ManagerRolelogged in with username  neuaccmgr
+Dec 09, 2018 11:44:39 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:39 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:44:39 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuaccass
+Dec 09, 2018 11:44:59 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:59 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:44:59 AM userinterface.MainJFrame loginJButtonActionPerformed
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu

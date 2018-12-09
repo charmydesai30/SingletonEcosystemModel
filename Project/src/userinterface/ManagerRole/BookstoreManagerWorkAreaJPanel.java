@@ -7,12 +7,14 @@
 package userinterface.ManagerRole;
 
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -216,7 +218,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         populateRequestTable();
-        
+        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Processed the request of student and forwarded to assistant"); 
         //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         //userProcessContainer.add("SendToBookstoreAssistantQueueJPanel", new SendToBookstoreAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
         //layout.next(userProcessContainer);

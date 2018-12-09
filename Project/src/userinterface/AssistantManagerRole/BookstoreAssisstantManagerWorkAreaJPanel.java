@@ -6,6 +6,8 @@
 package userinterface.AssistantManagerRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -13,6 +15,7 @@ import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -30,12 +33,14 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private Organization assistantManagerOrganization;
+    private Enterprise enterprise;
     
-    public BookstoreAssisstantManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public BookstoreAssisstantManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account,Enterprise enterprise, Organization organization, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.assistantManagerOrganization = (AssisstantManagerOrganization)organization;
+        this.enterprise=enterprise;
         populateTable();
     }
 
@@ -235,7 +240,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         }
         
         populateTable();
-
+         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void resultTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultTxtActionPerformed

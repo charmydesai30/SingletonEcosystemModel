@@ -6,6 +6,7 @@ package userinterface.ManagerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.ManagerOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
@@ -13,6 +14,7 @@ import Business.WorkQueue.AccomodationWorkRequest;
 import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -215,7 +217,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         populateRequestTable();
         
-        
+        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Processed the request of student and forwarded to assistant"); 
        
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed

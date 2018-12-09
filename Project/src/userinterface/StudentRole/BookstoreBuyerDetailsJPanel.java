@@ -7,6 +7,7 @@ package userinterface.StudentRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
@@ -16,6 +17,7 @@ import Business.WorkQueue.BookstoreWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -285,6 +287,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this book successfully!!");
         populateData();
+        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 
         }
         else
         {

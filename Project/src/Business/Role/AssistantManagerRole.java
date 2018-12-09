@@ -23,15 +23,15 @@ public class AssistantManagerRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation)
         {
-        return new AssistantAccomodationManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new AssistantAccomodationManagerWorkAreaJPanel(userProcessContainer, account,  enterprise, organization, business);
         }
         if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore)
         {
-        return new BookstoreAssisstantManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new BookstoreAssisstantManagerWorkAreaJPanel(userProcessContainer, account,  enterprise,organization, business);
         }
          if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household)
         {
-        return new HouseholdAssistantManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new HouseholdAssistantManagerWorkAreaJPanel(userProcessContainer, account,  enterprise,organization, business);
         }
         return null;
     }

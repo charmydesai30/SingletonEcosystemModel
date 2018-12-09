@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.AccomodationData.SellAccomodation;
 import Business.AccomodationData.SellAccomodationDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
@@ -19,10 +20,12 @@ import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
+import userinterface.MainJFrame;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -392,7 +395,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getAccomodationWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getAccomodationWorkRequestList().add(request);
         }
-               
+       
+        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise posted a sell request on dashboard"); 
                 
     }//GEN-LAST:event_createButtonActionPerformed
 

@@ -7,6 +7,7 @@ package userinterface;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -29,8 +30,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    private final static Logger LOGGER =  
-                Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
+    
+    
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -157,6 +158,9 @@ public class MainJFrame extends javax.swing.JFrame {
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
         
+       
+
+       
         if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
             for(Network network:system.getNetworkList()){
@@ -198,7 +202,15 @@ public class MainJFrame extends javax.swing.JFrame {
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
         }
-        LOGGER.log(Level.INFO, "My first Log Message"); 
+        
+        MyLogging.log(Level.INFO,"Login under enterprise  " +inEnterprise);
+        if(inOrganization!= null)
+        
+        MyLogging.log(Level.INFO, "Login under Organization " +inOrganization ); 
+        
+        MyLogging.log(Level.INFO, userAccount.getRole()+ "logged in with username  "+ userAccount.getUsername()); 
+        
+        
         loginJButton.setEnabled(false);
         logoutJButton.setEnabled(true);
         userNameJTextField.setEnabled(false);

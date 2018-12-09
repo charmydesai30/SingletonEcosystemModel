@@ -1,0 +1,40 @@
+Dec 09, 2018 11:44:05 AM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:05 AM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:44:05 AM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:44:16 AM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:44:27 AM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:27 AM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:44:27 AM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neuaccmgr
+Dec 09, 2018 11:44:30 AM Business.Logging.MyLogging log
+INFO: neuaccmgr  from  neuaccProcessed the request of student anf forwarded to assistant
+Dec 09, 2018 11:44:39 AM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:39 AM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:44:39 AM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuaccass
+Dec 09, 2018 11:44:48 AM Business.Logging.MyLogging log
+INFO: neuaccass  from  neuaccCompleted the request
+Dec 09, 2018 11:44:59 AM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:44:59 AM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:44:59 AM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:45:16 AM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise purchased an item from dashboard
+Dec 09, 2018 12:07:22 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 12:07:22 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 12:07:22 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 12:07:38 PM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard

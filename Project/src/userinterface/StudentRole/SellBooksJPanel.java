@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.BookstoreData.Book;
 import Business.BookstoreData.BookDirectory;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
@@ -17,6 +18,7 @@ import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.BookstoreWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -364,6 +366,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             account.getWorkQueue().getBookstoreWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getBookstoreWorkRequestList().add(request);
         }
+        MyLogging.log(Level.INFO, account.getUsername()+ "  from  "  + enterprise +"   Enterprise posted a sell request on dashboard"); 
 
     }//GEN-LAST:event_sellButtonActionPerformed
 

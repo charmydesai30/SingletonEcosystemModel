@@ -6,6 +6,7 @@ package userinterface.AssistantManagerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Logging.MyLogging;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -14,6 +15,7 @@ import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,19 +29,19 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
     private JPanel userProcessContainer;
     private UserAccount userAccount;
     private Organization assistantManagerOrganization;
-    
+    private Enterprise enterprise;
     
     /**
      * Creates new form AssisstantManagerWorkAreaJPanel
      */
-    public HouseholdAssistantManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public HouseholdAssistantManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise,Organization organization, EcoSystem business) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
        
        this.assistantManagerOrganization = (AssisstantManagerOrganization)organization;
-        
+        this.enterprise=enterprise;
        
         populateTable();
     }
@@ -173,6 +175,7 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
 
 
             populateTable();
+             MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
         }
         else
         {
