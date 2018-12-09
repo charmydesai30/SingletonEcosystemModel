@@ -13,6 +13,10 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.io.IOException; 
+import java.util.logging.Level; 
+import java.util.logging.Logger; 
+import java.util.logging.*; 
 
 /**
  *
@@ -25,7 +29,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-
+    private final static Logger LOGGER =  
+                Logger.getLogger(Logger.GLOBAL_LOGGER_NAME); 
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -193,7 +198,7 @@ public class MainJFrame extends javax.swing.JFrame {
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
         }
-        
+        LOGGER.log(Level.INFO, "My first Log Message"); 
         loginJButton.setEnabled(false);
         logoutJButton.setEnabled(true);
         userNameJTextField.setEnabled(false);
