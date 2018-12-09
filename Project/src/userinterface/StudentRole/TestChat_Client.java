@@ -53,8 +53,6 @@ public class TestChat_Client extends javax.swing.JFrame {
             }
         });
 
-        msg_text.setText("jTextField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

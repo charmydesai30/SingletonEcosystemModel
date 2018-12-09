@@ -32,7 +32,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="buyBtn" min="-2" pref="69" max="-2" attributes="0"/>
                           <Component id="sellBtn" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
-                          <Component id="chatButton" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -49,9 +48,7 @@
               <Component id="buyBtn" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="sellBtn" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
-              <Component id="chatButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace pref="162" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,14 +76,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sellBtnActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="chatButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Client chat"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chatButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
