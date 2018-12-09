@@ -13,11 +13,21 @@ import Business.Organization.OrganizationDirectory;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HouseholdWorkRequest;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -44,11 +54,34 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
     
     
       public void populateData(){
-       
-        DefaultTableModel model = (DefaultTableModel) householdAnalysisTable.getModel();
+          
+         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         
+        
+        for (Map.Entry entry : getFinalModelList().entrySet())  {
+            System.out.println("Key = " + entry.getKey() + 
+                             ", Value = " + entry.getValue());
+            
+            dcd.setValue(Double.parseDouble(entry.getValue()+""), entry.getKey()+"", entry.getKey()+"");
+            JFreeChart jchart = ChartFactory.createBarChart3D("HOUSEHOLD STATISTICS", "FURNITURE TYPE", "FURNITURE QUANTITY", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+            CategoryPlot plot = jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            ChartPanel chartp = new ChartPanel(jchart, true);
+                                        //chartp.setDomainZoomable(true);
+            chartp.setVisible(true);
+            barchart.removeAll();
+            barchart.setLayout(new java.awt.BorderLayout());
+            barchart.add(chartp, BorderLayout.CENTER);
+
+            barchart.validate();
+        }
+        
+        //-----------------------Populate Table---------------------
+        DefaultTableModel model = (DefaultTableModel) householdAnalysisTable.getModel();
         model.setRowCount(0);
-        ArrayList<HouseholdWorkRequest> listOfWorkRequest=new ArrayList<>();
+        
          for(Network network:system.getNetworkList()){
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
                 if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Household))
@@ -59,17 +92,15 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
                         {
                             for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
                             {
-                               int i=0;
                             for (HouseholdWorkRequest request: userAccount1.getWorkQueue().getHouseholdWorkRequests()){
                                if(request.getStatus().equalsIgnoreCase("Purchased"))
                                     {
-                                        Object[] row = new Object[3];                                    
-                                        row[0] = i++;
-                                        row[1]=request.getFurnitureType();
-                                        row[2] = request.getCost();
+                                        Object[] row = new Object[2];
+                                        row[0] = request.getFurnitureType();
+                                        row[1] = request.getQuantity();
 
                                         model.addRow(row);
-                                }
+                                    }
                             }
         
                             }
@@ -78,12 +109,46 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
                 }
             }
          }
-         
-         
-         
-         
                   
    }
+      
+    private HashMap<String, Double> getFinalModelList()
+    {
+        HashMap<String, Double> map = new HashMap<>(); 
+        //DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Household))
+                    
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                
+                                for (HouseholdWorkRequest request : ua.getWorkQueue().getHouseholdWorkRequests()){
+                                  
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        double quantity=0;
+                                       
+                                        if(map.containsKey(request.getFurnitureType()))
+                                        {
+                                            quantity= map.get(request.getFurnitureType());
+                                        }
+                                        
+                                        map.put(request.getFurnitureType(), request.getQuantity()+quantity);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+         }
+        return map;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,22 +162,23 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         householdAnalysisTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        barchart = new javax.swing.JPanel();
 
         jLabel3.setText("Household Analysis");
 
         householdAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Index", "Furniture Type", "Cost"
+                "Furniture Type", "Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,7 +189,6 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
         if (householdAnalysisTable.getColumnModel().getColumnCount() > 0) {
             householdAnalysisTable.getColumnModel().getColumn(0).setResizable(false);
             householdAnalysisTable.getColumnModel().getColumn(1).setResizable(false);
-            householdAnalysisTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
@@ -135,32 +200,48 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout barchartLayout = new javax.swing.GroupLayout(barchart);
+        barchart.setLayout(barchartLayout);
+        barchartLayout.setHorizontalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 513, Short.MAX_VALUE)
+        );
+        barchartLayout.setVerticalGroup(
+            barchartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(btnBack))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(179, 179, 179)))
-                .addContainerGap())
+                        .addComponent(barchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(92, 92, 92)
+                                .addComponent(jLabel3))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addGap(70, 70, 70)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(barchart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,6 +254,7 @@ public class HouseholdAnalysisJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barchart;
     private javax.swing.JButton btnBack;
     private javax.swing.JTable householdAnalysisTable;
     private javax.swing.JLabel jLabel3;
