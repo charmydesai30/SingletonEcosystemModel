@@ -114,7 +114,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 householdBtnActionPerformed(evt);
             }
         });
-        add(householdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 150, 30));
+        add(householdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 240, 30));
 
         barchart.setBackground(new java.awt.Color(0, 153, 153));
         add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 780, 260));
