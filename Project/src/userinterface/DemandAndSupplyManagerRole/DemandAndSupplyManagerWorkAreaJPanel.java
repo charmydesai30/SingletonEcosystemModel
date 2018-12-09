@@ -4,8 +4,22 @@ package userinterface.DemandAndSupplyManagerRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Person.Person;
+import Business.UserAccount.UserAccount;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -23,6 +37,8 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.system=system;
         valueLabel.setText(enterprise.getName());
+        householdBtn.setText(enterprise.getEnterpriseType()+" Analysis");
+        plotgraph();
     }
     
     /** This method is called from within the constructor to
@@ -36,18 +52,20 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
         managePersonJButton = new javax.swing.JButton();
-        trackAnalysisButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         manageOrganizationJButton1 = new javax.swing.JButton();
+        householdBtn = new javax.swing.JButton();
+        barchart = new javax.swing.JPanel();
+        piechart = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("DEMAND AND SUPPLY MANAGER WORK AREA");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
         userJButton.setBackground(new java.awt.Color(102, 102, 102));
         userJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -57,7 +75,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 190, 50));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 190, 50));
 
         managePersonJButton.setBackground(new java.awt.Color(102, 102, 102));
         managePersonJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -67,24 +85,14 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 managePersonJButtonActionPerformed(evt);
             }
         });
-        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 190, 50));
-
-        trackAnalysisButton.setBackground(new java.awt.Color(102, 102, 102));
-        trackAnalysisButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        trackAnalysisButton.setText("TRACK ANALYSIS");
-        trackAnalysisButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trackAnalysisButtonActionPerformed(evt);
-            }
-        });
-        add(trackAnalysisButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 190, 50));
+        add(managePersonJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 190, 50));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         enterpriseLabel.setText("ENTERPRISE : ");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 140, 30));
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 140, 30));
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 180, 30));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("ADMIN ROLE");
@@ -98,9 +106,88 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
                 manageOrganizationJButton1ActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 190, 50));
+        add(manageOrganizationJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 190, 50));
+
+        householdBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        householdBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                householdBtnActionPerformed(evt);
+            }
+        });
+        add(householdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 150, 30));
+
+        barchart.setBackground(new java.awt.Color(0, 153, 153));
+        add(barchart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 780, 260));
+
+        piechart.setBackground(new java.awt.Color(0, 153, 153));
+        add(piechart, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 500, 250));
     }// </editor-fold>//GEN-END:initComponents
 
+        public void plotgraph() {
+        if(!(enterprise instanceof Enterprise)){
+            JOptionPane.showMessageDialog(null, "Please add Enterprises!!");
+            return;
+        }
+        int orgcount = 0;
+        int percount = 0;
+        int usrcount = 0;
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            orgcount++;
+
+            for (Person person : org.getPersonDirectory().getPersonList()) {
+                percount++;
+            }
+
+            for (UserAccount usr : org.getUserAccountDirectory().getUserAccountList()) {
+                usrcount++;
+            }
+        }
+
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+
+        dcd.setValue(orgcount, "Organizations", "No. of Organizations");
+        dcd.setValue(percount, "Persons", "No. of Persons");
+        dcd.setValue(usrcount, "Users", "No. of User Accounts");
+
+        JFreeChart jchart = ChartFactory.createBarChart3D("ENTERPRISE STATISTICS", "ENTITIES", "COUNT", dcd, PlotOrientation.VERTICAL, true, true, false);
+
+        CategoryPlot plot = jchart.getCategoryPlot();
+        plot.setRangeGridlinePaint(Color.BLACK);
+
+        ChartPanel chartp = new ChartPanel(jchart, true);
+        //chartp.setDomainZoomable(true);
+        chartp.setVisible(true);
+        barchart.removeAll();
+        barchart.setLayout(new java.awt.BorderLayout());
+        barchart.add(chartp, BorderLayout.CENTER);
+
+        barchart.validate();
+        
+        //plot piechart
+        DefaultPieDataset pcd = new DefaultPieDataset();
+        int cc = 0;
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (Person person : org.getPersonDirectory().getPersonList()) {
+                cc++;
+            }
+            pcd.setValue(org.getName(), cc);
+            cc = 0;
+        }
+
+        //pcd.setValue("Manager", 2);
+        //pcd.setValue("Assisstant Manager", 4);
+        JFreeChart jcrt = ChartFactory.createPieChart("ORGANISATIONS", pcd, true, true, false);
+        plot.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel chrtp = new ChartPanel(jcrt, true);
+        //chrtp.setDomainZoomable(true);
+        chrtp.setVisible(true);
+        chrtp.setPreferredSize(new Dimension(200, 200));
+        piechart.removeAll();
+        piechart.setLayout(new java.awt.BorderLayout());
+        piechart.add(chrtp, BorderLayout.CENTER);
+        piechart.validate();
+    }
+        
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
         ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
@@ -120,26 +207,52 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_managePersonJButtonActionPerformed
 
-    private void trackAnalysisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackAnalysisButtonActionPerformed
 
-        AnalysisDemandAndSupplyJPanel analysisDemandAndSupplyJPanel = new AnalysisDemandAndSupplyJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
-        userProcessContainer.add("analysisDemandAndSupplyJPanel", analysisDemandAndSupplyJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_trackAnalysisButtonActionPerformed
-
+   
     private void manageOrganizationJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButton1ActionPerformed
         // TODO add your handling code here:
+        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrganizationJButton1ActionPerformed
+
+
+    private void householdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_householdBtnActionPerformed
+        // TODO add your handling code here:
+        
+        
+        switch(enterprise.getEnterpriseType())
+        {
+            case Accomodation:
+                AccomodationAnalysisJPanel manageOrganizationJPanel = new AccomodationAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+                break;
+             case Household:
+                 HouseholdAnalysisJPanel householdAnalysisJPanel = new HouseholdAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("householdAnalysisJPanel", householdAnalysisJPanel);
+                break;
+             case Bookstore:
+                 BookstoreAnalysisJPanel bookstoreAnalysisJPanel = new BookstoreAnalysisJPanel(userProcessContainer, enterprise.getOrganizationDirectory(),system);
+        userProcessContainer.add("bookstoreAnalysisJPanel", bookstoreAnalysisJPanel);
+                break;
+                
+        }
+        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_householdBtnActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barchart;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton householdBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageOrganizationJButton1;
     private javax.swing.JButton managePersonJButton;
-    private javax.swing.JButton trackAnalysisButton;
+    private javax.swing.JPanel piechart;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

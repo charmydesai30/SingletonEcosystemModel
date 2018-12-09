@@ -7,6 +7,7 @@ package userinterface.StudentRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
@@ -16,6 +17,7 @@ import Business.WorkQueue.HouseholdAssisstantManagerWorkRequest;
 import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -56,37 +58,54 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         
         model.setRowCount(0);
-        for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-        {
-            for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests()){
-                if(! request.getStatus().equalsIgnoreCase("Purchased"))
+        
+            
+        for(Network network:system.getNetworkList()){
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Household))
+                    
                 {
-                    Object[] row = new Object[8];
-                    row[0] = request;
-                    row[1] = request.getfName();
-                    row[2]=request.getlName();
-                    row[3]=request.getFurnitureType();
-                    row[4]=request.getQuantity();
-                    row[5] =request.getCost();
-                    row[6] = request.getStatus();
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                        if(organization instanceof StudentOrganization)
+                        {
+                            for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests()){
+                                    if(!request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                        Object[] row = new Object[8];
+                                        row[0] = request;
+                                        row[1] = request.getfName();
+                                        row[2]=request.getlName();
+                                        row[3]=request.getFurnitureType();
+                                        row[4]=request.getQuantity();
+                                        row[5]=request.getCost();
+                                        row[6]= request.getStatus();
 
-                    model.addRow(row);
+                                        model.addRow(row);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        }
+         }
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         userNameTxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
         buyRelatedItemsButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setText("Your Order Summary:");
+        setBackground(new java.awt.Color(0, 153, 153));
 
         buyButton.setText("Buy");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +114,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
-        buyRelatedItemsButton.setText("Buy Related Items");
+        buyRelatedItemsButton.setText("Buy other Items");
         buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyRelatedItemsButtonActionPerformed(evt);
@@ -130,42 +149,66 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        btnBack.setBackground(new java.awt.Color(102, 102, 102));
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBack.setText("BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("YOUR ORDER SUMMARY");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Household BUYING WORK AREA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(218, 218, 218))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(267, 267, 267)
                         .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(282, 282, 282)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buyRelatedItemsButton)))
+                        .addGap(114, 114, 114)
+                        .addComponent(btnBack)
+                        .addGap(49, 49, 49)
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(buyRelatedItemsButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(buyButton)
-                .addGap(18, 18, 18)
-                .addComponent(buyRelatedItemsButton)
-                .addContainerGap())
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buyButton)
+                        .addComponent(buyRelatedItemsButton)))
+                .addGap(52, 52, 52))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,13 +222,26 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         if(! request.getStatus().equalsIgnoreCase("Purchased"))
         {
-             for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-                {
-                    for (HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
+            for(Network network:system.getNetworkList()){
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+
                     {
-                         request1.setStatus("Purchased");
+                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                            if(organization instanceof StudentOrganization)
+                            {
+                                for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                                {
+                                    for (HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
+                                    {
+                                         request1.setStatus("Purchased");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+            }
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this furniture Successfully");
         populateData();
@@ -204,11 +260,24 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_buyRelatedItemsButtonActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        BuyHouseholdJPanel bbjp = (BuyHouseholdJPanel) component;
+        bbjp.populateData();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameTxt;
     private javax.swing.JTable workRequestJTable;
