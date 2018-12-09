@@ -8,6 +8,7 @@ package userinterface.StudentRole;
 import Business.AccomodationData.SellAccomodation;
 import Business.AccomodationData.SellAccomodationDirectory;
 import Business.Enterprise.Enterprise;
+//import Business.Logging.MyLogging;
 import Business.Organization.AssisstantManagerOrganization;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.Organization;
@@ -19,10 +20,12 @@ import Business.WorkQueue.BookstoreAssisstantManagerWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.AssistantManagerRole.AssistantAccomodationManagerWorkAreaJPanel;
+import userinterface.MainJFrame;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -235,9 +238,9 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                                     .addComponent(groceriesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tenantsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
+                                        .addGap(34, 34, 34)
                                         .addComponent(chatButton)))))))
-                .addGap(63, 63, 63))
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,9 +288,9 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
-                        .addComponent(createButton))
-                    .addComponent(jButton1)
-                    .addComponent(chatButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(createButton)
+                        .addComponent(chatButton))
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -405,7 +408,8 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getAccomodationWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getAccomodationWorkRequestList().add(request);
         }
-               
+       
+//        MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise posted a sell request on dashboard"); 
                 
     }//GEN-LAST:event_createButtonActionPerformed
 

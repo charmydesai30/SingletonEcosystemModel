@@ -157,6 +157,7 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         {
             if (selectedRow < 0){
                 JOptionPane.showMessageDialog(null, "Please select a row");
+                return;
             }
 
             HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);

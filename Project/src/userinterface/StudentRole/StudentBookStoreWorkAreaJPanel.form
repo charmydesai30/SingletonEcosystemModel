@@ -46,10 +46,10 @@
               <Component id="jLabel1" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="buyButton" min="-2" pref="60" max="-2" attributes="0"/>
-        <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="sellButton" min="-2" pref="61" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-    </Group>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>

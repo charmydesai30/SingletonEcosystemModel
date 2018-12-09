@@ -95,7 +95,9 @@ public class StudentHouseHoldWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addComponent(buyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(sellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)                .addContainerGap(162, Short.MAX_VALUE))       );
+                .addComponent(sellBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(162, 162, 162))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBtnActionPerformed
