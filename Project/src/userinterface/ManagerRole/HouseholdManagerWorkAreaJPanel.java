@@ -174,13 +174,32 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-     
-        request.setStatus("Processing");
+        String currentState=request.getStatus();
         
-        
+         switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+                 request.setStatus("Processing");
+                 JOptionPane.showMessageDialog(null, "Request has been sent to bookstore assisstant manager!!");
+                break;
+            case "PROCESSING":
+                JOptionPane.showMessageDialog(null, "Request is already in Processing state.");
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already processed by you and completed by Assistant manager.");
+                break;
+                
+        }
         populateRequestTable();
         
         

@@ -40,7 +40,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             Object[] row = new Object[1];
-            row[0] = network.getName();
+            row[0] = network;
             model.addRow(row);
         }
     }
@@ -180,6 +180,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         Network network = (Network)networkJTable.getValueAt(row, 0);
         system.deleteNetwork(network);
+        nameJTextField.setText("");
         populateNetworkTable();
         JOptionPane.showMessageDialog(null, "Network deleted successfully!!");
     }//GEN-LAST:event_delNetJButtonActionPerformed
