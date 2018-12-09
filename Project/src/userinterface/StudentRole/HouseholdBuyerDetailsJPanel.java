@@ -18,6 +18,14 @@ import Business.WorkQueue.HouseholdWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +44,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Organization studentOrganization;
     EcoSystem system;
+    String emailId=null;
     public HouseholdBuyerDetailsJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization,EcoSystem system) {
         initComponents();
          this.userProcessContainer=userProcessContainer;
@@ -104,6 +113,8 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -164,6 +175,8 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Household BUYING WORK AREA");
 
+        jLabel3.setText("Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,19 +190,24 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addGap(267, 267, 267)
                         .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnBack)
-                        .addGap(49, 49, 49)
-                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(buyRelatedItemsButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jLabel2)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(btnBack)
+                .addGap(69, 69, 69)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(buyRelatedItemsButton)
+                .addGap(55, 55, 55))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(256, 256, 256))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,19 +218,28 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buyButton)
-                        .addComponent(buyRelatedItemsButton)))
-                .addGap(52, 52, 52))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyRelatedItemsButton)
+                    .addComponent(buyButton)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        emailId = emailTxt.getText();
+        
+        if(emailId.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please enter an email id before buying the product");
+            return;
+        }
         int selectedRow = workRequestJTable.getSelectedRow();
         
         if (selectedRow < 0){
@@ -250,9 +277,43 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         {
             JOptionPane.showMessageDialog(null, "The item is not available");
         }
-        
+        sendMail(emailId);
     }//GEN-LAST:event_buyButtonActionPerformed
+    public void sendMail(String emailId)
+    {
+    final String username = "aedproject30@gmail.com";
+		final String password = "Pass3*buck";
 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("aedproject30@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(emailId));
+			message.setSubject("Order Confirmation");
+			message.setText("Your order has been confirmed");
+
+			Transport.send(message);
+
+			//System.out.println("Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
     private void buyRelatedItemsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyRelatedItemsButtonActionPerformed
          HouseholdBookstoreJPanel ent = new HouseholdBookstoreJPanel(userProcessContainer,enterprise,userAccount,studentOrganization,system);
         userProcessContainer.add("ent", ent);
@@ -276,8 +337,10 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
+    private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameTxt;
     private javax.swing.JTable workRequestJTable;
