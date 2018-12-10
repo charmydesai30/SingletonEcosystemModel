@@ -54,7 +54,6 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
-        refreshTestJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         requestReportJButton = new javax.swing.JButton();
@@ -67,36 +66,44 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        refreshTestJButton.setBackground(new java.awt.Color(102, 102, 102));
-        refreshTestJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        refreshTestJButton.setText("REFRESH");
-        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTestJButtonActionPerformed(evt);
-            }
-        });
-
         workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "Username", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         requestReportJButton.setBackground(new java.awt.Color(102, 102, 102));
         requestReportJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -127,8 +134,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(enterpriseLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addComponent(refreshTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(231, 231, 231))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -145,9 +151,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(refreshTestJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -161,28 +165,21 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         dtm.setRowCount(0);
         
         for (BookstoreWorkRequest request : organization.getWorkQueue().getBookstoreWorkRequestList()){
-            Object[] row = new Object[9];
+            Object[] row = new Object[8];
             row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getBookName();
-            row[3] = request.getBookPrice();
-            row[4] = request.getBookAuthor();
-            row[5] = request.getBooktype();
-            row[6] = request.getNoOfBooks();
-            row[7] = request.getStatus();
-            row[8] = ((BookstoreAssisstantManagerWorkRequest) request)==null?"waiting":((BookstoreAssisstantManagerWorkRequest) request);
+            row[1] = request.getBookName();
+            row[2] = request.getBookPrice();
+            row[3] = request.getBookAuthor();
+            row[4] = request.getBooktype();
+            row[5] = request.getNoOfBooks();
+            row[6] = request.getStatus();
+            row[7] = ((BookstoreAssisstantManagerWorkRequest) request)==null?"waiting":((BookstoreAssisstantManagerWorkRequest) request);
            
             dtm.addRow(row);
         }
         
     }
         
-    private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
-
-        populateRequestTable();
-
-    }//GEN-LAST:event_refreshTestJButtonActionPerformed
-
     private void requestReportJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestReportJButtonActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
@@ -192,7 +189,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,7);
         String currentState=request.getStatus();
         
         
@@ -230,7 +227,6 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestReportJButton;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;

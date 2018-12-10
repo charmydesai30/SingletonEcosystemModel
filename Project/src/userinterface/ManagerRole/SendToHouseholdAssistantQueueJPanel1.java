@@ -49,11 +49,13 @@ public class SendToHouseholdAssistantQueueJPanel1 extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         valueLabel = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backJButton.setText("<<Back");
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -68,8 +70,9 @@ public class SendToHouseholdAssistantQueueJPanel1 extends javax.swing.JPanel {
         enterpriseLabel.setText("Enterprise :");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 120, 30));
 
-        jLabel1.setText("Your Request Has been sent to Assistant Manager!!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 370, 50));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setText("Your Request Has been sent to Assistant Manager!!!");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 440, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -87,7 +90,7 @@ public class SendToHouseholdAssistantQueueJPanel1 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel enterpriseLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

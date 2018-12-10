@@ -54,7 +54,8 @@ public class SendToAccomodationAssistantQueueJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backJButton.setText("<<Back");
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -71,7 +72,7 @@ public class SendToAccomodationAssistantQueueJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Your Request Has been sent to Assistant Manager!!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 370, 50));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 440, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

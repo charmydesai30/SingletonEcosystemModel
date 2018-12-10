@@ -53,14 +53,13 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         
         model.setRowCount(0);
         for (HouseholdWorkRequest request : assistantManagerOrganization.getWorkQueue().getHouseholdWorkRequests()){
-            Object[] row = new Object[10];
+            Object[] row = new Object[6];
             row[0] = request;
             row[1]=request.getfName();
-            row[2] = request.getlName();
-            row[3] = request.getFurnitureType();
-            row[4]=request.getCost();
-             row[5]=request.getQuantity();
-           row[6] = request.getStatus();
+            row[2] = request.getFurnitureType();
+            row[3]=request.getCost();
+            row[4]=request.getQuantity();
+            row[5] = request.getStatus();
             
             model.addRow(row);
         }
@@ -78,29 +77,29 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         processJButton = new javax.swing.JButton();
-        refreshJButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         resultTxt = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Result", "First Name", "Last Name", "Furniture Type", "Quantity", "Cost", "Status"
+                "Result", "Username", "Furniture Type", "Quantity", "Cost", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,43 +112,39 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         });
         jScrollPane1.setViewportView(workRequestJTable);
         if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
             workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 460, 100));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 490, 110));
 
-        processJButton.setText("Process");
+        processJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        processJButton.setText("PROCESS REQUEST");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
-
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
-            }
-        });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
-
-        jLabel1.setText("Decision:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 220, 100, 30));
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, 40));
 
         resultTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resultTxtActionPerformed(evt);
             }
         });
-        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 130, -1));
+        add(resultTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 130, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Sell Household Requests");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("HOUSEHOLD ASSISSTANT MANAGER WORK AREA");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Decision:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -199,20 +194,15 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         
     }//GEN-LAST:event_processJButtonActionPerformed
 
-    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
-    }//GEN-LAST:event_refreshJButtonActionPerformed
-
     private void resultTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_resultTxtActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton processJButton;
-    private javax.swing.JButton refreshJButton;
     private javax.swing.JTextField resultTxt;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

@@ -261,22 +261,22 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) sellHouseholdTable.getModel();
 
         model.setRowCount(0);
-        for(Household household: householdDir.getHouseholdDataList())
-        {
-            Object row[] = new Object[10];
-            row[0]=household.getfName();
-            row[1]=household.getFurnitureType();
-            row[2]=household.getQuantity();
-            row[3]=household.getCost();
-            row[4] = household.getStatus();
-            String result = household.getResult();
-            row[5] = result == null ? "Waiting" : result;
-           ((DefaultTableModel) sellHouseholdTable.getModel()).addRow(row);
-        }
+//        for(Household household: householdDir.getHouseholdDataList())
+//        {
+//            Object row[] = new Object[10];
+//            row[0]=household.getfName();
+//            row[1]=household.getFurnitureType();
+//            row[2]=household.getQuantity();
+//            row[3]=household.getCost();
+//            row[4] = household.getStatus();
+//            String result = household.getResult();
+//            row[5] = result == null ? "Waiting" : result;
+//           ((DefaultTableModel) sellHouseholdTable.getModel()).addRow(row);
+//        }
         
         
         for(HouseholdWorkRequest request : userAccount.getWorkQueue().getHouseholdWorkRequests()){
-             Object[] row = new Object[10];
+             Object[] row = new Object[6];
             row[0] = request.getfName();
             row[1] = request.getFurnitureType();
             row[2]=request.getQuantity();

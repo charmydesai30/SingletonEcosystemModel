@@ -58,7 +58,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         for(BookstoreWorkRequest request : account.getWorkQueue().getBookstoreWorkRequestList()){
             if (!request.getStatus().equalsIgnoreCase("Purchased"))
              {
-            Object[] row = new Object[9];
+            Object[] row = new Object[8];
             row[0] = request.getfName();
             row[1] = request.getBookName();
             row[2] = request.getBookPrice();

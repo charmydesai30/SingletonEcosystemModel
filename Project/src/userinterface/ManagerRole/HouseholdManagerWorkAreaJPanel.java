@@ -52,14 +52,13 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
            
          for (HouseholdWorkRequest request : organization.getWorkQueue().getHouseholdWorkRequests()){
-            Object[] row = new Object[10];
+            Object[] row = new Object[6];
             row[0]=((HouseholdAssisstantManagerWorkRequest) request)==null?"waiting":((HouseholdAssisstantManagerWorkRequest) request);
             row[1]=request.getfName();
-            row[2] = request.getlName();
-            row[3] = request.getFurnitureType();
-            row[4]=request.getCost();
-             row[5]=request.getQuantity();
-           row[6] = request.getStatus();
+            row[2]= request.getFurnitureType();
+            row[3]=request.getCost();
+            row[4]=request.getQuantity();
+            row[5]= request.getStatus();
             
             model.addRow(row);
         }
@@ -76,47 +75,40 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         requestReportJButton = new javax.swing.JButton();
-        refreshTestJButton = new javax.swing.JButton();
-        enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        enterpriseLabel1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        requestReportJButton.setText("Pass Request to Assistant");
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        requestReportJButton.setText("SEND TO ASSISTANT");
         requestReportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestReportJButtonActionPerformed(evt);
             }
         });
 
-        refreshTestJButton.setText("Refresh");
-        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTestJButtonActionPerformed(evt);
-            }
-        });
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("Enterprise :");
-
+        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         valueLabel.setText("<value>");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Result", "First Name", "Last Name", "Furniture Type", "Quantity", "Cost", "Status"
+                "Result", "Username", "Furniture Type", "Quantity", "Cost", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,6 +120,20 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        enterpriseLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        enterpriseLabel1.setText("ENTERPRISE : ");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("HOUSEHOLD MANAGER WORK AREA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,35 +144,33 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(refreshTestJButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(enterpriseLabel1)
+                                .addGap(28, 28, 28)
+                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
-                        .addComponent(requestReportJButton)))
-                .addGap(169, 169, 169))
+                        .addComponent(requestReportJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(refreshTestJButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterpriseLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(requestReportJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,16 +215,10 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed
 
-    private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
-
-        populateRequestTable();
-        
-    }//GEN-LAST:event_refreshTestJButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JLabel enterpriseLabel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestReportJButton;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;

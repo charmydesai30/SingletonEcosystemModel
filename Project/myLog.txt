@@ -152,3 +152,13 @@ Dec 09, 2018 6:51:06 PM Business.Logging.MyLogging log
 INFO: neuaccass  from  neuacc  Completed the request
 Dec 09, 2018 6:51:16 PM Business.Logging.MyLogging log
 INFO: neuaccass  from  neuacc  Completed the request
+Dec 09, 2018 8:03:44 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 8:03:44 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 8:03:44 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neubookstu
+Dec 09, 2018 8:10:42 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 8:10:42 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin

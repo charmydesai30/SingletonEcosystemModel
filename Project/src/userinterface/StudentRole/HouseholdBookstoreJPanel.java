@@ -60,7 +60,7 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
                         for(UserAccount ua: organization.getUserAccountDirectory().getUserAccountList())
                         {
                         for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
-                            Object[] row = new Object[9];
+                            Object[] row = new Object[8];
                             row[0] = request.getfName();
                             row[1] = request.getBookName();
                             row[2] = request.getBookPrice();
@@ -200,28 +200,17 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
             return;
         }
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,7);
-
-        for(Network network:system.getNetworkList()){
-            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-                if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household);
-                {
-                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                        if(organization instanceof StudentOrganization)
-                        {
-                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
-                            {
-                                for(BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
-                                {
-                                    request1.setStatus("Purchased");
-                                    request.setStatus("Purchased");
-                                }
-
-                            }
-                        }
-                    }
-                }
-            }
+        if(request.getStatus().equalsIgnoreCase("Completed"))
+         {
+            request.setStatus("purchased");
+            JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+            request.setBuyerName(userAccount.getUsername());
+         }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Item you want to purchase is not available to buy");                                 return;
         }
+        
         request.setBuyerName(userAccount.getUsername());
         populateData();
         JOptionPane.showMessageDialog(null, "You purchased this item Successfully");

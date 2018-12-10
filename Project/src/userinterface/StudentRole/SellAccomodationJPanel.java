@@ -340,7 +340,7 @@ public class SellAccomodationJPanel extends javax.swing.JPanel {
          for(AccomodationWorkRequest request : userAccount.getWorkQueue().getAccomodationWorkRequestList()){
             if (!request.getStatus().equalsIgnoreCase("Purchased"))
             {
-               Object[] row = new Object[10];
+               Object[] row = new Object[9];
                row[0] = request.getfName();
                row[1] = request.getApptSize();
                row[2]=request.getNoOfBathrooms();
