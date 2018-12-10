@@ -80,7 +80,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                     for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                         if(organization instanceof StudentOrganization)
                         {
-                            for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
                             {
                                 for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests()){
                                     if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
@@ -255,7 +255,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         emailId = emailTxt.getText();
         
-        String emailRegex = "^([0-9a-zA-Z].?@([0-9a-zA-Z].\\.\\w{2,4}))$";
+        String emailRegex = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
         
         Pattern pat = Pattern.compile(emailRegex); 
             if (emailTxt.getText() == null) 
@@ -314,6 +314,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(null, "You purchased this furniture Successfully");
         populateData();
+        emailTxt.setText("");
         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 
         }
         else

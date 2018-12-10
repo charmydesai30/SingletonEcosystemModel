@@ -74,12 +74,29 @@ public class SoldBooksJPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(soldBooksJTable);
+        if (soldBooksJTable.getColumnModel().getColumnCount() > 0) {
+            soldBooksJTable.getColumnModel().getColumn(0).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(1).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(2).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(3).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(4).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(5).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(6).setResizable(false);
+            soldBooksJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("SOLD BOOKS DETAILS");

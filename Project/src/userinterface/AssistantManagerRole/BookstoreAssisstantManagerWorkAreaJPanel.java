@@ -141,7 +141,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(resultTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 100, Short.MAX_VALUE))
+                .addGap(100, 100, 100))
             .addGroup(layout.createSequentialGroup()
                 .addGap(216, 216, 216)
                 .addComponent(processJButton)
@@ -192,7 +192,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
                 return;
             }
 
-            BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
+            BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,7);
             String currentState=request.getStatus();
             switch(currentState.toUpperCase())
             {

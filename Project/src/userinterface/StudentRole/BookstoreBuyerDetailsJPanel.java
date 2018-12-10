@@ -319,6 +319,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this book successfully!!");
         populateData();
+        emailTxt.setText("");
         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 
         }
         else

@@ -196,6 +196,8 @@ public class AccomodationAnalysisJPanel extends javax.swing.JPanel {
         barchart = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("BACK");

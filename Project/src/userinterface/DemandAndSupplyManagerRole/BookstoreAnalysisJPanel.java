@@ -166,6 +166,8 @@ private HashMap<String, Double> getFinalModelList()
         barchart = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         booksAnalysisTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},

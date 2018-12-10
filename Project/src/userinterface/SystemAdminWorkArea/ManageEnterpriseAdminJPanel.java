@@ -121,6 +121,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        enterpriseJTable.setEnabled(false);
         jScrollPane1.setViewportView(enterpriseJTable);
         if (enterpriseJTable.getColumnModel().getColumnCount() > 0) {
             enterpriseJTable.getColumnModel().getColumn(0).setResizable(false);

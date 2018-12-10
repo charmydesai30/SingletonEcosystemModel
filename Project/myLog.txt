@@ -194,3 +194,271 @@ Dec 09, 2018 10:02:09 PM Business.Logging.MyLogging log
 INFO: Login under enterprise  null
 Dec 09, 2018 10:02:09 PM Business.Logging.MyLogging log
 INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 10:41:17 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 10:41:17 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 10:44:08 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 10:44:08 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 10:45:45 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 10:45:45 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 10:47:12 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 10:47:12 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 10:50:13 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 10:50:13 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neubook
+Dec 09, 2018 10:50:47 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 10:50:47 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 10:51:41 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 10:51:41 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuhou
+Dec 09, 2018 11:02:07 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 11:02:07 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 11:02:16 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:02:16 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 11:02:31 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  buacc
+Dec 09, 2018 11:02:31 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  buacc
+Dec 09, 2018 11:03:23 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  buhou
+Dec 09, 2018 11:03:23 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  buhou
+Dec 09, 2018 11:04:05 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  bubook
+Dec 09, 2018 11:04:05 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  bubook
+Dec 09, 2018 11:04:56 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:04:56 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:04:56 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:05:31 PM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:05:54 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:05:54 PM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:05:54 PM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neuaccmgr
+Dec 09, 2018 11:05:59 PM Business.Logging.MyLogging log
+INFO: neuaccmgr  from  neuacc  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:06:12 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:06:12 PM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:06:12 PM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuaccass
+Dec 09, 2018 11:06:21 PM Business.Logging.MyLogging log
+INFO: neuaccass  from  neuacc  Completed the request
+Dec 09, 2018 11:07:03 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:07:03 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:07:03 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:07:17 PM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:07:28 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:07:28 PM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:07:28 PM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neuaccmgr
+Dec 09, 2018 11:07:31 PM Business.Logging.MyLogging log
+INFO: neuaccmgr  from  neuacc  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:07:39 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:07:39 PM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:07:39 PM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuaccass
+Dec 09, 2018 11:07:46 PM Business.Logging.MyLogging log
+INFO: neuaccass  from  neuacc  Completed the request
+Dec 09, 2018 11:08:01 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:08:01 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 11:08:45 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:08:45 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 11:09:31 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:09:31 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 11:10:11 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:10:11 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:10:11 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu2
+Dec 09, 2018 11:10:31 PM Business.Logging.MyLogging log
+INFO: neuaccstu2  from  neuacc   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:10:40 PM Business.Logging.MyLogging log
+INFO: neuaccstu2  from  neuacc   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:10:51 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:10:51 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc
+Dec 09, 2018 11:11:16 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:11:16 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:11:16 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuhoustu
+Dec 09, 2018 11:11:26 PM Business.Logging.MyLogging log
+INFO: neuhoustu  from  neuhou   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:11:35 PM Business.Logging.MyLogging log
+INFO: neuhoustu  from  neuhou   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:11:45 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:11:45 PM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:11:45 PM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neuhoumgr
+Dec 09, 2018 11:11:48 PM Business.Logging.MyLogging log
+INFO: neuhoumgr  from  neuhou  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:11:50 PM Business.Logging.MyLogging log
+INFO: neuhoumgr  from  neuhou  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:11:57 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:11:57 PM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:11:57 PM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuhouass
+Dec 09, 2018 11:12:02 PM Business.Logging.MyLogging log
+INFO: neuhouass  from  neuhou  Completed the request
+Dec 09, 2018 11:12:07 PM Business.Logging.MyLogging log
+INFO: neuhouass  from  neuhou  Completed the request
+Dec 09, 2018 11:12:24 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:12:24 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuhou
+Dec 09, 2018 11:13:07 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:13:07 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:13:07 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuhoustu2
+Dec 09, 2018 11:14:02 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:14:02 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neubook
+Dec 09, 2018 11:15:15 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:15:15 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:15:15 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neubookstu
+Dec 09, 2018 11:15:39 PM Business.Logging.MyLogging log
+INFO: neubookstu  from  neubook   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:16:39 PM Business.Logging.MyLogging log
+INFO: neubookstu  from  neubook   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:16:50 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:16:50 PM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:16:50 PM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neubookmgr
+Dec 09, 2018 11:16:53 PM Business.Logging.MyLogging log
+INFO: neubookmgr  from  neubook  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:16:55 PM Business.Logging.MyLogging log
+INFO: neubookmgr  from  neubook  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:17:03 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:17:03 PM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:17:03 PM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neubookass
+Dec 09, 2018 11:17:07 PM Business.Logging.MyLogging log
+INFO: neubookass  from  neubook  Completed the request
+Dec 09, 2018 11:17:11 PM Business.Logging.MyLogging log
+INFO: neubookass  from  neubook  Completed the request
+Dec 09, 2018 11:17:20 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:17:20 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:17:20 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neubookstu2
+Dec 09, 2018 11:18:06 PM Business.Logging.MyLogging log
+INFO: neubookstu2  from  neubook   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:18:11 PM Business.Logging.MyLogging log
+INFO: neubookstu2  from  neubook   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:18:27 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 11:18:27 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neubook
+Dec 09, 2018 11:18:40 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:18:40 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:18:40 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuhoustu2
+Dec 09, 2018 11:19:20 PM Business.Logging.MyLogging log
+INFO: neuhoustu2  from  neuhou   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:19:27 PM Business.Logging.MyLogging log
+INFO: neuhoustu2  from  neuhou   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:19:45 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuhou
+Dec 09, 2018 11:19:45 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuhou
+Dec 09, 2018 11:20:05 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:20:05 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:20:05 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu
+Dec 09, 2018 11:20:24 PM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:20:31 PM Business.Logging.MyLogging log
+INFO: neuaccstu  from  neuacc   Enterprise posted a sell request on dashboard
+Dec 09, 2018 11:20:43 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:20:43 PM Business.Logging.MyLogging log
+INFO: Login under Organization Manager Organization
+Dec 09, 2018 11:20:43 PM Business.Logging.MyLogging log
+INFO: Business.Role.ManagerRolelogged in with username  neuaccmgr
+Dec 09, 2018 11:20:47 PM Business.Logging.MyLogging log
+INFO: neuaccmgr  from  neuacc  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:20:50 PM Business.Logging.MyLogging log
+INFO: neuaccmgr  from  neuacc  Processed the request of student and forwarded to assistant
+Dec 09, 2018 11:21:02 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:21:02 PM Business.Logging.MyLogging log
+INFO: Login under Organization AssisstantManager Organization
+Dec 09, 2018 11:21:02 PM Business.Logging.MyLogging log
+INFO: Business.Role.AssistantManagerRolelogged in with username  neuaccass
+Dec 09, 2018 11:21:08 PM Business.Logging.MyLogging log
+INFO: neuaccass  from  neuacc  Completed the request
+Dec 09, 2018 11:21:12 PM Business.Logging.MyLogging log
+INFO: neuaccass  from  neuacc  Completed the request
+Dec 09, 2018 11:21:23 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:21:23 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 11:21:23 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neuaccstu2
+Dec 09, 2018 11:21:42 PM Business.Logging.MyLogging log
+INFO: neuaccstu2  from  neuacc   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:21:46 PM Business.Logging.MyLogging log
+INFO: neuaccstu2  from  neuacc   Enterprise purchased an item from dashboard
+Dec 09, 2018 11:21:59 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neuacc
+Dec 09, 2018 11:21:59 PM Business.Logging.MyLogging log
+INFO: Business.Role.DemandAndSupplyManagerRolelogged in with username  neuacc

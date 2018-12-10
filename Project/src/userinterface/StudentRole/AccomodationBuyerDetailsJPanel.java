@@ -272,7 +272,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         emailId = emailTxt.getText();
         
-        String emailRegex = "^([0-9a-zA-Z].?@([0-9a-zA-Z].\\.\\w{2,4}))$";
+        String emailRegex = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
         
         Pattern pat = Pattern.compile(emailRegex); 
 		if (emailTxt.getText() == null) 
@@ -332,6 +332,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
+        emailTxt.setText("");
         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 
         
         }//end of if
