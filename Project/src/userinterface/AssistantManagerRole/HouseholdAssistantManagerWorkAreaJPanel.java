@@ -162,21 +162,35 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
                 return;
             }
 
-            HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-            if(request.getStatus().equalsIgnoreCase("Processing"))
-            {
-            request.setStatus("Completed");
-             JOptionPane.showMessageDialog(null, "The Request is completed");
-              request.setTestResult(result);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "The Request is in not processed by manager");
-            }
-
+        HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
+        String currentState=request.getStatus();
+        
+        
+        switch(currentState.toUpperCase())
+        {
+            case "PENDING":
+                JOptionPane.showMessageDialog(null, "Request is not yet processed by manager.");
+                 
+                break;
+            case "PROCESSING":
+                JOptionPane.showMessageDialog(null, "Request is completed");
+                request.setStatus("Completed");
+                request.setTestResult(result);
+                break;
+            case "COMPLETED":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you ");
+                break;
+            case "ADDED TO CART":
+                JOptionPane.showMessageDialog(null, "Request is  already Completed by you");
+                break;
+            case "PURCHASED":
+                JOptionPane.showMessageDialog(null, "Request is  already  Completed by you.");
+                break;
+                
+            }   
 
             populateTable();
-             MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
+            MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
         }
         else
         {

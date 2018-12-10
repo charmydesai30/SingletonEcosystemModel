@@ -76,24 +76,41 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
         buyBooksJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "Username", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(buyBooksJTable);
+        if (buyBooksJTable.getColumnModel().getColumnCount() > 0) {
+            buyBooksJTable.getColumnModel().getColumn(0).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(1).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(2).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(3).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(4).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(5).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(6).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -117,7 +134,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             }
         });
 
-        chatBtn.setText("Server chat");
+        chatBtn.setText("CHAT");
         chatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chatBtnActionPerformed(evt);
@@ -138,15 +155,15 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                         .addComponent(jButton1)
                         .addGap(67, 67, 67)
                         .addComponent(jLabel1)
-                        .addGap(183, 185, Short.MAX_VALUE))
+                        .addGap(185, 185, 185))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(BuyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
+                        .addGap(54, 54, 54)
                         .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(chatBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(53, 53, 53)
+                        .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -162,7 +179,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chatBtn))
+                    .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -184,14 +201,13 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
                                 for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
                                     Object[] row = new Object[9];
                                     row[0] = request.getfName();
-                                    row[1] = request.getlName();
-                                    row[2] = request.getBookName();
-                                    row[3] = request.getBookPrice();
-                                    row[4] = request.getBookAuthor();
-                                    row[5] = request.getBooktype();
-                                    row[6] = request.getNoOfBooks();
-                                    row[7] = request.getStatus();
-                                    row[8] = request;
+                                    row[1] = request.getBookName();
+                                    row[2] = request.getBookPrice();
+                                    row[3] = request.getBookAuthor();
+                                    row[4] = request.getBooktype();
+                                    row[5] = request.getNoOfBooks();
+                                    row[6] = request.getStatus();
+                                    row[7] = request;
         
                                     dtm.addRow(row);
                                 }
@@ -214,9 +230,13 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             return;
         }
 
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,7);
         String currentState=request.getStatus();
-
+        if(userAccount.getUsername().equalsIgnoreCase(request.getfName()))
+        {
+            JOptionPane.showMessageDialog(null, "You cannot buy books posted by yourself.");
+            return;
+        }
         switch(currentState.toUpperCase())
         {
             case "PENDING":
@@ -248,7 +268,7 @@ public class BuyBooksJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row!!");
             return;
         }
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,7);
         if(!request.getStatus().equalsIgnoreCase("Purchased"))
         {
             boolean flag =false;

@@ -79,7 +79,7 @@ public class DemandAndSupplyManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         managePersonJButton.setBackground(new java.awt.Color(102, 102, 102));
         managePersonJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        managePersonJButton.setText("MANAGE PERSON");
+        managePersonJButton.setText("MANAGE MEMBER");
         managePersonJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managePersonJButtonActionPerformed(evt);

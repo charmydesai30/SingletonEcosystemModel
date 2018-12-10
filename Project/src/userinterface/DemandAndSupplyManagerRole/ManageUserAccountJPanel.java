@@ -7,6 +7,7 @@ package userinterface.DemandAndSupplyManagerRole;
 import Business.Person.Person;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.StudentOrganization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -294,6 +295,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         if (userName.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Please enter a username!!");
+            return;
         }
         else if (organization.getUserAccountDirectory().checkIfUsernameIsUnique(userName))
         {
@@ -376,6 +378,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
         
         UserAccount ua = (UserAccount)userJTable.getValueAt(row, 0);
+               
         Organization organization = (Organization) organizationJComboBox.getSelectedItem();
         organization.getUserAccountDirectory().deleteUserAccount(ua);
         popData();

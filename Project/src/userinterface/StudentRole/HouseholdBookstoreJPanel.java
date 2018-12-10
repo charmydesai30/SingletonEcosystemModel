@@ -62,14 +62,13 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
                         for (BookstoreWorkRequest request : ua.getWorkQueue().getBookstoreWorkRequestList()){
                             Object[] row = new Object[9];
                             row[0] = request.getfName();
-                            row[1] = request.getlName();
-                            row[2] = request.getBookName();
-                            row[3] = request.getBookPrice();
-                            row[4] = request.getBookAuthor();
-                            row[5] = request.getBooktype();
-                            row[6] = request.getNoOfBooks();
-                            row[7] = request.getStatus();
-                            row[8] = request;
+                            row[1] = request.getBookName();
+                            row[2] = request.getBookPrice();
+                            row[3] = request.getBookAuthor();
+                            row[4] = request.getBooktype();
+                            row[5] = request.getNoOfBooks();
+                            row[6] = request.getStatus();
+                            row[7] = request;
 
                             dtm.addRow(row);
                             }
@@ -103,26 +102,44 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
 
         buyBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "Username", "Book Name", "Book Price", "Book Author", "Book Type", "No. of Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(buyBooksJTable);
+        if (buyBooksJTable.getColumnModel().getColumnCount() > 0) {
+            buyBooksJTable.getColumnModel().getColumn(0).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(1).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(2).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(3).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(4).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(5).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(6).setResizable(false);
+            buyBooksJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
-        buyButton.setText("Buy");
+        buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buyButton.setText("BUY");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyButtonActionPerformed(evt);
@@ -149,29 +166,29 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(84, 84, 84)
+                                .addComponent(jLabel2))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(btnBack)
-                        .addGap(39, 39, 39)
-                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(jLabel2)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGap(352, 352, 352)
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buyButton)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,7 +199,7 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,8);
+        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)buyBooksJTable.getValueAt(selectedRow,7);
 
         for(Network network:system.getNetworkList()){
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){

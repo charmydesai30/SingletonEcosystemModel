@@ -48,9 +48,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (Organization organization : directory.getOrganizationList()){
-            Object[] row = new Object[2];
-            row[0] = organization.getOrganizationID();
-            row[1] = organization;
+            Object[] row = new Object[1];
+            row[0] = organization;
             
             model.addRow(row);
         }
@@ -78,20 +77,20 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         organizationJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "ID", "Name"
+                "Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -105,7 +104,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(organizationJTable);
         if (organizationJTable.getColumnModel().getColumnCount() > 0) {
             organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         addOrgJButton.setBackground(new java.awt.Color(102, 102, 102));
@@ -151,24 +149,23 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel1)
-                        .addGap(26, 26, 26)
-                        .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(26, 26, 26)
+                                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backJButton)
                                 .addGap(44, 44, 44)
                                 .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(addOrgJButton)
-                                .addGap(30, 30, 30)
-                                .addComponent(delOrgJButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(204, 204, 204))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(addOrgJButton)
+                        .addGap(30, 30, 30)
+                        .addComponent(delOrgJButton)))
+                .addGap(246, 246, 246))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +176,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                     .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addOrgJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delOrgJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,6 +191,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void addOrgJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgJButtonActionPerformed
 
         Type type = (Type) organizationJComboBox.getSelectedItem();
+        for(Organization organization: directory.getOrganizationList())
+        {
+            if(organization.getName().equalsIgnoreCase(type.toString()))
+            {
+                JOptionPane.showMessageDialog(null, "Organization exists.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
         directory.createOrganization(type);
         populateTable();
         JOptionPane.showMessageDialog(null, "Organization created successfully!!");
@@ -210,7 +215,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int row = organizationJTable.getSelectedRow();
         if(row < 0) {
-             JOptionPane.showMessageDialog(null, "Please select a row from the table!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please select a row from the table!!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         

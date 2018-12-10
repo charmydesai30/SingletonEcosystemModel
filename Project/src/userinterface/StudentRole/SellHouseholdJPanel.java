@@ -46,11 +46,13 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
     
     public SellHouseholdJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount,Organization organization) {
         initComponents();
-          this.householdDir = new HouseholdDirectory();
-          this.userProcessContainer=userProcessContainer;
-          this.enterprise=enterprise;
-          this.userAccount=userAccount;
-          this.organization=(StudentOrganization)organization;
+        this.householdDir = new HouseholdDirectory();
+        this.userProcessContainer=userProcessContainer;
+        this.enterprise=enterprise;
+        this.userAccount=userAccount;
+        this.organization=(StudentOrganization)organization;
+        firstNameText.setText(userAccount.getUsername()+"");
+
           populateData();
     }
 
@@ -74,36 +76,42 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         createButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         firstNameText = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        lastNameText = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         sellHouseholdTable = new javax.swing.JTable();
         furnitureTypeText = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         viewSoldRequestsButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         chatButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Furniture type");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Quantity");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Cost");
 
+        quantityComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         quantityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
 
-        createButton.setText("Sell");
+        costText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        createButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        createButton.setText("SELL");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
             }
         });
 
-        jLabel7.setText("First Name");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Username");
 
-        jLabel8.setText("Last Name");
+        firstNameText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         sellHouseholdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,14 +121,14 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Furniture Type", "Quantity", "Cost", "Status"
+                "Username", "Furniture Type", "Quantity", "Cost", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,30 +140,43 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(sellHouseholdTable);
+        if (sellHouseholdTable.getColumnModel().getColumnCount() > 0) {
+            sellHouseholdTable.getColumnModel().getColumn(0).setResizable(false);
+            sellHouseholdTable.getColumnModel().getColumn(1).setResizable(false);
+            sellHouseholdTable.getColumnModel().getColumn(2).setResizable(false);
+            sellHouseholdTable.getColumnModel().getColumn(3).setResizable(false);
+            sellHouseholdTable.getColumnModel().getColumn(4).setResizable(false);
+            sellHouseholdTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Sell Household");
+        furnitureTypeText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        viewSoldRequestsButton.setText("View Sold Requests");
+        viewSoldRequestsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        viewSoldRequestsButton.setText("VIEW SOLD REQUESTS");
         viewSoldRequestsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewSoldRequestsButtonActionPerformed(evt);
             }
         });
 
-        backJButton.setText("<< Back");
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
-        chatButton.setText("Client chat");
+        chatButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chatButton.setText("CHAT");
         chatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chatButtonActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("HOUSEHOLD SELLING WORK AREA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,86 +191,69 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(backJButton)
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(46, 46, 46)
+                                .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(46, 46, 46)
-                                                .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel2)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(28, 28, 28)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(furnitureTypeText, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                                    .addComponent(quantityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(costText))))
-                                        .addGap(34, 34, 34))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(backJButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(75, 75, 75)
-                                        .addComponent(jLabel8)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(52, 52, 52)
-                                        .addComponent(viewSoldRequestsButton)
-                                        .addGap(62, 62, 62)
-                                        .addComponent(chatButton))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jLabel9)))
-                .addGap(107, 107, 107))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(furnitureTypeText, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                    .addComponent(quantityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(costText)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
+                                .addComponent(viewSoldRequestsButton)
+                                .addGap(55, 55, 55)
+                                .addComponent(chatButton)))))
+                .addGap(187, 187, 187))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel9)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backJButton)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(furnitureTypeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(quantityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(costText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(104, 104, 104))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(backJButton)
-                            .addComponent(createButton)
-                            .addComponent(viewSoldRequestsButton)
-                            .addComponent(chatButton))
-                        .addGap(30, 30, 30))))
+                            .addComponent(jLabel7)
+                            .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(furnitureTypeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(quantityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(costText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createButton)
+                    .addComponent(viewSoldRequestsButton)
+                    .addComponent(chatButton))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     public void populateData()
@@ -261,10 +265,10 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         {
             Object row[] = new Object[10];
             row[0]=household.getfName();
-            row[1]=household.getlName();
-            row[2]=household.getFurnitureType();
-            row[3]=household.getQuantity();
-            row[4]=household.getCost();
+            row[1]=household.getFurnitureType();
+            row[2]=household.getQuantity();
+            row[3]=household.getCost();
+            row[4] = household.getStatus();
             String result = household.getResult();
             row[5] = result == null ? "Waiting" : result;
            ((DefaultTableModel) sellHouseholdTable.getModel()).addRow(row);
@@ -274,13 +278,12 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         for(HouseholdWorkRequest request : userAccount.getWorkQueue().getHouseholdWorkRequests()){
              Object[] row = new Object[10];
             row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getFurnitureType();
-            row[3]=request.getQuantity();
-            row[4]=request.getCost();
-            row[5]=request.getStatus();
+            row[1] = request.getFurnitureType();
+            row[2]=request.getQuantity();
+            row[3]=request.getCost();
+            row[4]=request.getStatus();
             String result = ((HouseholdAssisstantManagerWorkRequest) request).getTestResult();
-            row[9] = result == null ? "Waiting" : result;
+            row[5] = result == null ? "Waiting" : result;
             model.addRow(row);
         }
     }
@@ -297,14 +300,12 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                 }
         
         String furnitureType =furnitureTypeText.getText();
-        String fname= firstNameText.getText();
-        String lname = lastNameText.getText();
+        String fname= userAccount.getUsername();
         String status = "Pending";
         if(fname != null && fname.trim().length()>0 &&
-                lname != null && lname.trim().length()>0 &&
                 furnitureType != null && furnitureType.trim().length()>0)
         {
-            householdDir.sellHouseholdInformation(furnitureType, cost, quantity, fname, lname,status);
+            householdDir.sellHouseholdInformation(furnitureType, cost, quantity, fname,status);
 
             populateData();
 
@@ -316,7 +317,6 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             request.setQuantity(quantity);
             request.setCost(cost);
             request.setfName(fname);
-            request.setlName(lname);
             request.setStatus("Pending");               
 
 
@@ -348,12 +348,14 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                 userAccount.getWorkQueue().getHouseholdWorkRequests().add(request);
                 assistantManagerOrg.getWorkQueue().getHouseholdWorkRequests().add(request);
             }
-               
+                populateData();
+
             }
         else
         {
             JOptionPane.showMessageDialog(null, "Please enter all the value.");
         }
+        
          MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise posted a sell request on dashboard"); 
     }//GEN-LAST:event_createButtonActionPerformed
 
@@ -391,12 +393,10 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField furnitureTypeText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField lastNameText;
     private javax.swing.JComboBox quantityComboBox;
     private javax.swing.JTable sellHouseholdTable;
     private javax.swing.JButton viewSoldRequestsButton;

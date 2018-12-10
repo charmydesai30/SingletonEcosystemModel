@@ -14,6 +14,8 @@ import Business.Organization.StudentOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AccomodationAssisstantManagerWorkRequest;
 import Business.WorkQueue.AccomodationWorkRequest;
+import Business.WorkQueue.BookstoreWorkRequest;
+import Business.WorkQueue.HouseholdWorkRequest;
 import java.awt.CardLayout;
 
 import javax.swing.JPanel;
@@ -36,6 +38,8 @@ private OrganizationDirectory directory;
         this.directory=directory;
         this.system=system;
         populateData();
+        populateBookstoreData();
+        populateHouseholdData();
     }
 
     /**
@@ -50,14 +54,16 @@ private OrganizationDirectory directory;
         jScrollPane1 = new javax.swing.JScrollPane();
         accomodationTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        bookstoreTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        householdTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 153, 153));
 
         accomodationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,11 +91,10 @@ private OrganizationDirectory directory;
             accomodationTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabel1.setText("Accomodation Analysis");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Accommodation Analysis");
 
-        jLabel2.setText("Household Analysis");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        bookstoreTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -100,9 +105,9 @@ private OrganizationDirectory directory;
                 "Sold By", "Bought By", "Network"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(bookstoreTable);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        householdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -113,12 +118,13 @@ private OrganizationDirectory directory;
                 "Sold By", "Bought By", "Network"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(householdTable);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Household Analysis");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("BookStore Analysis");
-
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -128,6 +134,10 @@ private OrganizationDirectory directory;
                 btnBackActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setText("TRACK ANALYSIS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,56 +145,46 @@ private OrganizationDirectory directory;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(337, 337, 337)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(jLabel1))
+                        .addGap(190, 190, 190)
+                        .addComponent(btnBack)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(157, 157, 157)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(jLabel1))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(347, 347, 347)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))))
-                .addGap(198, 198, 198))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(382, 382, 382))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(200, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(188, 188, 188)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(404, 404, 404))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
-                .addGap(131, 131, 131)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
-                .addComponent(jLabel2)
-                .addContainerGap(99, Short.MAX_VALUE))
-
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(227, 227, 227)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(399, Short.MAX_VALUE)))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,19 +230,91 @@ private OrganizationDirectory directory;
         }
     }
     }
+    
+    public void populateBookstoreData()
+    {
+        DefaultTableModel model = (DefaultTableModel) bookstoreTable.getModel();
+        
+        model.setRowCount(0);
+           for(Network network:system.getNetworkList())
+     {
+       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
+       {
+           if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Bookstore);
+              {
+                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
+                   {
+                      if(organization instanceof StudentOrganization)
+                          {
+                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                            {
+                                for (BookstoreWorkRequest request : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
+                                {
+                                    if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                    {
+                                                Object[] row = new Object[4];
+                                                    row[0] = userAccount1.getUsername();
+                                                    row[1] = request.getBuyerName();
+                                                    row[2]=network;                         
+                                                    model.addRow(row);
+                                    }
+                                }
+                            }
+                          }
+                    }
+              }
+        }
+    }
+    }
+    
+    public void populateHouseholdData()
+    {
+        DefaultTableModel model = (DefaultTableModel) householdTable.getModel();
+        
+        model.setRowCount(0);
+        for(Network network:system.getNetworkList())
+        {
+          for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
+          {
+              if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Household);
+                 {
+                     for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
+                      {
+                         if(organization instanceof StudentOrganization)
+                             {
+                               for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+                               {
+                                   for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests())
+                                   {
+                                       if(request.getStatus().equalsIgnoreCase("Purchased"))
+                                       {
+                                                   Object[] row = new Object[4];
+                                                       row[0] = userAccount1.getUsername();
+                                                       row[1] = request.getBuyerName();
+                                                       row[2]=network;                         
+                                                       model.addRow(row);
+                                       }
+                                   }
+                               }
+                             }
+                       }
+                 }
+           }
+       }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable accomodationTable;
+    private javax.swing.JTable bookstoreTable;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JTable householdTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JButton btnBack;
     // End of variables declaration//GEN-END:variables
 }
 

@@ -29,17 +29,9 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.organizationDir = organizationDir;
         
-        populateOrganizationComboBox();
         populateOrganizationEmpComboBox();
     }
     
-    public void populateOrganizationComboBox(){
-        organizationJComboBox.removeAllItems();
-        
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationJComboBox.addItem(organization);
-        }
-    }
     
     public void populateOrganizationEmpComboBox(){
         organizationEmpJComboBox.removeAllItems();
@@ -56,8 +48,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         
         for (Person person : organization.getPersonDirectory().getPersonList()){
             Object[] row = new Object[2];
-            row[0] = person.getId();
-            row[1] = person;
+            row[0] = person;
             model.addRow(row);
         }
     }
@@ -73,8 +64,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         addJButton = new javax.swing.JButton();
-        organizationJComboBox = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
@@ -88,20 +77,20 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         organizationJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "ID", "Name"
+                "Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -115,7 +104,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(organizationJTable);
         if (organizationJTable.getColumnModel().getColumnCount() > 0) {
             organizationJTable.getColumnModel().getColumn(0).setResizable(false);
-            organizationJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         addJButton.setBackground(new java.awt.Color(102, 102, 102));
@@ -126,17 +114,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 addJButtonActionPerformed(evt);
             }
         });
-
-        organizationJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                organizationJComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Organization");
 
         backJButton.setBackground(new java.awt.Color(102, 102, 102));
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -153,7 +130,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         organizationEmpJComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 organizationEmpJComboBoxActionPerformed(evt);
@@ -164,7 +140,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         jLabel3.setText("Organization");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setText("MANAGE PERSONS");
+        jLabel4.setText("MANAGE MEMBERS");
 
         delPersonJButton.setBackground(new java.awt.Color(102, 102, 102));
         delPersonJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -189,10 +165,6 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
@@ -217,11 +189,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(organizationJComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,11 +211,24 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         String name = nameJTextField.getText();
-        
-        organization.getPersonDirectory().createPerson(name);
-        populateTable(organization);
-        nameJTextField.setText("");
-        JOptionPane.showMessageDialog(null, "Person created successfully!!");
+        if(name!= null && name.trim().length()>0)
+        {
+            if(organization.getUserAccountDirectory().checkIfUsernameIsUnique(name))
+            { 
+                organization.getPersonDirectory().createPerson(name);
+                populateTable(organization);
+                nameJTextField.setText("");
+                JOptionPane.showMessageDialog(null, "Person created successfully!!");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "User already exists.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter name.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
@@ -258,15 +239,12 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         if (organization != null){
             populateTable(organization);
         }
-    }//GEN-LAST:event_organizationJComboBoxActionPerformed
-
-    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
 
     private void delPersonJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delPersonJButtonActionPerformed
@@ -278,7 +256,7 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
         }
         
         Person p = (Person)organizationJTable.getValueAt(row, 1);
-        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
         organization.getPersonDirectory().deletePerson(p);
         populateTable(organization);
         nameJTextField.setText("");
@@ -289,14 +267,12 @@ public class ManagePersonJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JButton delPersonJButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox organizationEmpJComboBox;
-    private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
     // End of variables declaration//GEN-END:variables
 }

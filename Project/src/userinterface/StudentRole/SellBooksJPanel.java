@@ -45,6 +45,8 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.account=account;
         this.organization=organization;
+        firstNameText.setText(account.getUsername()+"");
+
         populateData();
         
     }
@@ -52,37 +54,20 @@ public class SellBooksJPanel extends javax.swing.JPanel {
     public void populateData(){
         DefaultTableModel dtm = (DefaultTableModel) sellBooksJTable.getModel();
         dtm.setRowCount(0);
-        
-        for (Book sellbook: bookdir.getBookList()){
-            Object[] row = new Object[9];
-            row[0] = sellbook.getfName();
-            row[1] = sellbook.getlName();
-            row[2] = sellbook.getBookName();
-            row[3] = sellbook.getBookPrice();
-            row[4] = sellbook.getBookAuthor();
-            row[5] = sellbook.getBooktype();
-            row[6] = sellbook.getNoOfBooks();
-            row[7] = sellbook.getStatus();
-            String result = sellbook.getResult();
-            row[8] = result == null ? "Waiting" : result;
-           
-            dtm.addRow(row);
-        }
-        
+          
         for(BookstoreWorkRequest request : account.getWorkQueue().getBookstoreWorkRequestList()){
             if (!request.getStatus().equalsIgnoreCase("Purchased"))
              {
             Object[] row = new Object[9];
             row[0] = request.getfName();
-            row[1] = request.getlName();
-            row[2] = request.getBookName();
-            row[3] = request.getBookPrice();
-            row[4] = request.getBookAuthor();
-            row[5] = request.getBooktype();
-            row[6] = request.getNoOfBooks();
-            row[7] = request.getStatus();
+            row[1] = request.getBookName();
+            row[2] = request.getBookPrice();
+            row[3] = request.getBookAuthor();
+            row[4] = request.getBooktype();
+            row[5] = request.getNoOfBooks();
+            row[6] = request.getStatus();
             String result = ((BookstoreAssisstantManagerWorkRequest) request).getReport();
-            row[8] = result == null ? "Waiting" : result;
+            row[7] = result == null ? "Waiting" : result;
             
             dtm.addRow(row);
             }
@@ -115,8 +100,6 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         booktypeComboBox = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
-        lastNameText = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         firstNameText = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         chatButton = new javax.swing.JButton();
@@ -128,24 +111,41 @@ public class SellBooksJPanel extends javax.swing.JPanel {
 
         sellBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "Username", "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(sellBooksJTable);
+        if (sellBooksJTable.getColumnModel().getColumnCount() > 0) {
+            sellBooksJTable.getColumnModel().getColumn(0).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(1).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(2).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(3).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(4).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(5).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(6).setResizable(false);
+            sellBooksJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -165,6 +165,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Book Name : ");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -202,13 +203,13 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Last Name :");
+        firstNameText.setEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("First Name :");
+        jLabel12.setText("Username :");
 
-        chatButton.setText("Client chat");
+        chatButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chatButton.setText("CHAT");
         chatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chatButtonActionPerformed(evt);
@@ -220,57 +221,49 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(chatButton)))
-                .addGap(19, 19, 19))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(50, 50, 50)
-                                .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel12))
+                                        .addGap(42, 42, 42)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(firstNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                            .addComponent(bookNameText)))
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(49, 49, 49)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(200, 200, 200)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel9))
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(booksComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel12))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(74, 74, 74))
+                        .addGap(108, 108, 108)
+                        .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,12 +276,10 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(lastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -297,29 +288,32 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                             .addComponent(bookNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bookPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(bookAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(booksComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(chatButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(booksComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(booktypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sellButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
         double bookPrice=0.0;
-        String fname= firstNameText.getText();
-        String lname = lastNameText.getText();
+        String fname= account.getUsername();
         String bookName= bookNameText.getText();
                 try{
                   bookPrice = Double.parseDouble(bookPriceTxt.getText());
@@ -329,14 +323,15 @@ public class SellBooksJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Enter a valid number for book price ");
                     return;
                 }
-        
+        if(fname != null && fname.trim().length()>0 &&
+                bookName != null && bookName.trim().length()>0)
+        {
         String bookAuthor= bookAuthorTxt.getText();
         String booktype = (String) booktypeComboBox.getSelectedItem();
         int noOfBooks = Integer.parseInt((String) booksComboBox.getSelectedItem());
         String status = "Pending";
-        bookdir.sellBooks(bookName, bookPrice, bookAuthor, booktype, noOfBooks, fname, lname, status);
+        bookdir.sellBooks(bookName, bookPrice, bookAuthor, booktype, noOfBooks, fname, status);
 
-        populateData();
 
         //code to generate the  sell request of student in the queue of Manager
 
@@ -347,8 +342,7 @@ public class SellBooksJPanel extends javax.swing.JPanel {
         request.setBookAuthor(bookAuthor);
         request.setBooktype(booktype);
         request.setNoOfBooks(noOfBooks);
-        request.setfName(fname);
-        request.setlName(lname);
+        request.setfName(account.getUsername());
         request.setStatus("Pending");
 
         Organization managerOrg = null;
@@ -378,6 +372,14 @@ public class SellBooksJPanel extends javax.swing.JPanel {
             //adding student request only to current student's account so that when other students log in they cant see current students request
             account.getWorkQueue().getBookstoreWorkRequestList().add(request);
             assistantManagerOrg.getWorkQueue().getBookstoreWorkRequestList().add(request);
+        }
+        
+        populateData();
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter all the value.");
         }
         MyLogging.log(Level.INFO, account.getUsername()+ "  from  "  + enterprise +"   Enterprise posted a sell request on dashboard"); 
 
@@ -424,14 +426,12 @@ public class SellBooksJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField lastNameText;
     private javax.swing.JTable sellBooksJTable;
     private javax.swing.JButton sellButton;
     // End of variables declaration//GEN-END:variables

@@ -65,11 +65,10 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
                                 Object[] row = new Object[7];
                                 row[0] = request;
                                 row[1]=request.getfName();
-                                row[2] = request.getlName();
-                                row[3] = request.getFurnitureType();
-                                row[4]=request.getQuantity();
-                                row[5]=request.getCost();
-                                row[6] = request.getStatus();
+                                row[2] = request.getFurnitureType();
+                                row[3]=request.getQuantity();
+                                row[4]=request.getCost();
+                                row[5] = request.getStatus();
 
                                 model.addRow(row);
                             }
@@ -95,30 +94,30 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         addToCartButton = new javax.swing.JButton();
         nextButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         chatBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Result", "First Name", "Last Name", "Furniture Type", "Quantity", "Cost", "Status"
+                "Result", "Username", "Furniture Type", "Quantity", "Cost", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -130,37 +129,46 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Buy Household Products");
-
-        addToCartButton.setText("Add to cart");
+        addToCartButton.setText("ADD TO CART");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToCartButtonActionPerformed(evt);
             }
         });
 
-        nextButton.setText("Next");
+        nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
             }
         });
 
-        backJButton.setText("<< Back");
+        backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
 
-        chatBtn.setText("Server chat");
+        chatBtn.setText("CHAT");
         chatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chatBtnActionPerformed(evt);
             }
         });
+
+        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("HOUSEHOLD BUYING WORK AREA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,34 +178,35 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addToCartButton)
-                                .addGap(49, 49, 49)
-                                .addComponent(backJButton))
-                            .addComponent(jLabel1))
-                        .addGap(36, 36, 36)
+                        .addComponent(addToCartButton)
+                        .addGap(79, 79, 79)
                         .addComponent(nextButton)
-                        .addGap(18, 18, 18)
+                        .addGap(97, 97, 97)
                         .addComponent(chatBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(315, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backJButton)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel2))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(315, 315, 315))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addToCartButton)
-                    .addComponent(nextButton)
-                    .addComponent(backJButton)
-                    .addComponent(chatBtn))
+                    .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -249,7 +258,11 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
 
         HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         String currentState=request.getStatus();
-
+        if(userAccount.getUsername().equalsIgnoreCase(request.getfName()))
+        {
+            JOptionPane.showMessageDialog(null, "You cannot buy household item posted by yourself.");
+            return;
+        }
         switch(currentState.toUpperCase())
         {
             case "PENDING":
@@ -281,15 +294,11 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
 
     private void chatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println("12232343");
         //chat_server cs= new chat_server();
         TestChat_Server t = new TestChat_Server();
         String [] args = {};
         //t.main(args);
-
-        System.out.println("ddddd");
-
-        t.setVisible(true);
+       t.setVisible(true);
     }//GEN-LAST:event_chatBtnActionPerformed
 
    
@@ -297,7 +306,7 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addToCartButton;
     private javax.swing.JButton backJButton;
     private javax.swing.JButton chatBtn;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextButton;
     private javax.swing.JTable workRequestJTable;

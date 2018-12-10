@@ -28,7 +28,7 @@ public class SellAccomodationDirectory {
     public void setSellAccomodationDataList(ArrayList<SellAccomodation> sellAccomodationDataList) {
         this.sellAccomodationDataList = sellAccomodationDataList;
     }
-    public void sellAccomodationInformation( String apptSize,double  noOfBathrooms ,String mattress,double rent,int noOfTenants,String groceries,String fName,String lName, String status)
+    public void sellAccomodationInformation( String apptSize,double  noOfBathrooms ,String mattress,double rent,int noOfTenants,String groceries,String fName, String status)
     {
         SellAccomodation sellAcc= new SellAccomodation();
         sellAcc.setApptSize(apptSize);
@@ -38,7 +38,6 @@ public class SellAccomodationDirectory {
         sellAcc.setRent(rent);
         sellAcc.setGroceries(groceries);
         sellAcc.setfName(fName);
-        sellAcc.setlName(lName);
         sellAcc.setStatus(status);
         sellAccomodationDataList.add(sellAcc);
         

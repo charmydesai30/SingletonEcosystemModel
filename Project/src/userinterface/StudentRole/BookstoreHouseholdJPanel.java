@@ -63,20 +63,20 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
         workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Result", "First Name", "Last Name", "Furniture Type", "Quantity", "Cost", "Status"
+                "Result", "Username", "Furniture Type", "Quantity", "Cost", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -88,6 +88,14 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         buyButton.setBackground(new java.awt.Color(102, 102, 102));
         buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -121,7 +129,7 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
-                                .addGap(63, 63, 63)
+                                .addGap(109, 109, 109)
                                 .addComponent(jLabel2))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -165,11 +173,10 @@ public class BookstoreHouseholdJPanel extends javax.swing.JPanel {
                                 Object[] row = new Object[7];
                                 row[0] = request;
                                 row[1]=request.getfName();
-                                row[2] = request.getlName();
-                                row[3] = request.getFurnitureType();
-                                row[4]=request.getQuantity();
-                                row[5]=request.getCost();
-                                row[6] = request.getStatus();
+                                row[1] = request.getFurnitureType();
+                                row[2]=request.getQuantity();
+                                row[3]=request.getCost();
+                                row[4] = request.getStatus();
             
                                 dtm.addRow(row);
                                 }

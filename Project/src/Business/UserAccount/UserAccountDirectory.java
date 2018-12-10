@@ -48,7 +48,7 @@ public class UserAccountDirectory {
     
     public boolean checkIfUsernameIsUnique(String username){
         for (UserAccount ua : userAccountList){
-            if (ua.getUsername().equals(username))
+            if (ua.getUsername().equalsIgnoreCase(username))
                 return false;
         }
         return true;

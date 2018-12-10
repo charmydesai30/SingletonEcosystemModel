@@ -71,15 +71,13 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
                                             Object[] row = new Object[10];
                                             row[0] = request;
                                             row[1]=request.getfName();
-                                            row[2] = request.getlName();
-                                            row[3] = request.getApptSize();
-                                            row[4]=request.getNoOfBathrooms();
-                                            row[5]=request.getNoOfTenants();
-                                            row[6]=request.getRent();
-           
-                                            row[7] =request.getGroceries();
-                                            row[8]=request.getMattress();
-                                            row[9] = request.getStatus();
+                                            row[2] = request.getApptSize();
+                                            row[3]=request.getNoOfBathrooms();
+                                            row[4]=request.getNoOfTenants();
+                                            row[5]=request.getRent();           
+                                            row[6] =request.getGroceries();
+                                            row[7]=request.getMattress();
+                                            row[8] = request.getStatus();
             
                                             model.addRow(row);
                                         }
@@ -102,25 +100,26 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         nextButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         chatBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Result", "First Name", "Last Name", "Appt Szie", "No Of Bathrooms", "No of Tenants", "Rent", "Groceries Included", "Mattress Included", "Status"
+                "Result", "Username", "Appt Szie", "No Of Bathrooms", "No of Tenants", "Rent", "Groceries Included", "Mattress Included", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, false, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,71 +131,90 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(7).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(8).setResizable(false);
+        }
 
-        addToCartButton.setText("Add to Cart");
+        addToCartButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addToCartButton.setText("ADD TO CART");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToCartButtonActionPerformed(evt);
             }
         });
 
-        nextButton.setText("Next");
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
             }
         });
 
-        backButton.setText("Back");
+        backButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        chatBtn.setText("Server chat");
+        chatBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chatBtn.setText("CHAT");
         chatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chatBtnActionPerformed(evt);
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("ACCOMMODATION BUYING WORK AREA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(chatBtn)
-                        .addGap(34, 34, 34)
-                        .addComponent(backButton)))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(chatBtn))
-                .addGap(86, 86, 86))
+                    .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(144, 144, 144))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,7 +229,11 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
         String currentState=request.getStatus();
         
-        
+        if(userAccount.getUsername().equalsIgnoreCase(request.getfName()))
+        {
+            JOptionPane.showMessageDialog(null, "You cannot buy accommodation posted by yourself.");
+            return;
+        }
         switch(currentState.toUpperCase())
         {
             case "PENDING":
@@ -279,14 +301,10 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
 
     private void chatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println("12232343");
         //chat_server cs= new chat_server();
         TestChat_Server t = new TestChat_Server();
         String [] args = {};
         //t.main(args);
-
-        System.out.println("ddddd");
-
         t.setVisible(true);
     }//GEN-LAST:event_chatBtnActionPerformed
 
@@ -295,6 +313,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addToCartButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton chatBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextButton;
     private javax.swing.JTable workRequestJTable;

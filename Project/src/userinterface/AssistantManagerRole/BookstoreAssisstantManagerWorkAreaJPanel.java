@@ -206,40 +206,44 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
            String result =resultTxt.getText();
         int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            JOptionPane.showMessageDialog(null, "Please select a row!!");
-            return;
-        }
-        
-        BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
-     
-        String currentState=request.getStatus();
-        
-        
-        switch(currentState.toUpperCase())
+        if(result!= null && result.trim().length()>0)
         {
-            case "PENDING":
-                JOptionPane.showMessageDialog(null, "Request is not yet processed by manager!!");
-                 
-                break;
-            case "PROCESSING":
-                request.setStatus("Completed");
-                request.setReport(result);
-                break;
-            case "COMPLETED":
-                JOptionPane.showMessageDialog(null, "Request is  already completed by you !!");
-                break;
-            case "ADDED TO CART":
-                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
-                break;
-            case "PURCHASED":
-                JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
-                break;
-                
+            if (selectedRow < 0){
+                JOptionPane.showMessageDialog(null, "Please select a row!!");
+                return;
+            }
+
+            BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,8);
+            String currentState=request.getStatus();
+            switch(currentState.toUpperCase())
+            {
+                case "PENDING":
+                    JOptionPane.showMessageDialog(null, "Request is not yet processed by manager!!");
+
+                    break;
+                case "PROCESSING":
+                    JOptionPane.showMessageDialog(null, "Request is completed");
+                    request.setStatus("Completed");
+                    request.setReport(result);
+                    break;
+                case "COMPLETED":
+                    JOptionPane.showMessageDialog(null, "Request is  already completed by you !!");
+                    break;
+                case "ADDED TO CART":
+                    JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
+                    break;
+                case "PURCHASED":
+                    JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
+                    break;
+
+            }
+
+            populateTable();
         }
-        
-        populateTable();
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter decision.");
+        }
          MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
     }//GEN-LAST:event_processJButtonActionPerformed
 

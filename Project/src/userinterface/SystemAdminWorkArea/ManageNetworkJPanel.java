@@ -188,12 +188,30 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void addNetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNetButtonActionPerformed
 
         String name = nameJTextField.getText();
-
-        Network network = system.createAndAddNetwork();
-        network.setName(name);
-
-        populateNetworkTable();
-        JOptionPane.showMessageDialog(null, "Network created successfully!!");
+        if(name != null && name.trim().length()>0)
+        {
+            for(int i =0;i<system.getNetworkList().size();i++)
+            {
+                if(system.getNetworkList().get(i).getName().equalsIgnoreCase(name))
+                {
+                    JOptionPane.showMessageDialog(null, "Network already exists.");
+                    return;
+                }
+                
+            }
+                            
+            Network network = system.createAndAddNetwork();
+            network.setName(name);
+            populateNetworkTable();
+            JOptionPane.showMessageDialog(null, "Network created successfully!!");
+            nameJTextField.setText("");
+                    
+                
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please enter network name.");
+        }
     }//GEN-LAST:event_addNetButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -80,7 +80,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                                   {
                                        for (AccomodationWorkRequest request : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
                                        {
-                                            if(! request.getStatus().equalsIgnoreCase("Purchased"))
+                                            if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
                                                 {
                                                     Object[] row = new Object[8];
                                                     row[0] = request;
@@ -109,7 +109,6 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         userNameTxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
         buyButton = new javax.swing.JButton();
@@ -117,10 +116,10 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         emailTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel1.setText("Your Order Summary:");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,7 +136,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -149,7 +148,18 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
+        buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText("Buy");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +167,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        buyRelatedItemsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyRelatedItemsButton.setText("Buy Related Items");
         buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +175,7 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,48 +183,66 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Email Id:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("YOUR ORDER SUMMARY");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setText("ACCOMMODATION BUYING WORK AREA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(138, 138, 138))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
+                        .addGap(320, 320, 320)
                         .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103)
-                        .addComponent(buyRelatedItemsButton))
+                        .addGap(265, 265, 265)
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(206, 206, 206)
-                        .addComponent(jLabel2)
-                        .addGap(112, 112, 112)
-                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(192, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(buyRelatedItemsButton)))))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(96, 96, 96)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(143, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(160, 160, 160)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,14 +250,12 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyRelatedItemsButton)
                     .addComponent(buyButton))
-                .addGap(13, 13, 13)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addGap(185, 185, 185))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(155, 155, 155)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(254, Short.MAX_VALUE)))
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -243,33 +271,35 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         AccomodationAssisstantManagerWorkRequest request = (AccomodationAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(! request.getStatus().equalsIgnoreCase("Purchased"))
+        if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
         {
-     for(Network network:system.getNetworkList())
-     {
-       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
-       {
-           if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation);
-              {
-                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
-                   {
-                      if(organization instanceof StudentOrganization)
-                          {
-                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
-                            {
-                                for (AccomodationWorkRequest request1 : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
-                                {
-                                    request1.setStatus("Purchased");
-                                }
-                            }
-                          }
-                    }
-              }
-        }
-    }
+//     for(Network network:system.getNetworkList())
+//     {
+//       for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList())
+//       {
+//           if(enterprise.getEnterpriseType()==Enterprise.EnterpriseType.Accomodation);
+//              {
+//                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList())
+//                   {
+//                      if(organization instanceof StudentOrganization)
+//                          {
+//                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+//                            {
+//                                for (AccomodationWorkRequest request1 : userAccount1.getWorkQueue().getAccomodationWorkRequestList())
+//                                {
+//                                    request1.setStatus("Purchased");
+//                                }
+//                            }
+//                          }
+//                    }
+//              }
+//        }
+//    }
+        request.setStatus("Purchased");
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this accomodation Successfully");
         populateData();
@@ -342,8 +372,9 @@ public class AccomodationBuyerDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyRelatedItemsButton;
     private javax.swing.JTextField emailTxt;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameTxt;
     private javax.swing.JTable workRequestJTable;

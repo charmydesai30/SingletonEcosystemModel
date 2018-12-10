@@ -28,11 +28,10 @@ public class HouseholdDirectory {
         this.householdDataList = householdDataList;
     }
     public void sellHouseholdInformation( String furnitureType,
-            double  cost ,int quantity,String fName,String lName, String status)
+            double  cost ,int quantity,String fName, String status)
     {
         Household householdObject= new Household();
         householdObject.setfName(fName);
-        householdObject.setlName(lName);        
         householdObject.setStatus(status);
         householdObject.setFurnitureType(furnitureType);
         householdObject.setCost(cost);

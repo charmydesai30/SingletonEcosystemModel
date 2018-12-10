@@ -82,7 +82,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                             for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
                             {
                                 for (HouseholdWorkRequest request : userAccount1.getWorkQueue().getHouseholdWorkRequests()){
-                                    if(!request.getStatus().equalsIgnoreCase("Purchased"))
+                                    if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
                                     {
                                         Object[] row = new Object[8];
                                         row[0] = request;
@@ -120,6 +120,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        buyButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyButton.setText("Buy");
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +128,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        buyRelatedItemsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buyRelatedItemsButton.setText("Buy other Items");
         buyRelatedItemsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +151,7 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, false, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -161,6 +163,15 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -175,49 +186,57 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel1.setText("YOUR ORDER SUMMARY");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Household BUYING WORK AREA");
+        jLabel2.setText("HOUSEHOLD BUYING WORK AREA");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Email");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(218, 218, 218))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(218, 218, 218))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel2)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(btnBack)
-                .addGap(69, 69, 69)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(buyRelatedItemsButton)
-                .addGap(55, 55, 55))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBack)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(buyRelatedItemsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(172, 172, 172)))
+                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,12 +244,11 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buyRelatedItemsButton)
                     .addComponent(buyButton)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(92, 92, 92))
+                    .addComponent(buyRelatedItemsButton))
+                .addGap(137, 137, 137))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -246,32 +264,35 @@ public class HouseholdBuyerDetailsJPanel extends javax.swing.JPanel {
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         
         HouseholdAssisstantManagerWorkRequest request = (HouseholdAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,0);
-        if(! request.getStatus().equalsIgnoreCase("Purchased"))
+        if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
         {
-            for(Network network:system.getNetworkList()){
-                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-                    if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
-
-                    {
-                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                            if(organization instanceof StudentOrganization)
-                            {
-                                for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-                                {
-                                    for (HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
-                                    {
-                                         request1.setStatus("Purchased");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+//            for(Network network:system.getNetworkList()){
+//                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+//                    if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+//
+//                    {
+//                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+//                            if(organization instanceof StudentOrganization)
+//                            {
+//                                for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
+//                                {
+//                                    for (HouseholdWorkRequest request1 : userAccount1.getWorkQueue().getHouseholdWorkRequests())
+//                                    {
+//                                         request1.setStatus("Purchased");
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+        request.setStatus("Purchased");
         request.setBuyerName(userAccount.getUsername());
+
         JOptionPane.showMessageDialog(null, "You purchased this furniture Successfully");
         populateData();
         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"   Enterprise purchased an item from dashboard"); 

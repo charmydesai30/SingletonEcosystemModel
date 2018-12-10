@@ -115,18 +115,33 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Book Name", "Book Price", "Book Author", "Book Type", "#Books", "Status", "Result"
+                "Book Name", "Book Price", "Book Author", "Book Type", "No. of Books", "Status", "Result"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane2.setViewportView(workRequestJTable);
+        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
+            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(4).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
+            workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         btnBack.setBackground(new java.awt.Color(102, 102, 102));
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -140,6 +155,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("BOOK BUYING WORK AREA");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Email Id:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -164,9 +180,9 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
                         .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(97, 97, 97)
                         .addComponent(buyRelatedItemsButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 42, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +234,7 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
                             for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
                             {
                                 for (BookstoreWorkRequest request : userAccount1.getWorkQueue().getBookstoreWorkRequestList()){
-                                    if(! request.getStatus().equalsIgnoreCase("Purchased"))
+                                    if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
                                        {
                                             Object[] row = new Object[7];
                                             row[0] = request.getBookName();
@@ -252,38 +268,33 @@ public class BookstoreBuyerDetailsJPanel extends javax.swing.JPanel {
         
         if (selectedRow < 0){
             JOptionPane.showMessageDialog(null, "Please select a row!!");
+            return;
         }
         
         BookstoreAssisstantManagerWorkRequest request = (BookstoreAssisstantManagerWorkRequest)workRequestJTable.getValueAt(selectedRow,6);
-        if(! request.getStatus().equalsIgnoreCase("Purchased"))
+        if(request.getStatus().equalsIgnoreCase("ADDED TO CART"))
         {
-            for(Network network:system.getNetworkList()){
-            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
-                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
-                    
-                {
-                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                        if(organization instanceof StudentOrganization)
-                        {
-                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
-                            {
-                                for (BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
-                                    request1.setStatus("Purchased");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        
-            
-            
-           /* for(UserAccount userAccount1: studentOrganization.getUserAccountDirectory().getUserAccountList())
-                {
-                    for (BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
-                         request1.setStatus("Purchased");
-                 } */
-        
+//            for(Network network:system.getNetworkList()){
+//            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+//                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bookstore))
+//                    
+//                {
+//                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+//                        if(organization instanceof StudentOrganization)
+//                        {
+//                            for(UserAccount userAccount1: organization.getUserAccountDirectory().getUserAccountList())
+//                            {
+//                                for (BookstoreWorkRequest request1 : userAccount1.getWorkQueue().getBookstoreWorkRequestList())
+//                                    request1.setStatus("Purchased");
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        
+           
+        request.setStatus("Purchased");
         request.setBuyerName(userAccount.getUsername());
         JOptionPane.showMessageDialog(null, "You purchased this book successfully!!");
         populateData();
