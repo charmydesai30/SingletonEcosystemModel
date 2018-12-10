@@ -122,6 +122,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(8).setResizable(false);
         }
 
+        requestReportJButton.setBackground(new java.awt.Color(102, 102, 102));
         requestReportJButton.setText("SEND TO ASSISTANT");
         requestReportJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

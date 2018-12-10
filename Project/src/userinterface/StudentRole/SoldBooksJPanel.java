@@ -57,6 +57,7 @@ public class SoldBooksJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
 
         userNameTxt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        userNameTxt.setEnabled(false);
 
         soldBooksJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         soldBooksJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,8 +122,8 @@ public class SoldBooksJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

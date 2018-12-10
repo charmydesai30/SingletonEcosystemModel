@@ -190,3 +190,7 @@ Dec 09, 2018 9:48:48 PM Business.Logging.MyLogging log
 INFO: Login under Organization Student Organization
 Dec 09, 2018 9:48:48 PM Business.Logging.MyLogging log
 INFO: Business.Role.StudentRolelogged in with username  neubookstu
+Dec 09, 2018 10:02:09 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 10:02:09 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin

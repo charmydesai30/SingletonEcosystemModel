@@ -147,6 +147,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="requestReportJButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="SEND TO ASSISTANT"/>
       </Properties>
       <Events>

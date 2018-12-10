@@ -100,6 +100,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
 
         costText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        createButton.setBackground(new java.awt.Color(102, 102, 102));
         createButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         createButton.setText("SELL");
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +113,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
         jLabel7.setText("Username");
 
         firstNameText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        firstNameText.setEnabled(false);
 
         sellHouseholdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +153,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
 
         furnitureTypeText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        viewSoldRequestsButton.setBackground(new java.awt.Color(102, 102, 102));
         viewSoldRequestsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         viewSoldRequestsButton.setText("VIEW SOLD REQUESTS");
         viewSoldRequestsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +162,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        backJButton.setBackground(new java.awt.Color(102, 102, 102));
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +171,7 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatButton.setBackground(new java.awt.Color(102, 102, 102));
         chatButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chatButton.setText("CHAT");
         chatButton.addActionListener(new java.awt.event.ActionListener() {
@@ -208,15 +213,15 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                                     .addComponent(furnitureTypeText, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                                     .addComponent(quantityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(costText)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(89, 89, 89)
-                                .addComponent(viewSoldRequestsButton)
-                                .addGap(55, 55, 55)
-                                .addComponent(chatButton)))))
-                .addGap(187, 187, 187))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(viewSoldRequestsButton)
+                        .addGap(45, 45, 45)
+                        .addComponent(chatButton)))
+                .addGap(195, 195, 195))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,12 +253,11 @@ public class SellHouseholdJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(costText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
-                    .addComponent(viewSoldRequestsButton)
-                    .addComponent(chatButton))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createButton, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(viewSoldRequestsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(chatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void populateData()
