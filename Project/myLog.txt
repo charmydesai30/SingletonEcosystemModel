@@ -162,3 +162,31 @@ Dec 09, 2018 8:10:42 PM Business.Logging.MyLogging log
 INFO: Login under enterprise  null
 Dec 09, 2018 8:10:42 PM Business.Logging.MyLogging log
 INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 9:46:04 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  null
+Dec 09, 2018 9:46:04 PM Business.Logging.MyLogging log
+INFO: Business.Role.SystemAdminRolelogged in with username  admin
+Dec 09, 2018 9:46:28 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 9:46:28 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 9:46:28 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neubookstu
+Dec 09, 2018 9:47:31 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  bubook
+Dec 09, 2018 9:47:31 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 9:47:31 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  bubookstu
+Dec 09, 2018 9:48:07 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  bubook
+Dec 09, 2018 9:48:07 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 9:48:07 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  bubookstu2
+Dec 09, 2018 9:48:48 PM Business.Logging.MyLogging log
+INFO: Login under enterprise  neubook
+Dec 09, 2018 9:48:48 PM Business.Logging.MyLogging log
+INFO: Login under Organization Student Organization
+Dec 09, 2018 9:48:48 PM Business.Logging.MyLogging log
+INFO: Business.Role.StudentRolelogged in with username  neubookstu

@@ -91,7 +91,7 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        valueLabel.setText("<value>");
+        valueLabel.setEnabled(false);
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,7 +190,7 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         {
             case "PENDING":
                  request.setStatus("Processing");
-                 JOptionPane.showMessageDialog(null, "Request has been sent to bookstore assisstant manager!!");
+                 JOptionPane.showMessageDialog(null, "Request has been sent to household assisstant manager!!");
                 break;
             case "PROCESSING":
                 JOptionPane.showMessageDialog(null, "Request is already in Processing state.");
@@ -208,10 +208,6 @@ public class HouseholdManagerWorkAreaJPanel extends javax.swing.JPanel {
         }
         populateRequestTable();
         MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Processed the request of student and forwarded to assistant"); 
-        
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("SendToHouseholdAssistantQueueJPanel1", new SendToHouseholdAssistantQueueJPanel1(userProcessContainer, userAccount, enterprise));
-        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_requestReportJButtonActionPerformed
 

@@ -142,6 +142,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(8).setResizable(false);
         }
 
+        addToCartButton.setBackground(new java.awt.Color(102, 102, 102));
         addToCartButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addToCartButton.setText("ADD TO CART");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +151,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             }
         });
 
+        nextButton.setBackground(new java.awt.Color(102, 102, 102));
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +160,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             }
         });
 
+        backButton.setBackground(new java.awt.Color(102, 102, 102));
         backButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +169,7 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatBtn.setBackground(new java.awt.Color(102, 102, 102));
         chatBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chatBtn.setText("CHAT");
         chatBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -182,15 +186,6 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
             .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,6 +194,15 @@ public class BuyAccomodationJPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)))
+                .addGap(73, 73, 73))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -198,21 +198,25 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
             {
                 case "PENDING":
                     JOptionPane.showMessageDialog(null, "Request is not yet processed by manager!!");
-
+                    resultTxt.setText("");
                     break;
                 case "PROCESSING":
                     JOptionPane.showMessageDialog(null, "Request is completed");
                     request.setStatus("Completed");
                     request.setReport(result);
+                    resultTxt.setText("");
                     break;
                 case "COMPLETED":
                     JOptionPane.showMessageDialog(null, "Request is  already completed by you !!");
+                    resultTxt.setText("");
                     break;
                 case "ADDED TO CART":
                     JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
+                    resultTxt.setText("");
                     break;
                 case "PURCHASED":
                     JOptionPane.showMessageDialog(null, "Request is  already completed by you!!");
+                    resultTxt.setText("");
                     break;
 
             }
@@ -222,6 +226,7 @@ public class BookstoreAssisstantManagerWorkAreaJPanel extends javax.swing.JPanel
         else
         {
             JOptionPane.showMessageDialog(null, "Please enter decision.");
+            return;
         }
          MyLogging.log(Level.INFO, userAccount.getUsername()+ "  from  "  + enterprise +"  Completed the request"); 
     }//GEN-LAST:event_processJButtonActionPerformed

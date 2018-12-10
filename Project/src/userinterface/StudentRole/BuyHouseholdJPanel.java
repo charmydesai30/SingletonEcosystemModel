@@ -138,6 +138,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        addToCartButton.setBackground(new java.awt.Color(102, 102, 102));
+        addToCartButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addToCartButton.setText("ADD TO CART");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +147,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        nextButton.setBackground(new java.awt.Color(102, 102, 102));
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nextButton.setText("NEXT");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +156,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        backJButton.setBackground(new java.awt.Color(102, 102, 102));
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         backJButton.setText("BACK");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +165,8 @@ public class BuyHouseholdJPanel extends javax.swing.JPanel {
             }
         });
 
+        chatBtn.setBackground(new java.awt.Color(102, 102, 102));
+        chatBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chatBtn.setText("CHAT");
         chatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -130,7 +130,7 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        valueLabel.setText("<value>");
+        valueLabel.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("ACCOMMODATION MANAGER WORK AREA");
@@ -195,9 +195,10 @@ public class AccomodationManagerWorkAreaJPanel extends javax.swing.JPanel {
         {
             case "PENDING":
                  request.setStatus("Processing");
-                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                 userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
-                 layout.next(userProcessContainer);
+                 JOptionPane.showMessageDialog(null, "Request is successfully sent to accommodation assisstant manager!!");
+//                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//                 userProcessContainer.add("SendToAccomodationAssistantQueueJPanel", new SendToAccomodationAssistantQueueJPanel(userProcessContainer, userAccount, enterprise));
+//                 layout.next(userProcessContainer);
                 break;
             case "PROCESSING":
                 JOptionPane.showMessageDialog(null, "Request is already in Processing state.");

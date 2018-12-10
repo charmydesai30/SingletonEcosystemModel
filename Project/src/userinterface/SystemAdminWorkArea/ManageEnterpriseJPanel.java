@@ -245,6 +245,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 if(enterprise.getName().equalsIgnoreCase(name) && enterprise.getEnterpriseType().equals(type))
                 {
                     JOptionPane.showMessageDialog(null, "Enterprise already exists.");
+                    nameJTextField.setText("");
                     return;
                 }
                 

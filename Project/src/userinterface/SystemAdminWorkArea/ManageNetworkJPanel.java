@@ -195,6 +195,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 if(system.getNetworkList().get(i).getName().equalsIgnoreCase(name))
                 {
                     JOptionPane.showMessageDialog(null, "Network already exists.");
+                    nameJTextField.setText("");
                     return;
                 }
                 

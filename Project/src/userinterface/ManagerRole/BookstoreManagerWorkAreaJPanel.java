@@ -65,6 +65,7 @@ public class BookstoreManagerWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("ENTERPRISE : ");
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        valueLabel.setEnabled(false);
 
         workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(

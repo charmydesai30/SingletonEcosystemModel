@@ -203,7 +203,7 @@ public class HouseholdBookstoreJPanel extends javax.swing.JPanel {
         if(request.getStatus().equalsIgnoreCase("Completed"))
          {
             request.setStatus("purchased");
-            JOptionPane.showMessageDialog(null, "You purchased this household  item Successfully");
+            JOptionPane.showMessageDialog(null, "You purchased this household item Successfully");
             request.setBuyerName(userAccount.getUsername());
          }
         else

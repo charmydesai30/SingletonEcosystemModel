@@ -165,21 +165,26 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         {
             case "PENDING":
                 JOptionPane.showMessageDialog(null, "Request is not yet processed by manager.");
+                resultTxt.setText("");
                  
                 break;
             case "PROCESSING":
                 JOptionPane.showMessageDialog(null, "Request is completed");
                 request.setStatus("Completed");
                 request.setTestResult(result);
+                resultTxt.setText("");
                 break;
             case "COMPLETED":
                 JOptionPane.showMessageDialog(null, "Request is  already Completed by you ");
+                resultTxt.setText("");
                 break;
             case "ADDED TO CART":
                 JOptionPane.showMessageDialog(null, "Request is  already Completed by you");
+                resultTxt.setText("");
                 break;
             case "PURCHASED":
                 JOptionPane.showMessageDialog(null, "Request is  already  Completed by you.");
+                resultTxt.setText("");
                 break;
                 
             }   
@@ -190,6 +195,7 @@ public class HouseholdAssistantManagerWorkAreaJPanel extends javax.swing.JPanel 
         else
         {
             JOptionPane.showMessageDialog(null, "Please enter decision.");
+            return;
         }
         
     }//GEN-LAST:event_processJButtonActionPerformed
